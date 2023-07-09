@@ -220,6 +220,7 @@
 	mappath = 'maps/gateway_vr/wildwest.dmm'
 	associated_map_datum = /datum/map_z_level/common_lateload/gateway_destination
 
+#include "../gateway_vr/lucky_7.dm"
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -246,6 +247,43 @@
 	seed_submaps(list(z), 60, /area/om_adventure/grasscave/rocks, /datum/map_template/om_adventure/cave)
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4)
 	new /datum/random_map/noise/ore/grasscave(null, 1, 1, z, 64, 64)
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+/datum/map_template/common_lateload/redgate
+	name = "Redgate Submap"
+	desc = "Please do not use this."
+	mappath = null
+	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
+
+/datum/map_z_level/common_lateload/redgate_destination
+	name = "Redgate Destination"
+	z = Z_LEVEL_REDGATE
+
+/datum/map_template/common_lateload/redgate/on_map_loaded(z)
+	. = ..()
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_REDGATE, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_REDGATE, 64, 64)
+
+/datum/map_template/common_lateload/redgate/teppi_ranch
+	name = "Teppi Ranch"
+	desc = "An abandoned teppi ranch!"
+	mappath = 'maps/redgate/teppiranch.dmm'
+
+/datum/map_template/common_lateload/redgate/innland
+	name = "Innland"
+	desc = "Caves and grass and a tavern, woah!"
+	mappath = 'maps/redgate/innland.dmm'
+
+/datum/map_template/common_lateload/redgate/abandonedisland
+	name = "Abandoned Island"
+	desc = "It seems like it used to be people here!"
+	mappath = 'maps/redgate/abandonedisland.dmm'
+
+/datum/map_template/common_lateload/redgate/darkadventure
+	name = "Dark Adventure"
+	desc = "This place seems broken!"
+	mappath = 'maps/redgate/darkadventure.dmm'
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
@@ -496,6 +534,8 @@
 #include "../offmap_vr/om_ships/curashuttle.dm"
 #include "../offmap_vr/om_ships/itglight.dm"
 #include "../offmap_vr/om_ships/abductor.dm"
+#include "../offmap_vr/om_ships/lunaship.dm"
+#include "../offmap_vr/om_ships/sdf_corvettes.dm"
 
 //////////////////////////////////////////////////////////////////////////////
 //Capsule deployed ships

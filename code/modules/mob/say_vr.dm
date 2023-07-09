@@ -42,7 +42,7 @@
 
 	var/input
 	if(!message)
-		input = sanitize_or_reflect(input(src,"Choose an emote to display.") as text|null, src)
+		input = sanitize_or_reflect(tgui_input_text(src,"Choose an emote to display."), src)
 	else
 		input = message
 
@@ -61,12 +61,16 @@
 		var/list/vis_objs = vis["objs"]
 
 		for(var/mob/M as anything in vis_mobs)
+			if(isnewplayer(M))
+				continue
 			if(isobserver(M) && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
 				spawn(0)
 					M.show_message(undisplayed_message, 2)
 			else
 				spawn(0)
 					M.show_message(message, 2)
+					if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+						M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 
 		for(var/obj/O as anything in vis_objs)
 			spawn(0)
@@ -113,7 +117,7 @@
 
 ///// PSAY /////
 
-/mob/verb/psay(message as text|null)
+/mob/verb/psay(message as text)
 	set category = "IC"
 	set name = "Psay"
 	set desc = "Talk to people affected by complete absorbed or dominate predator/prey."
@@ -123,7 +127,7 @@
 			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
 			return
 	if (!message)
-		message = input(usr, "Type a message to say.","Psay") as text|null
+		message = tgui_input_text(usr, "Type a message to say.","Psay")
 	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return
@@ -145,10 +149,14 @@
 		else
 			pb = db.pred_body
 			to_chat(pb, "<span class='changeling'>The captive mind of \the [M] thinks, \"[message]\"</span>")	//To our pred if dominated brain
+			if(pb.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				pb << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 	else if(M.absorbed && isbelly(M.loc))
 		pb = M.loc.loc
 		to_chat(pb, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")	//To our pred if absorbed
+		if(pb.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			pb << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		f = TRUE
 
 	if(pb)	//We are prey, let's do the prey thing.
@@ -157,11 +165,15 @@
 			if(istype(I, /mob/living/dominated_brain) && I != M)
 				var/mob/living/dominated_brain/db = I
 				to_chat(db, "<span class='changeling'>The captive mind of \the [M] thinks, \"[message]\"</span>")	//To any dominated brains in the pred
+				if(db.is_preference_enabled(/datum/client_preference/subtle_sounds))
+					db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
 		for(var/B in pb.vore_organs)
 			for(var/mob/living/L in B)
 				if(L.absorbed && L != M && L.ckey)
 					to_chat(L, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")	//To any absorbed people in the pred
+					if(L.is_preference_enabled(/datum/client_preference/subtle_sounds))
+						L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 					f = TRUE
 
 	//Let's also check and see if there's anyone inside of us to send the message to.
@@ -169,18 +181,26 @@
 		if(istype(I, /mob/living/dominated_brain))
 			var/mob/living/dominated_brain/db = I
 			to_chat(db, "<span class='changeling'><b>\The [M] thinks, \"[message]\"</b></span>")	//To any dominated brains inside us
+			if(db.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 	for(var/B in M.vore_organs)
 		for(var/mob/living/L in B)
 			if(L.absorbed)
 				to_chat(L, "<span class='changeling'><b>\The [M] thinks, \"[message]\"</b></span>")	//To any absorbed people inside us
+				if(L.is_preference_enabled(/datum/client_preference/subtle_sounds))
+					L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
 
 	if(f)	//We found someone to send the message to
 		if(pb)
 			to_chat(M, "<span class='changeling'>You think \"[message]\"</span>")	//To us if we are the prey
+			if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		else
 			to_chat(M, "<span class='changeling'><b>You think \"[message]\"</b></span>")	//To us if we are the pred
+			if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
@@ -194,7 +214,7 @@
 
 ///// PME /////
 
-/mob/verb/pme(message as text|null)
+/mob/verb/pme(message as message)
 	set category = "IC"
 	set name = "Pme"
 	set desc = "Emote to people affected by complete absorbed or dominate predator/prey."
@@ -204,7 +224,7 @@
 			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
 			return
 	if (!message)
-		message = input(usr, "Type a message to emote.","Pme") as text|null
+		message = tgui_input_text(usr, "Type a message to emote.","Pme")
 	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return
@@ -225,11 +245,15 @@
 		else
 			pb = db.pred_body
 			to_chat(pb, "<span class='changeling'>\The [M] [message]</span>")	//To our pred if dominated brain
+			if(pb.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				pb << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 
 	else if(M.absorbed && isbelly(M.loc))
 		pb = M.loc.loc
 		to_chat(pb, "<span class='changeling'>\The [M] [message]</span>")	//To our pred if absorbed
+		if(pb.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			pb << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		f = TRUE
 
 	if(pb)	//We are prey, let's do the prey thing.
@@ -238,11 +262,15 @@
 			if(istype(I, /mob/living/dominated_brain) && I != M)
 				var/mob/living/dominated_brain/db = I
 				to_chat(db, "<span class='changeling'>\The [M] [message]</span>")	//To any dominated brains in the pred
+				if(db.is_preference_enabled(/datum/client_preference/subtle_sounds))
+					db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
 		for(var/B in pb.vore_organs)
 			for(var/mob/living/L in B)
 				if(L.absorbed && L != M && L.ckey)
 					to_chat(L, "<span class='changeling'>\The [M] [message]</span>")	//To any absorbed people in the pred
+					if(L.is_preference_enabled(/datum/client_preference/subtle_sounds))
+						L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 					f = TRUE
 
 	//Let's also check and see if there's anyone inside of us to send the message to.
@@ -250,18 +278,26 @@
 		if(istype(I, /mob/living/dominated_brain))
 			var/mob/living/dominated_brain/db = I
 			to_chat(db, "<span class='changeling'><b>\The [M] [message]</b></span>")	//To any dominated brains inside us
+			if(db.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 	for(var/B in M.vore_organs)
 		for(var/mob/living/L in B)
 			if(L.absorbed)
 				to_chat(L, "<span class='changeling'><b>\The [M] [message]</b></span>")	//To any absorbed people inside us
+				if(L.is_preference_enabled(/datum/client_preference/subtle_sounds))
+					L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
 
 	if(f)	//We found someone to send the message to
 		if(pb)
 			to_chat(M, "<span class='changeling'>\The [M] [message]</span>")	//To us if we are the prey
+			if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		else
 			to_chat(M, "<span class='changeling'><b>\The [M] [message]</b></span>")	//To us if we are the pred
+			if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
@@ -272,3 +308,56 @@
 	else	//There wasn't anyone to send the message to, pred or prey, so let's just emote it instead and correct our psay just in case.
 		M.forced_psay = FALSE
 		M.me_verb(message)
+
+/mob/living/verb/player_narrate(message as message)
+	set category = "IC"
+	set name = "Narrate (Player)"
+	set desc = "Narrate an action or event! An alternative to emoting, for when your emote shouldn't start with your name!"
+
+	if(src.client)
+		if(client.prefs.muted & MUTE_IC)
+			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
+			return
+	if(!message)
+		message = tgui_input_text(usr, "Type a message to narrate.","Narrate")
+	message = sanitize_or_reflect(message,src)
+	if(!message)
+		return
+	if(stat == DEAD)
+		return say_dead(message)
+	if(stat)
+		to_chat(src, "<span class= 'warning'>You need to be concious to narrate: [message]</span>")
+		return
+	message = "<span class='name'>([name])</span> <span class='pnarrate'>[message]</span>"
+
+	//Below here stolen from emotes
+	var/turf/T = get_turf(src)
+
+	if(!T) return
+
+	var/ourfreq = null
+	if(voice_freq > 0 )
+		ourfreq = voice_freq
+
+	if(client)
+		playsound(T, pick(emote_sound), 25, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/client_preference/emote_sounds)
+
+	var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,2,remote_ghosts = client ? TRUE : FALSE)
+	var/list/m_viewers = in_range["mobs"]
+
+	for(var/mob/M as anything in m_viewers)
+		if(M)
+			if(isnewplayer(M))
+				continue
+			if(M.stat == UNCONSCIOUS || M.sleeping > 0)
+				continue
+			to_chat(M, "<span class='filter_say'>[isobserver(M) ? "[message] ([ghost_follow_link(src, M)])" : message]</span>")
+	log_emote(message, src)
+
+/mob/verb/select_speech_bubble()
+	set name = "Select Speech Bubble"
+	set category = "OOC"
+
+	var/new_speech_bubble = tgui_input_list(src, "Pick new voice (default for automatic selection)", "Character Preference", selectable_speech_bubbles)
+	if(new_speech_bubble)
+		custom_speech_bubble = new_speech_bubble

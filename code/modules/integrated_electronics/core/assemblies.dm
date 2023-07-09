@@ -176,7 +176,7 @@
 	if(!check_interactivity(M))
 		return
 
-	var/input = sanitizeSafe(input(usr, "What do you want to name this?", "Rename", src.name) as null|text, MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name this?", "Rename", src.name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(src && input)
 		to_chat(M, "<span class='notice'>The machine now has a label reading '[input]'.</span>")
 		name = input
@@ -263,7 +263,7 @@
 	if(proximity)
 		var/scanned = FALSE
 		for(var/obj/item/integrated_circuit/input/sensor/S in contents)
-//			S.set_pin_data(IC_OUTPUT, 1, weakref(target))
+//			S.set_pin_data(IC_OUTPUT, 1, WEAKREF(target))
 //			S.check_then_do_work()
 			if(S.scan(target))
 				scanned = TRUE

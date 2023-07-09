@@ -40,7 +40,7 @@
 		visible_message("Something flies out of [src]. It seems to be acting oddly.")
 		var/obj/effect/decal/cleanable/blood/gibs/gib = new /obj/effect/decal/cleanable/blood/gibs(loc)
 		// TODO - I have a feeling weakrefs will not work in ignore_list, verify this ~Leshana
-		var/weakref/g = weakref(gib)
+		var/datum/weakref/g = WEAKREF(gib)
 		ignore_list += g
 		spawn(600)
 			ignore_list -= g
@@ -263,7 +263,7 @@
 		qdel(src)
 
 	else if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && src.loc != usr)

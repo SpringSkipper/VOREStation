@@ -114,6 +114,7 @@
 				prob(30);/obj/item/weapon/aliencoin/gold,
 				prob(20);/obj/item/weapon/aliencoin/phoron,
 				prob(5);/obj/item/capture_crystal,
+				prob(5);/obj/random/mouseray,
 				prob(5);/obj/item/device/perfect_tele,
 				prob(5);/obj/item/weapon/bluespace_harpoon,
 				prob(1);/obj/item/device/paicard,
@@ -188,7 +189,7 @@
 				prob(1);/obj/random/thermalponcho,
 				prob(5);/obj/random/contraband,
 				prob(5);/obj/random/cargopod,
-				prob(1);/obj/item/weapon/flame/lighter/random,
+				prob(1);/obj/item/weapon/flame/lighter,
 				prob(1);/obj/item/weapon/storage/wallet/random,
 				prob(1);/obj/random/cutout)
 
@@ -214,4 +215,23 @@
 				prob(5);/obj/item/instrument/piano_synth,
 				prob(5);/obj/item/instrument/glockenspiel,
 				prob(1);/obj/item/instrument/musicalmoth
+				)
+
+/obj/random/internal_organ
+	name = "random organ"
+	desc = "A random internal organ. Juicy fresh! Or... maybe not."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "heart"
+	spawn_nothing_percentage = 10
+
+/obj/random/internal_organ/item_to_spawn()
+	return pick(prob(5);/obj/item/organ/internal/appendix,
+				prob(5);/obj/item/organ/internal/eyes,
+				prob(5);/obj/item/organ/internal/heart,
+				prob(5);/obj/item/organ/internal/kidneys,
+				prob(5);/obj/item/organ/internal/liver,
+				prob(5);/obj/item/organ/internal/spleen,
+				prob(5);/obj/item/organ/internal/lungs,
+				prob(5);/obj/item/organ/internal/stomach,
+				prob(5);/obj/item/organ/internal/voicebox,
 				)

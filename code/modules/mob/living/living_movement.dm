@@ -3,6 +3,9 @@
 		var/mob/moving_mob = mover
 		if ((other_mobs && moving_mob.other_mobs))
 			return TRUE
+		if(is_shifted && (abs(pixel_x) >= 8 || abs(pixel_y) >= 8))
+			// they're wallflowering, let 'em through
+			return TRUE
 	if(istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/P = mover
 		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
@@ -291,9 +294,10 @@ default behaviour is:
 				var/mob/living/M = pulling
 				M.dragged(src, oldloc)
 
-			pulling.Move(oldloc, 0, movetime) // the pullee tries to reach our previous position
-			if(pulling && get_dist(src, pulling) > 1) // the pullee couldn't keep up
-				stop_pulling()
+			if(pulling)								// Check it AGAIN after previous steps just in case
+				pulling.Move(oldloc, 0, movetime) // the pullee tries to reach our previous position
+				if(get_dist(src, pulling) > 1) // the pullee couldn't keep up
+					stop_pulling()
 
 	if(!isturf(loc))
 		return

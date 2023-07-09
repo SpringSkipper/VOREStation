@@ -106,7 +106,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	setup_tgui_camera()
 
 	//This is a pretty terrible way of doing this.
-	addtimer(CALLBACK(src, .proc/register_to_holder), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(register_to_holder)), 5 SECONDS)
 
 // Proc: register_to_holder()
 // Parameters: None
@@ -142,10 +142,10 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Shows all the voice mobs inside the device, and their status.
 /obj/item/device/communicator/examine(mob/user)
 	. = ..()
-	
+
 	for(var/mob/living/voice/voice in contents)
 		. += "<span class='notice'>On the screen, you can see a image feed of [voice].</span>"
-		
+
 		if(voice && voice.key)
 			switch(voice.stat)
 				if(CONSCIOUS)
@@ -302,7 +302,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/Destroy()
 	for(var/mob/living/voice/voice in contents)
 		voice_mobs.Remove(voice)
-		to_chat(voice, "<span class='danger'>[bicon(src)] Connection timed out with remote host.</span>")
+		to_chat(voice, "<span class='danger'>\icon[src][bicon(src)] Connection timed out with remote host.</span>")
 		qdel(voice)
 	close_connection(reason = "Connection timed out")
 
@@ -376,4 +376,3 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		return
 
 	icon_state = initial(icon_state)
-

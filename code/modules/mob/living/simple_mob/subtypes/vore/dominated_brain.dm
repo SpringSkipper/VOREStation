@@ -44,8 +44,8 @@
 
 /mob/living/dominated_brain/proc/lets_register_our_signals()
 	if(prey_body)
-		RegisterSignal(prey_body, COMSIG_PARENT_QDELETING, .proc/prey_was_deleted, TRUE)
-	RegisterSignal(pred_body, COMSIG_PARENT_QDELETING, .proc/pred_was_deleted, TRUE)
+		RegisterSignal(prey_body, COMSIG_PARENT_QDELETING, PROC_REF(prey_was_deleted), TRUE)
+	RegisterSignal(pred_body, COMSIG_PARENT_QDELETING, PROC_REF(pred_was_deleted), TRUE)
 
 /mob/living/dominated_brain/proc/lets_unregister_our_signals()
 	prey_was_deleted()
@@ -154,6 +154,9 @@
 					langlist |= L.languages
 	if(langlist.len)
 		langlist -= languages
+		for(var/datum/language/L in langlist)
+			if(L.flags & HIVEMIND)
+				verbs |= /mob/proc/adjust_hive_range
 		temp_languages |= langlist
 		languages |= langlist
 
@@ -169,6 +172,10 @@
 		pred = loc.loc
 	else if(isliving(prey.loc))
 		pred = loc
+	else if(ispAI(src))
+		var/mob/living/silicon/pai/pocketpal = src
+		if(isbelly(pocketpal.card.loc))
+			pred = pocketpal.card.loc.loc
 	else
 		to_chat(prey, "<span class='notice'>You are not inside anyone.</span>")
 		return

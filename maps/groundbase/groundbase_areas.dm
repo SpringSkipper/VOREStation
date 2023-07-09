@@ -337,6 +337,9 @@
 /area/groundbase/cargo/office
 	name = "Cargo Office"
 	lightswitch = 1
+/area/groundbase/cargo/storage
+	name = "Cargo Storage"
+	lightswitch = 0
 /area/groundbase/cargo/bay
 	name = "Cargo Bay"
 	lightswitch = 1
@@ -359,6 +362,8 @@
 /area/groundbase/civilian/arrivals
 	name = "Arrivals"
 	lightswitch = 1
+	forbid_events = TRUE
+	forbid_singulo = TRUE
 /area/groundbase/civilian/toolstorage
 	name = "Tool Storage"
 	lightswitch = 1
@@ -417,10 +422,12 @@
 	name = "Men's Restroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 	lightswitch = 1
+	forbid_events = TRUE
 /area/groundbase/civilian/womensrestroom
 	name = "Women's Restroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 	lightswitch = 1
+	forbid_events = TRUE
 
 /area/groundbase/exploration
 	name = "Exploration"
@@ -443,6 +450,7 @@
 	limit_mob_size = FALSE
 	block_suit_sensors = TRUE
 	forbid_events = TRUE
+	forbid_singulo = TRUE
 
 /area/groundbase/dorms/bathroom
 	name = "Dormitory Bathroom"
