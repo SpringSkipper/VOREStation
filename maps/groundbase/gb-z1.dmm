@@ -3392,9 +3392,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
 "hv" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
+/obj/effect/landmark/start/entrepreneur,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "hw" = (
@@ -6529,6 +6527,13 @@
 /obj/effect/landmark/start/bartender,
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
+"of" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/apparel)
 "og" = (
 /obj/effect/landmark/start/miner,
 /obj/structure/cable/yellow{
@@ -9116,6 +9121,20 @@
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/groundbase/civilian/clown)
+"uq" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/effect/landmark/stardog,
+/turf/simulated/floor{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/setunnel)
 "ur" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/green,
 /obj/machinery/meter,
@@ -13300,8 +13319,6 @@
 	department = "Chief Engineer's Office"
 	},
 /obj/structure/cable/orange{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/orange{
@@ -15960,6 +15977,12 @@
 /obj/random/vendorall,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
+"KJ" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/newdirt_nograss{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/stunnel)
 "KK" = (
 /obj/structure/table/standard,
 /obj/item/weapon/stock_parts/subspace/crystal,
@@ -16905,7 +16928,6 @@
 	dir = 8
 	},
 /obj/structure/cable/yellow{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/structure/flora/pottedplant/unusual,
@@ -17152,6 +17174,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
@@ -19536,6 +19559,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or2)
+"Tt" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/newdirt_nograss{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/swtunnel)
 "Tu" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -24935,7 +24964,7 @@ ce
 ce
 ce
 ce
-dM
+Tt
 dM
 dM
 dM
@@ -32976,7 +33005,7 @@ vi
 Yx
 hr
 pi
-Pb
+hv
 vP
 ye
 CD
@@ -33260,7 +33289,7 @@ Ba
 mL
 hr
 zT
-hv
+of
 sg
 BS
 Pb
@@ -33402,7 +33431,7 @@ hr
 hr
 hr
 bL
-Pb
+hv
 rG
 BS
 zj
@@ -33686,7 +33715,7 @@ qE
 qE
 dk
 Vb
-Pb
+hv
 ll
 ye
 CD
@@ -33890,7 +33919,7 @@ Lt
 Lt
 Lt
 Lt
-nS
+KJ
 nS
 SH
 Bk
@@ -40239,7 +40268,7 @@ Bk
 Bk
 ce
 ce
-VL
+uq
 jF
 jF
 jF

@@ -123,6 +123,7 @@ var/list/turf_edge_cache = list()
 	desc = "Hard as a rock."
 	icon_state = "rock"
 	edge_blending_priority = 1
+	initial_flooring = /decl/flooring/rock
 
 /turf/simulated/floor/outdoors/rocks/caves
 	outdoors = OUTDOORS_NO
@@ -179,3 +180,10 @@ var/list/turf_edge_cache = list()
 			if(prob(66))
 				return
 	demote()
+
+/turf/simulated/floor/outdoors/road
+	name = "road"
+	icon = 'icons/turf/concrete.dmi'
+	icon_state = "concrete_dark"
+	desc = "Some sort of material composite road."
+	edge_blending_priority = -1

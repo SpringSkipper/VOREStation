@@ -755,6 +755,14 @@
 	clip_mask_icon = null
 	clip_mask_state = null
 
+//grallstonefist: Ranihrönn Skrolk
+/datum/sprite_accessory/tail/taur/altmermaid/orcamermaid
+	name = "Mermaid Orca (Taur)"
+	icon_state = "orcamermaid_s"
+	can_ride = 1
+	do_colouration = 0
+	ckeys_allowed = list("grallstonefist")
+
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
 	name = "Feline (wickedtemp) (Taur)"
@@ -1026,7 +1034,20 @@
 	name = "Naga (Taur, Fat, dual color)"
 	icon_state = "fatnaga_s"
 	extra_overlay = "fatnaga_markings"
+	suit_sprites = null
 
+/datum/sprite_accessory/tail/taur/fox
+	name = "Fox (Taur, 3-color)"
+	icon_state = "fox"
+	extra_overlay = "fox_markings"
+	extra_overlay2 = "fox_markings2"
+	can_loaf = TRUE
+	icon_loaf = 'icons/mob/vore/taurs_vr_loaf.dmi'
+	loaf_offset = 4
+
+/datum/sprite_accessory/tail/taur/kitsune
+	name = "Kitsune (Taur)"
+	icon_state = "kitsune"
 
 /*
 /datum/sprite_accessory/tail/taur/teppi			// Mostly used as example/template/test subject as to how you use the 'big' taur sprites. Pls give it better icons before uncommenting...

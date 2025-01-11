@@ -505,6 +505,10 @@
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cosmic
 // winter coats end here
 
+/datum/gear/suit/runner
+	display_name = "runner jacket"
+	path = /obj/item/clothing/suit/runner
+
 /datum/gear/suit/varsity
 	display_name = "varsity jacket selection"
 	path = /obj/item/clothing/suit/varsity
@@ -542,6 +546,14 @@
 		"Brown flannel" = /obj/item/clothing/suit/storage/flannel/brown
 	)
 	gear_tweaks += new/datum/gear_tweak/path(flannel)
+
+/datum/gear/suit/flannelrecolour
+	display_name = "flannel jacket, recolourable"
+	path = /obj/item/clothing/suit/storage/flannel/recolour
+
+/datum/gear/suit/flannelrecolour/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/denim_jacket
 	display_name = "denim jacket and vest selection"

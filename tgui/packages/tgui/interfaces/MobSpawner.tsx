@@ -1,6 +1,19 @@
+import { useState } from 'react';
+
 import { BooleanLike } from '../../common/react';
-import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Input, Knob, LabeledList, NumberInput, Section, Tabs, TextArea } from '../components';
+import { useBackend } from '../backend';
+import {
+  Button,
+  Divider,
+  Flex,
+  Input,
+  Knob,
+  LabeledList,
+  NumberInput,
+  Section,
+  Tabs,
+  TextArea,
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -9,6 +22,16 @@ type Data = {
   default_path_name: string;
   default_desc: string;
   default_flavor_text: string;
+
+  use_custom_ai: BooleanLike;
+  ai_type: string;
+  faction: string;
+  intent: string;
+
+  max_health: number;
+  health: number;
+  melee_damage_lower: number;
+  melee_damage_upper: number;
 
   default_speak_emotes: string[];
 
@@ -22,10 +45,10 @@ type Data = {
   initial_z: number;
 };
 
-export const MobSpawner = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const MobSpawner = (props) => {
+  const { act, data } = useBackend<Data>();
 
-  const [tabIndex, setTabIndex] = useLocalState(context, 'panelTabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   const tabs: any = [];
 
@@ -33,7 +56,7 @@ export const MobSpawner = (props, context) => {
   tabs[1] = <VoreMobSettings />;
 
   return (
-    <Window width={890} height={660} theme="abstract" resizable>
+    <Window width={890} height={660} theme="abstract">
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
@@ -49,33 +72,33 @@ export const MobSpawner = (props, context) => {
   );
 };
 
-const GeneralMobSettings = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const GeneralMobSettings = (props) => {
+  const { act, data } = useBackend<Data>();
 
-  const [amount, setAmount] = useLocalState(context, 'amount', 1);
-  const [name, setName] = useLocalState(
-    context,
-    'name',
-    data.default_path_name
+  const [amount, setAmount] = useState(1);
+  const [name, setName] = useState(data.default_path_name);
+  const [ai_type] = useState(data.ai_type);
+  const [use_custom_ai] = useState(data.use_custom_ai);
+  const [faction] = useState(data.faction);
+  const [intent] = useState(data.intent);
+  const [maxHealth, setMaxHealth] = useState(data.max_health);
+  const [health, setHealth] = useState(data.health);
+  const [meleeDamageLower, setMeleeDamageLower] = useState(
+    data.melee_damage_lower,
   );
-  const [desc, setDesc] = useLocalState(context, 'desc', data.default_desc);
-  const [flavorText, setFlavorText] = useLocalState(
-    context,
-    'flavorText',
-    data.default_flavor_text
+  const [meleeDamageUpper, setMeleeDamageUpper] = useState(
+    data.melee_damage_upper,
   );
+  const [desc, setDesc] = useState(data.default_desc);
+  const [flavorText, setFlavorText] = useState(data.default_flavor_text);
 
-  const [sizeMultiplier, setSizeMultiplier] = useLocalState(
-    context,
-    'sizeMultiplier',
-    100
-  );
+  const [sizeMultiplier, setSizeMultiplier] = useState(100);
 
-  const [x, setX] = useLocalState(context, 'x', data.initial_x);
-  const [y, setY] = useLocalState(context, 'y', data.initial_y);
-  const [z, setZ] = useLocalState(context, 'z', data.initial_z);
+  const [x, setX] = useState(data.initial_x);
+  const [y, setY] = useState(data.initial_y);
+  const [z, setZ] = useState(data.initial_z);
 
-  const [radius, setRadius] = useLocalState(context, 'radius', 0);
+  const [radius, setRadius] = useState(0);
 
   return (
     <>
@@ -114,43 +137,128 @@ const GeneralMobSettings = (props, context) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Positional Settings">
-        <LabeledList>
-          <LabeledList.Item label="Spawn (X/Y/Z) Coords">
-            <NumberInput
-              value={data.loc_lock ? data.loc_x : x}
-              minValue={0}
-              maxValue={256}
-              onChange={(e, val) => setX(val)}
-            />
-            <NumberInput
-              value={data.loc_lock ? data.loc_y : y}
-              minValue={0}
-              maxValue={256}
-              onChange={(e, val) => setY(val)}
-            />
-            <NumberInput
-              value={data.loc_lock ? data.loc_z : z}
-              minValue={0}
-              maxValue={256}
-              onChange={(e, val) => setZ(val)}
-            />
-            <Button.Checkbox
-              content="Lock coords to self"
-              checked={data.loc_lock}
-              onClick={() => act('loc_lock')}
-            />
-          </LabeledList.Item>
-          <LabeledList.Item label="Spawn Radius (WIP)">
-            <NumberInput
-              value={radius}
-              disabled
-              minValue={0}
-              maxValue={256}
-              onChange={(e, val) => setRadius(val)}
-            />
-          </LabeledList.Item>
-        </LabeledList>
+      <Section title="General Settings">
+        <Flex horizontal>
+          <Flex.Item FlexGrow>
+            <Section title="Positional Settings">
+              <LabeledList>
+                <LabeledList.Item label="Spawn (X/Y/Z) Coords">
+                  <NumberInput
+                    value={data.loc_lock ? data.loc_x : x}
+                    minValue={0}
+                    maxValue={256}
+                    onChange={(e, val) => setX(val)}
+                  />
+                  <NumberInput
+                    value={data.loc_lock ? data.loc_y : y}
+                    minValue={0}
+                    maxValue={256}
+                    onChange={(e, val) => setY(val)}
+                  />
+                  <NumberInput
+                    value={data.loc_lock ? data.loc_z : z}
+                    minValue={0}
+                    maxValue={256}
+                    onChange={(e, val) => setZ(val)}
+                  />
+                  <Button.Checkbox
+                    content="Lock coords to self"
+                    checked={data.loc_lock}
+                    onClick={() => act('loc_lock')}
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item label="Spawn Radius (WIP)">
+                  <NumberInput
+                    value={radius}
+                    disabled
+                    minValue={0}
+                    maxValue={256}
+                    onChange={(e, val) => setRadius(val)}
+                  />
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+          </Flex.Item>
+          <Flex.Item>
+            <Divider vertical />
+          </Flex.Item>
+          <Flex.Item FlexGrow>
+            <Section
+              title="AI settings"
+              buttons={
+                <Button
+                  selected={use_custom_ai}
+                  fill
+                  content="Use Custom AI"
+                  onClick={() => act('toggle_custom_ai')}
+                />
+              }
+            >
+              <LabeledList>
+                <LabeledList.Item>
+                  <Button
+                    fluid
+                    content={ai_type || 'Choose AI Type'}
+                    onClick={(val) => act('set_ai_path')}
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item>
+                  <Button
+                    fluid
+                    content={faction || 'Set Faction'}
+                    onClick={(val) => act('set_faction')}
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item>
+                  <Button
+                    fluid
+                    content={intent || 'Set Intent'}
+                    onClick={(val) => act('set_intent')}
+                  />
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+            <Section title="Health & Damage">
+              <LabeledList>
+                {(maxHealth && (
+                  <>
+                    <LabeledList.Item label="Max Health">
+                      <NumberInput
+                        value={maxHealth}
+                        onChange={(e, val) => setMaxHealth(val)}
+                      />
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Health">
+                      <NumberInput
+                        value={health}
+                        onChange={(e, val) => setHealth(val)}
+                      />
+                    </LabeledList.Item>
+                    <br />
+                  </>
+                )) ||
+                  "Note: Only available for '/mob/living'"}
+                {(meleeDamageLower && (
+                  <>
+                    <LabeledList.Item label="Melee Damage (Lower)">
+                      <NumberInput
+                        value={meleeDamageLower}
+                        onChange={(e, val) => setMeleeDamageLower(val)}
+                      />
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Melee Damage (Upper)">
+                      <NumberInput
+                        value={meleeDamageUpper}
+                        onChange={(e, val) => setMeleeDamageUpper(val)}
+                      />
+                    </LabeledList.Item>
+                  </>
+                )) ||
+                  "Note: Only available for '/mob/living/simple_mob'"}
+              </LabeledList>
+            </Section>
+          </Flex.Item>
+        </Flex>
       </Section>
       <Section title="Descriptions">
         <Flex>
@@ -181,6 +289,10 @@ const GeneralMobSettings = (props, context) => {
             amount: amount,
             name: name || data.default_path_name,
             desc: desc || data.default_desc,
+            max_health: maxHealth || data.max_health,
+            health: health || data.health,
+            melee_damage_lower: meleeDamageLower || data.melee_damage_lower,
+            melee_damage_upper: meleeDamageUpper || data.melee_damage_upper,
             flavor_text: flavorText || data.default_flavor_text,
             size_multiplier: sizeMultiplier * 0.01,
             x: data.loc_lock ? data.loc_x : x,
@@ -188,15 +300,16 @@ const GeneralMobSettings = (props, context) => {
             z: data.loc_lock ? data.loc_z : z,
             radius: radius,
           })
-        }>
+        }
+      >
         Spawn
       </Button>
     </>
   );
 };
 
-const VoreMobSettings = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const VoreMobSettings = (props) => {
+  const { act, data } = useBackend<Data>();
 
   return (
     <Section title="WIP">

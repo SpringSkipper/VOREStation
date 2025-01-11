@@ -48,7 +48,19 @@
 								  "Giant Spider Queen" = /mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless,
 								  "Weretiger" = /mob/living/simple_mob/vore/weretiger,
 								  "Catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
-								  "Squirrel" = /mob/living/simple_mob/vore/squirrel/big
+								  "Squirrel" = /mob/living/simple_mob/vore/squirrel/big,
+								  "Pakkun" =/mob/living/simple_mob/vore/pakkun,
+								  "Snapdragon" =/mob/living/simple_mob/vore/pakkun/snapdragon,
+								  "Sand pakkun" = /mob/living/simple_mob/vore/pakkun/sand,
+								  "Fire pakkun" = /mob/living/simple_mob/vore/pakkun/fire,
+								  "Amethyst pakkun" = /mob/living/simple_mob/vore/pakkun/purple,
+								  "Raptor" = /mob/living/simple_mob/vore/raptor,
+								  "Giant Bat" = /mob/living/simple_mob/vore/bat,
+								  "Scel (Orange)" = /mob/living/simple_mob/vore/scel/orange,
+								  "Scel (Blue)" = /mob/living/simple_mob/vore/scel/blue,
+								  "Scel (Purple)" = /mob/living/simple_mob/vore/scel/purple,
+								  "Scel (Red)" = /mob/living/simple_mob/vore/scel/red,
+								  "Scel (Green)" = /mob/living/simple_mob/vore/scel/green
 								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)
@@ -59,6 +71,10 @@
 	if(jobban_isbanned(M, "GhostRoles"))
 		to_chat(M, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
 		reset_ghostpod()
+		return
+
+	//No OOC notes
+	if (not_has_ooc_text(M))
 		return
 
 	while(finalized == "No" && M.client)
@@ -110,6 +126,11 @@
 
 /obj/structure/ghost_pod/ghost_activated/morphspawn/create_occupant(var/mob/M)
 	..()
+
+	//No OOC notes
+	if (not_has_ooc_text(M))
+		return
+
 	var/mob/living/simple_mob/vore/morph/newMorph = new /mob/living/simple_mob/vore/morph(get_turf(src))
 	if(M.mind)
 		M.mind.transfer_to(newMorph)
