@@ -8,10 +8,12 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/water/indoors)
 VIRGO3B_TURF_CREATE(/turf/simulated/open)
 /turf/simulated/open/virgo3b
 	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
+/*	Handled by parent now
 /turf/simulated/open/virgo3b/Initialize(mapload)
 	. = ..()
 	if(is_outdoors())
 		SSplanets.addTurf(src)
+*/
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor)
 
@@ -65,28 +67,28 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	var/mineral_name
 	if(rare_ore)
 		mineral_name = pickweight(list(
-			"marble" = 3,
-			"uranium" = 10,
-			"platinum" = 10,
-			"hematite" = 20,
-			"carbon" = 20,
-			"diamond" = 1,
-			"gold" = 8,
-			"silver" = 8,
-			"phoron" = 18,
-			"lead" = 2,
-			"verdantium" = 1))
+			ORE_MARBLE = 3,
+			ORE_URANIUM = 10,
+			ORE_PLATINUM = 10,
+			ORE_HEMATITE = 20,
+			ORE_CARBON = 20,
+			ORE_DIAMOND = 1,
+			ORE_GOLD = 8,
+			ORE_SILVER = 8,
+			ORE_PHORON = 18,
+			ORE_LEAD = 2,
+			ORE_VERDANTIUM = 1))
 	else
 		mineral_name = pickweight(list(
-			"marble" = 2,
-			"uranium" = 5,
-			"platinum" = 5,
-			"hematite" = 35,
-			"carbon" = 35,
-			"gold" = 3,
-			"silver" = 3,
-			"phoron" = 25,
-			"lead" = 1))
+			ORE_MARBLE = 2,
+			ORE_URANIUM = 5,
+			ORE_PLATINUM = 5,
+			ORE_HEMATITE = 35,
+			ORE_CARBON = 35,
+			ORE_GOLD = 3,
+			ORE_SILVER = 3,
+			ORE_PHORON = 25,
+			ORE_LEAD = 1))
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
@@ -98,28 +100,28 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	var/mineral_name
 	if(rare_ore)
 		mineral_name = pickweight(list(
-			"marble" = 7,
-			"uranium" = 10,
-			"platinum" = 10,
-			"hematite" = 10,
-			"carbon" = 10,
-			"diamond" = 4,
-			"gold" = 15,
-			"silver" = 15,
-			"lead" = 5,
-			"verdantium" = 2))
+			ORE_MARBLE = 7,
+			ORE_URANIUM = 10,
+			ORE_PLATINUM = 10,
+			ORE_HEMATITE = 10,
+			ORE_CARBON = 10,
+			ORE_DIAMOND = 4,
+			ORE_GOLD = 15,
+			ORE_SILVER = 15,
+			ORE_LEAD = 5,
+			ORE_VERDANTIUM = 2))
 	else
 		mineral_name = pickweight(list(
-			"marble" = 5,
-			"uranium" = 7,
-			"platinum" = 7,
-			"hematite" = 28,
-			"carbon" = 28,
-			"diamond" = 2,
-			"gold" = 7,
-			"silver" = 7,
-			"lead" = 4,
-			"verdantium" = 1))
+			ORE_MARBLE = 5,
+			ORE_URANIUM = 7,
+			ORE_PLATINUM = 7,
+			ORE_HEMATITE = 28,
+			ORE_CARBON = 28,
+			ORE_DIAMOND = 2,
+			ORE_GOLD = 7,
+			ORE_SILVER = 7,
+			ORE_LEAD = 4,
+			ORE_VERDANTIUM = 1))
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
@@ -165,8 +167,9 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	name = "bluespace"
 	icon = 'icons/turf/space_vr.dmi'
 	icon_state = "bluespace"
+
 /turf/space/bluespace/Initialize()
-	..()
+	. = ..()
 	icon = 'icons/turf/space_vr.dmi'
 	icon_state = "bluespace"
 
@@ -175,8 +178,9 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	name = "sand transit"
 	icon = 'icons/turf/transit_vr.dmi'
 	icon_state = "desert_ns"
+
 /turf/space/sandyscroll/Initialize()
-	..()
+	. = ..()
 	icon_state = "desert_ns"
 
 //Sky stuff!

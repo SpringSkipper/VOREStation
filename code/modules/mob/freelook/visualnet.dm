@@ -2,8 +2,6 @@
 //
 // The datum containing all the chunks.
 
-#define CHUNK_SIZE 16
-
 /datum/visualnet
 	// The chunks of the map, mapping the areas that an object can see.
 	var/list/chunks = list()

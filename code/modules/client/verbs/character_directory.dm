@@ -2,12 +2,12 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 /client/verb/show_character_directory()
 	set name = "Character Directory"
-	set category = "OOC"
+	set category = "OOC.Game"
 	set desc = "Shows a listing of all active characters, along with their associated OOC notes, flavor text, and more."
 
 	// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 	if(!usr.checkMoveCooldown())
-		to_chat(usr, "<span class='warning'>Don't spam character directory refresh.</span>")
+		to_chat(usr, span_warning("Don't spam character directory refresh."))
 		return
 	usr.setMoveCooldown(10)
 
@@ -70,10 +70,10 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 		if(ishuman(C.mob))
 			var/mob/living/carbon/human/H = C.mob
-			if(data_core && data_core.general)
-				if(!find_general_record("name", H.real_name))
-					if(!find_record("name", H.real_name, data_core.hidden_general))
-						continue
+			//if(data_core && data_core.general)
+			//	if(!find_general_record("name", H.real_name))
+			//		if(!find_record("name", H.real_name, data_core.hidden_general))
+			//			continue
 			name = H.real_name
 			species = "[H.custom_species ? H.custom_species : H.species.name]"
 			ooc_notes = H.ooc_notes
@@ -109,6 +109,30 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 			flavor_text = R.flavor_text
 
+		if(ispAI(C.mob))
+			var/mob/living/silicon/pai/P = C.mob
+			name = P.name
+			species = "pAI"
+			ooc_notes = P.ooc_notes
+			if(P.ooc_notes_likes)
+				ooc_notes += "\n\nLIKES\n\n[P.ooc_notes_likes]"
+			if(P.ooc_notes_dislikes)
+				ooc_notes += "\n\nDISLIKES\n\n[P.ooc_notes_dislikes]"
+
+			flavor_text = P.flavor_text
+
+		if(isanimal(C.mob))
+			var/mob/living/simple_mob/S = C.mob
+			name = S.name
+			species = initial(S.name)
+			ooc_notes = S.ooc_notes
+			if(S.ooc_notes_likes)
+				ooc_notes += "\n\nLIKES\n\n[S.ooc_notes_likes]"
+			if(S.ooc_notes_dislikes)
+				ooc_notes += "\n\nDISLIKES\n\n[S.ooc_notes_dislikes]"
+
+			flavor_text = S.desc
+
 		// It's okay if we fail to find OOC notes and flavor text
 		// But if we can't find the name, they must be using a non-compatible mob type currently.
 		if(!name)
@@ -136,14 +160,14 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 	if(action == "refresh")
 		// This is primarily to stop malicious users from trying to lag the server by spamming this verb
-		if(!usr.checkMoveCooldown())
-			to_chat(usr, "<span class='warning'>Don't spam character directory refresh.</span>")
+		if(!ui.user.checkMoveCooldown())
+			to_chat(ui.user, span_warning("Don't spam character directory refresh."))
 			return
-		usr.setMoveCooldown(10)
-		update_tgui_static_data(usr, ui)
+		ui.user.setMoveCooldown(10)
+		update_tgui_static_data(ui.user, ui)
 		return TRUE
 	else
-		return check_for_mind_or_prefs(usr, action, params["overwrite_prefs"])
+		return check_for_mind_or_prefs(ui.user, action, params["overwrite_prefs"])
 
 /datum/character_directory/proc/check_for_mind_or_prefs(mob/user, action, overwrite_prefs)
 	if (!user.client)
@@ -152,16 +176,16 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	var/can_set_mind = !!user.mind
 	if (!can_set_prefs && !can_set_mind)
 		if (!overwrite_prefs && !!user.client.prefs)
-			to_chat(user, "<span class='warning'>You cannot change these settings if you don't have a mind to save them to. Enable overwriting prefs and switch to a slot you're fine with overwriting.</span>")
+			to_chat(user, span_warning("You cannot change these settings if you don't have a mind to save them to. Enable overwriting prefs and switch to a slot you're fine with overwriting."))
 		return
 	switch(action)
 		if ("setTag")
-			var/list/new_tag = tgui_input_list(usr, "Pick a new Vore tag for the character directory", "Character Tag", GLOB.char_directory_tags)
+			var/list/new_tag = tgui_input_list(user, "Pick a new Vore tag for the character directory", "Character Tag", GLOB.char_directory_tags)
 			if(!new_tag)
 				return
 			return set_for_mind_or_prefs(user, action, new_tag, can_set_prefs, can_set_mind)
 		if ("setErpTag")
-			var/list/new_erptag = tgui_input_list(usr, "Pick a new ERP tag for the character directory", "Character ERP Tag", GLOB.char_directory_erptags)
+			var/list/new_erptag = tgui_input_list(user, "Pick a new ERP tag for the character directory", "Character ERP Tag", GLOB.char_directory_erptags)
 			if(!new_erptag)
 				return
 			return set_for_mind_or_prefs(user, action, new_erptag, can_set_prefs, can_set_mind)
@@ -171,11 +195,11 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 				visible = user.mind.show_in_directory
 			else if (can_set_prefs)
 				visible = user.client.prefs.show_in_directory
-			to_chat(usr, "<span class='notice'>You are now [!visible ? "shown" : "not shown"] in the directory.</span>")
+			to_chat(user, span_notice("You are now [!visible ? "shown" : "not shown"] in the directory."))
 			return set_for_mind_or_prefs(user, action, !visible, can_set_prefs, can_set_mind)
 		if ("editAd")
-			var/current_ad = (can_set_mind ? usr.mind.directory_ad : null) || (can_set_prefs ? usr.client.prefs.directory_ad : null)
-			var/new_ad = sanitize(tgui_input_text(usr, "Change your character ad", "Character Ad", current_ad, multiline = TRUE, prevent_enter = TRUE), extra = 0)
+			var/current_ad = (can_set_mind ? user.mind.directory_ad : null) || (can_set_prefs ? user.client.prefs.directory_ad : null)
+			var/new_ad = sanitize(tgui_input_text(user, "Change your character ad", "Character Ad", current_ad, multiline = TRUE, prevent_enter = TRUE), extra = 0)
 			if(isnull(new_ad))
 				return
 			return set_for_mind_or_prefs(user, action, new_ad, can_set_prefs, can_set_mind)
@@ -184,7 +208,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	can_set_prefs &&= !!user.client.prefs
 	can_set_mind &&= !!user.mind
 	if (!can_set_prefs && !can_set_mind)
-		to_chat(user, "<span class='warning'>You seem to have lost either your mind, or your current preferences, while changing the values.[action == "editAd" ? " Here is your ad that you wrote. [new_value]" : null]</span>")
+		to_chat(user, span_warning("You seem to have lost either your mind, or your current preferences, while changing the values.[action == "editAd" ? " Here is your ad that you wrote. [new_value]" : null]"))
 		return
 	switch(action)
 		if ("setTag")

@@ -144,7 +144,7 @@
 		H.ability_master = new /obj/screen/movable/ability_master/shadekin(H)
 	for(var/datum/power/shadekin/P in shadekin_ability_datums)
 		if(!(P.verbpath in H.verbs))
-			H.verbs += P.verbpath
+			add_verb(H, P.verbpath)
 			H.ability_master.add_shadekin_ability(
 					object_given = H,
 					verb_given = P.verbpath,
@@ -331,7 +331,7 @@
 
 	H.health = H.maxHealth
 
-/datum/species/shadekin/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base)
+/datum/species/shadekin/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE)
 
 	var/datum/species/shadekin/new_copy = ..()
 

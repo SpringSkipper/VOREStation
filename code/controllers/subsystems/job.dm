@@ -11,18 +11,18 @@ SUBSYSTEM_DEF(job)
 	var/debug_messages = FALSE
 
 
-/datum/controller/subsystem/job/Initialize(timeofday)
+/datum/controller/subsystem/job/Initialize()
 	if(!department_datums.len)
 		setup_departments()
 	if(!occupations.len)
 		setup_occupations()
-	return ..()
+	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/job/proc/setup_occupations(faction = "Station")
+/datum/controller/subsystem/job/proc/setup_occupations(faction = FACTION_STATION)
 	occupations = list()
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)
-		to_chat(world, span("warning", "Error setting up jobs, no job datums found"))
+		to_chat(world, span_warning("Error setting up jobs, no job datums found"))
 		return FALSE
 
 	for(var/J in all_jobs)

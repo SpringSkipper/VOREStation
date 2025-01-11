@@ -33,7 +33,7 @@
 	icon_rest = "fennec_rest"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "fennec"
+	faction = FACTION_FENNEC
 	maxHealth = 30
 	health = 30
 
@@ -42,7 +42,7 @@
 	response_harm = "hits"
 
 	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/fox
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/fox
 
 	harm_intent_damage = 5
 	melee_damage_lower = 1
@@ -51,6 +51,8 @@
 
 	say_list_type = /datum/say_list/fennec
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
+
+	allow_mind_transfer = TRUE
 
 // Activate Noms!
 /mob/living/simple_mob/vore/fennec
@@ -128,7 +130,9 @@
 	add_overlay(bigshadow)
 
 /mob/living/simple_mob/vore/fennec/huge/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
 	B.desc = "The slimy wet insides of a rather large fennec! Not quite as clean as the fen on the outside."

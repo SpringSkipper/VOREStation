@@ -9,7 +9,7 @@
         "**/.pnp.*": true
     },
     "workbench.editorAssociations": {
-        "*.dmi": "imagePreview.previewEditor"
+        "*.dmi": "dmiEditor.dmiEditor"
     },
     "editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit"
@@ -27,7 +27,7 @@
     ],
     "tgstationTestExplorer.project.resultsType": "json",
     "[dm]": {
-        "files.eol": "\r\n",
+        "files.eol": "\n",
         "editor.detectIndentation": false,
         "editor.insertSpaces": false
     },

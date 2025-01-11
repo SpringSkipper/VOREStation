@@ -1,4 +1,4 @@
-/obj/item/device/communicator/proc/analyze_air()
+/obj/item/communicator/proc/analyze_air()
 	var/list/results = list()
 	var/turf/T = get_turf(src.loc)
 	if(!isnull(T))
@@ -6,10 +6,10 @@
 		var/pressure = environment.return_pressure()
 		var/total_moles = environment.total_moles
 		if (total_moles)
-			var/o2_level = environment.gas["oxygen"]/total_moles
-			var/n2_level = environment.gas["nitrogen"]/total_moles
-			var/co2_level = environment.gas["carbon_dioxide"]/total_moles
-			var/phoron_level = environment.gas["phoron"]/total_moles
+			var/o2_level = environment.gas[GAS_O2]/total_moles
+			var/n2_level = environment.gas[GAS_N2]/total_moles
+			var/co2_level = environment.gas[GAS_CO2]/total_moles
+			var/phoron_level = environment.gas[GAS_PHORON]/total_moles
 			var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
 
 			// Label is what the entry is describing
@@ -36,7 +36,7 @@
 // Proc - compile_news()
 // Parameters - none
 // Description - Returns the list of newsfeeds, compiled for template processing
-/obj/item/device/communicator/proc/compile_news()
+/obj/item/communicator/proc/compile_news()
 	var/list/feeds = list()
 	for(var/datum/feed_channel/channel in news_network.network_channels)
 		var/list/messages = list()
@@ -69,7 +69,7 @@
 // Proc - get_recent_news()
 // Parameters - none
 // Description - Returns the latest three newscasts, compiled for template processing
-/obj/item/device/communicator/proc/get_recent_news()
+/obj/item/communicator/proc/get_recent_news()
 	var/list/news = list()
 
 	// Compile all the newscasts

@@ -5,7 +5,7 @@
 	desc = "The base type of fightercraft. Don't spawn this one!"
 
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail
-	var/stabilization_enabled = TRUE //If our anti-space-drift is on
+	var/landing_gear_raised = FALSE //If our landing gear for safely crossing ground turfs is on.
 	var/ground_capable = FALSE //If we can fly over normal turfs and not just space
 
 	icon = 'icons/mecha/fighters64x64.dmi' //See ATTRIBUTIONS.md for details on license
@@ -27,8 +27,8 @@
 
 	wreckage = /obj/effect/decal/mecha_wreckage/gunpod
 
-	stomp_sound = 'sound/machines/generator/generator_end.ogg'
-	swivel_sound = 'sound/machines/hiss.ogg'
+	stomp_sound = 'sound/mecha/fighter/engine_mid_fighter_move.ogg'
+	swivel_sound = 'sound/mecha/fighter/engine_mid_boost_01.ogg'
 
 	bound_height = 64
 	bound_width = 64
@@ -118,16 +118,16 @@
 	else
 		var/obj/effect/overmap/visitable/V = choices[choice]
 		if(occupant != this_occupant || this_x != x || this_y != y || this_z != z || get_dist(V,our_ship) > 1) //Sanity after user input
-			to_chat(occupant, "<span class='warning'>You or they appear to have moved!</span>")
+			to_chat(occupant, span_warning("You or they appear to have moved!"))
 			return
 		var/list/levels = V.get_space_zlevels()
 		if(!levels.len)
-			to_chat(occupant, "<span class='warning'>You don't appear to be able to get there from here!</span>")
+			to_chat(occupant, span_warning("You don't appear to be able to get there from here!"))
 			return
 		new_z = pick(levels)
 	var/turf/destination = locate(new_x, new_y, new_z)
 	if(!destination || destination.density)
-		to_chat(occupant, "<span class='warning'>You don't appear to be able to get there from here! Is it blocked?</span>")
+		to_chat(occupant, span_warning("You don't appear to be able to get there from here! Is it blocked?"))
 		return
 	else
 		forceMove(destination)
@@ -135,17 +135,17 @@
 //Modified phazon code
 /obj/mecha/combat/fighter/Topic(href, href_list)
 	..()
-	if (href_list["toggle_stabilization"])
-		stabilization_enabled = !stabilization_enabled
-		send_byjax(src.occupant,"exosuit.browser","stabilization_command","[stabilization_enabled?"Dis":"En"]able thruster stabilization")
-		src.occupant_message("<span class='notice'>Thruster stabilization [stabilization_enabled? "enabled" : "disabled"].</span>")
+	if (href_list["toggle_landing_gear"])
+		landing_gear_raised = !landing_gear_raised
+		send_byjax(src.occupant,"exosuit.browser","landing_gear_command","[landing_gear_raised?"Lower":"Raise"] landing gear")
+		src.occupant_message(span_notice("Landing gear [landing_gear_raised? "raised" : "lowered"]."))
 		return
 
 /obj/mecha/combat/fighter/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
-						<a href='?src=\ref[src];toggle_stabilization=1'><span id="stabilization_command">[stabilization_enabled?"Dis":"En"]able thruster stabilization</span></a><br>
+						<a href='byond://?src=\ref[src];toggle_landing_gear=1'><span id="landing_gear_command">[landing_gear_raised?"Raise":"Lower"] landing gear</span></a><br>
 						</div>
 						</div>
 						"}
@@ -153,22 +153,28 @@
 	return output
 
 /obj/mecha/combat/fighter/can_ztravel()
-	return (stabilization_enabled && has_charge(step_energy_drain))
+	return (landing_gear_raised && has_charge(step_energy_drain))
 
 // No space drifting
+// This doesnt work but I actually dont want it to anyways, so I'm not touching it at all. Space drifting is cool.
 /obj/mecha/combat/fighter/check_for_support()
-	if (stabilization_enabled)
+	if (landing_gear_raised)
 		return 1
 
 	return ..()
 
 // No falling if we've got our boosters on
 /obj/mecha/combat/fighter/can_fall()
-	return (stabilization_enabled && has_charge(step_energy_drain))
+	if(landing_gear_raised && has_charge(step_energy_drain))
+		return FALSE
+	else
+		return TRUE
 
 /obj/mecha/combat/fighter/proc/consider_gravity(var/moved = FALSE)
-	var/gravity = has_gravity()
-	if(gravity && ground_capable && occupant)
+	var/gravity = get_gravity()
+	if (gravity && !landing_gear_raised)
+		playsound(src, 'sound/effects/roll.ogg', 50, 1)
+	else if(gravity && ground_capable && occupant)
 		start_hover()
 	else if((!gravity && ground_capable) || !occupant)
 		stop_hover()
@@ -176,6 +182,11 @@
 		occupant_message("Collision alert! Vehicle not rated for use in gravity!")
 		take_damage(NOGRAV_FIGHTER_DAMAGE, "brute")
 		playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
+
+/obj/mecha/combat/fighter/get_step_delay()
+    . = ..()
+    if(get_gravity() && !landing_gear_raised)
+        . += 4
 
 /obj/mecha/combat/fighter/handle_equipment_movement()
 	. = ..()
@@ -202,7 +213,7 @@
 		animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING | EASE_IN) //halt animation
 
 /obj/mecha/combat/fighter/check_for_support()
-	if (has_charge(step_energy_drain) && stabilization_enabled)
+	if (has_charge(step_energy_drain) && landing_gear_raised)
 		return 1
 
 	var/list/things = orange(1, src)
@@ -241,7 +252,7 @@
 	var/image/stripe1_overlay
 	var/image/stripe2_overlay
 
-/obj/mecha/combat/fighter/gunpod/loaded/Initialize() //Loaded version with gans
+/obj/mecha/combat/fighter/gunpod/loaded/Initialize() //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
@@ -268,11 +279,11 @@
 		stripe2_overlay.color = stripe2_color
 		add_overlay(stripe2_overlay)
 
-/obj/mecha/combat/fighter/gunpod/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/device/multitool) && state == 1)
-		var/new_paint_location = tgui_input_list(usr, "Please select a target zone.", "Paint Zone", list("Fore Stripe", "Aft Stripe", "CANCEL"))
+/obj/mecha/combat/fighter/gunpod/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/multitool) && state == 1)
+		var/new_paint_location = tgui_input_list(user, "Please select a target zone.", "Paint Zone", list("Fore Stripe", "Aft Stripe", "CANCEL"))
 		if(new_paint_location && new_paint_location != "CANCEL")
-			var/new_paint_color = input(usr, "Please select a paint color.", "Paint Color", null) as color|null
+			var/new_paint_color = input(user, "Please select a paint color.", "Paint Color", null) as color|null
 			if(new_paint_color)
 				switch(new_paint_location)
 					if("Fore Stripe")
@@ -313,7 +324,7 @@
 
 	ground_capable = FALSE
 
-/obj/mecha/combat/fighter/baron/loaded/Initialize() //Loaded version with gans
+/obj/mecha/combat/fighter/baron/loaded/Initialize() //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
@@ -350,7 +361,7 @@
 
 	ground_capable = FALSE
 
-/obj/mecha/combat/fighter/scoralis/loaded/Initialize() //Loaded version with gans
+/obj/mecha/combat/fighter/scoralis/loaded/Initialize() //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	ME.attach(src)
@@ -389,7 +400,7 @@
 	health = 500
 	maxhealth = 500
 
-/obj/mecha/combat/fighter/allure/loaded/Initialize() //Loaded version with gans
+/obj/mecha/combat/fighter/allure/loaded/Initialize() //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/cloak
 	ME.attach(src)
@@ -429,7 +440,7 @@
 
 	ground_capable = TRUE
 
-/obj/mecha/combat/fighter/pinnace/loaded/Initialize() //Loaded version with gans
+/obj/mecha/combat/fighter/pinnace/loaded/Initialize() //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
 	ME.attach(src)

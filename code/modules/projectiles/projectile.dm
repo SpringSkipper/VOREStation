@@ -41,6 +41,7 @@
 	var/ricochets_max = 2
 	var/ricochet_chance = 30
 	var/can_miss = TRUE
+	var/bump_targets = TRUE //Should we bump and/or attack objects we hit? Used only for 'raytraces' e.g. subtype /test
 
 	//Hitscan
 	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
@@ -145,6 +146,14 @@
 	var/hud_state = "unknown" // What HUD state we use when we have ammunition.
 	var/hud_state_empty = "unknown" // The empty state. DON'T USE _FLASH IN THE NAME OF THE EMPTY STATE STRING, THAT IS ADDED BY THE CODE.
 
+	var/obj/item/ammo_casing/my_case = null
+
+
+/obj/item/projectile/New()
+	if(istype(loc, /obj/item/ammo_casing))
+		my_case = loc
+	. = ..()
+
 /obj/item/projectile/proc/Range()
 	range--
 	if(range <= 0 && loc)
@@ -231,7 +240,7 @@
 			after_move()
 		if(can_hit_target(original, permutated))
 			Bump(original)
-	if(!hitscanning && !forcemoved)
+	if(!hitscanning && !forcemoved && trajectory)
 		pixel_x = trajectory.return_px() - trajectory.mpx * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		pixel_y = trajectory.return_py() - trajectory.mpy * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		animate(src, pixel_x = trajectory.return_px(), pixel_y = trajectory.return_py(), time = 1, flags = ANIMATION_END_NOW)
@@ -320,7 +329,8 @@
 /obj/item/projectile/proc/fire(angle, atom/direct_target)
 	//If no angle needs to resolve it from xo/yo!
 	if(direct_target)
-		direct_target.bullet_act(src, def_zone)
+		if(bump_targets)
+			direct_target.bullet_act(src, def_zone)
 		qdel(src)
 		return
 	if(isnum(angle))
@@ -459,7 +469,16 @@
 			impacted_mobs.Cut()
 		impacted_mobs = null
 
-	qdel(trajectory)
+	trajectory = null
+	beam_index = null
+	beam_components = null
+
+
+	if(my_case)
+		if(my_case.BB == src)
+			my_case.BB = null
+			my_case = null
+
 	return ..()
 
 /obj/item/projectile/proc/cleanup_beam_segments()
@@ -557,33 +576,39 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			//if they have a neck grab on someone, that person gets hit instead
-			var/obj/item/weapon/grab/G = locate() in M
+			var/obj/item/grab/G = locate() in M
 			if(G && G.state >= GRAB_NECK)
 				if(G.affecting.stat == DEAD)
 					var/shield_chance = min(80, (30 * (M.mob_size / 10)))	//Small mobs have a harder time keeping a dead body as a shield than a human-sized one. Unathi would have an easier job, if they are made to be SIZE_LARGE in the future. -Mech
 					if(prob(shield_chance))
-						visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
-						if(Bump(G.affecting))
-							return
+						visible_message(span_danger("\The [M] uses [G.affecting] as a shield!"))
+						if(bump_targets)
+							if(Bump(G.affecting))
+								return
 					else
-						visible_message("<span class='danger'>\The [M] tries to use [G.affecting] as a shield, but fails!</span>")
+						visible_message(span_danger("\The [M] tries to use [G.affecting] as a shield, but fails!"))
 				else
-					visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
-					if(Bump(G.affecting))
-						return //If Bump() returns 0 (keep going) then we continue on to attack M.
+					visible_message(span_danger("\The [M] uses [G.affecting] as a shield!"))
+					if(bump_targets)
+						if(Bump(G.affecting))
+							return //If Bump() returns 0 (keep going) then we continue on to attack M.
 
-			passthrough = !attack_mob(M, distance)
+			if(bump_targets)
+				passthrough = !attack_mob(M, distance)
+			else
+				passthrough = 1 //Projectiles that don't bump (raytraces) always pass through
 		else
 			passthrough = 1 //so ghosts don't stop bullets
 	else
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
-		if(isturf(A))
-			for(var/obj/O in A)
-				O.bullet_act(src)
-			for(var/mob/living/M in A)
-				attack_mob(M, distance)
+		if(bump_targets) // only attack/act a turf's contents if our projectile is not a raytrace
+			if(isturf(A))
+				for(var/obj/O in A)
+					O.bullet_act(src)
+				for(var/mob/living/M in A)
+					attack_mob(M, distance)
 
 	//penetrating projectiles can pass through things that otherwise would not let them
 	if(!passthrough && penetrating > 0)
@@ -598,7 +623,7 @@
 		trajectory_ignore_forcemove = FALSE
 		return FALSE
 
-	if(A)
+	if(A && bump_targets)
 		on_impact(A)
 	qdel(src)
 	return TRUE
@@ -641,7 +666,9 @@
 	return 1
 
 /obj/item/projectile/proc/check_fire(atom/target as mob, mob/living/user as mob)  //Checks if you can hit them or not.
-	check_trajectory(target, user, pass_flags, flags)
+	if(target in check_trajectory(target, user, pass_flags, flags))
+		return TRUE
+	return FALSE
 
 /obj/item/projectile/CanPass()
 	return TRUE
@@ -672,12 +699,12 @@
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
-			target_mob.visible_message("<b>\The [src]</b> misses \the [target_mob] narrowly!")
+			target_mob.visible_message(span_infoplain(span_bold("\The [src]") + " misses \the [target_mob] narrowly!"))
 			playsound(target_mob, "bullet_miss", 75, 1)
 		return FALSE
 
 	var/impacted_organ = parse_zone(def_zone)
-	if(istype(target_mob, /mob/living/simple_mob))
+	if(isanimal(target_mob))
 		var/mob/living/simple_mob/SM = target_mob
 		var/decl/mob_organ_names/organ_plan = SM.organ_names
 		impacted_organ = pick(organ_plan.hit_zones)
@@ -685,14 +712,14 @@
 	//hit messages
 	if(silenced)
 		playsound(target_mob, hitsound, 5, 1, -1)
-		to_chat(target_mob, span("critical", "You've been hit in the [impacted_organ] by \the [src]!"))
+		to_chat(target_mob, span_critical("You've been hit in the [impacted_organ] by \the [src]!"))
 	else
 		var/volume = vol_by_damage()
 		playsound(target_mob, hitsound, volume, 1, -1)
 		// X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 		target_mob.visible_message(
-			span("danger", "\The [target_mob] was hit in the [impacted_organ] by \the [src]!"),
-			span("critical", "You've been hit in the [impacted_organ] by \the [src]!")
+			span_danger("\The [target_mob] was hit in the [impacted_organ] by \the [src]!"),
+			span_critical("You've been hit in the [impacted_organ] by \the [src]!")
 		)
 
 	//admin logs
@@ -750,7 +777,7 @@
 	return fire(angle_override, direct_target)
 
 //called to launch a projectile from a gun
-/obj/item/projectile/proc/launch_from_gun(atom/target, target_zone, mob/user, params, angle_override, forced_spread, obj/item/weapon/gun/launcher)
+/obj/item/projectile/proc/launch_from_gun(atom/target, target_zone, mob/user, params, angle_override, forced_spread, obj/item/gun/launcher)
 
 	shot_from = launcher.name
 	silenced |= launcher.silenced // Silent bullets (e.g., BBs) are always silent
@@ -825,3 +852,6 @@
 		if(silenced)
 			volume = 5
 		playsound(A, hitsound_wall, volume, 1, -1)
+
+#undef MOVES_HITSCAN
+#undef MUZZLE_EFFECT_PIXEL_INCREMENT

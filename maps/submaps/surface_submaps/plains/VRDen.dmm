@@ -31,8 +31,6 @@
 "f" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/light{
@@ -58,7 +56,7 @@
 	name = "plastic table frame"
 	},
 /obj/item/integrated_circuit/memory,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "To: Whoever reads it\[br]From: Simulant\[br]Went away to grab some spare parts, won't return for couple weeks. Can't support larger scale sims without machines I lost yesterday. Please don't touch my stuff, while I'm gone.";
 	name = "note"
 	},
@@ -67,8 +65,6 @@
 "k" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/virgo3b,
@@ -83,8 +79,6 @@
 	icon_state = "0-4"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/virgo3b,
@@ -126,7 +120,7 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "your maps suck";
 	name = "dissatisfied letter"
 	},
@@ -183,7 +177,7 @@
 /obj/machinery/telecomms/server{
 	name = "Server"
 	},
-/obj/item/device/gps/internal/poi,
+/obj/item/gps/internal/poi,
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
 "F" = (
@@ -208,7 +202,7 @@
 /area/submap/VRDen)
 "K" = (
 /obj/effect/decal/remains/posi,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "pain sim on your hardware is top-notch, 10/10, would be burned alive again";
 	name = "satisfied letter"
 	},
@@ -249,7 +243,7 @@
 /obj/structure/toilet{
 	dir = 8
 	},
-/obj/item/device/integrated_electronics/debugger,
+/obj/item/integrated_electronics/debugger,
 /obj/machinery/light{
 	dir = 1
 	},

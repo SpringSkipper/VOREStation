@@ -6,30 +6,40 @@
 	desc = "Allows you to move slower on average than baseline."
 	cost = -2
 	var_changes = list("slowdown" = 0.5)
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_DIONA, SPECIES_UNATHI) //These are already this slow.
+	custom_only = FALSE
 
 /datum/trait/negative/speed_slow_plus
 	name = "Slowdown, Major"
 	desc = "Allows you to move MUCH slower on average than baseline."
 	cost = -3
 	var_changes = list("slowdown" = 1.0)
+	custom_only = FALSE
+	banned_species = list(SPECIES_DIONA) //Diona are even slower than this
 
 /datum/trait/negative/weakling
 	name = "Weakling"
 	desc = "Causes heavy equipment to slow you down more when carried."
 	cost = -1
 	var_changes = list("item_slowdown_mod" = 1.5)
+	custom_only = FALSE
+	banned_species = list(SPECIES_SHADEKIN_CREW, SPECIES_TESHARI) //These are already this weak.
 
 /datum/trait/negative/weakling_plus
 	name = "Weakling, Major"
 	desc = "Allows you to carry heavy equipment with much more slowdown."
 	cost = -2
 	var_changes = list("item_slowdown_mod" = 2.0)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI) //These are already this weak.
 
 /datum/trait/negative/endurance_low
 	name = "Low Endurance"
 	desc = "Reduces your maximum total hitpoints to 75."
 	cost = -2
 	var_changes = list("total_health" = 75)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI, SPECIES_SHADEKIN_CREW) //These are already this weak.
 
 /datum/trait/negative/endurance_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -40,6 +50,8 @@
 	desc = "Reduces your maximum total hitpoints to 50."
 	cost = -3 //Teshari HP. This makes the person a lot more suseptable to getting stunned, killed, etc.
 	var_changes = list("total_health" = 50)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI) //These are already this weak.
 
 /datum/trait/negative/endurance_very_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -49,18 +61,23 @@
 	name = "Brute Weakness, Minor"
 	desc = "Increases damage from brute damage sources by 15%"
 	cost = -1
+	custom_only = FALSE
 	var_changes = list("brute_mod" = 1.15)
+	banned_species = list(SPECIES_TESHARI, SPECIES_TAJARAN, SPECIES_ZADDAT, SPECIES_SHADEKIN_CREW) //These are already this weak.
 
 /datum/trait/negative/brute_weak
 	name = "Brute Weakness"
 	desc = "Increases damage from brute damage sources by 25%"
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("brute_mod" = 1.25)
+	banned_species = list(SPECIES_TESHARI, SPECIES_SHADEKIN_CREW) //These are already this weak.
 
 /datum/trait/negative/brute_weak_plus
 	name = "Brute Weakness, Major"
 	desc = "Increases damage from brute damage sources by 50%"
 	cost = -3
+	custom_only = FALSE
 	var_changes = list("brute_mod" = 1.5)
 
 /datum/trait/negative/minor_burn_weak
@@ -128,6 +145,7 @@
 	cost = -1
 	var_changes = list("trauma_mod" = 2)
 	can_take = ORGANICS
+	custom_only = FALSE
 
 /datum/trait/negative/breathes
 	cost = -2
@@ -136,12 +154,12 @@
 /datum/trait/negative/breathes/phoron
 	name = "Phoron Breather"
 	desc = "You breathe phoron instead of oxygen (which is poisonous to you), much like a Vox."
-	var_changes = list("breath_type" = "phoron", "poison_type" = "oxygen", "ideal_air_type" = /datum/gas_mixture/belly_air/vox)
+	var_changes = list("breath_type" = GAS_PHORON, "poison_type" = GAS_O2, "ideal_air_type" = /datum/gas_mixture/belly_air/vox)
 
 /datum/trait/negative/breathes/nitrogen
 	name = "Nitrogen Breather"
 	desc = "You breathe nitrogen instead of oxygen (which is poisonous to you). Incidentally, phoron isn't poisonous to breathe to you."
-	var_changes = list("breath_type" = "nitrogen", "poison_type" = "oxygen", "ideal_air_type" = /datum/gas_mixture/belly_air/nitrogen_breather)
+	var_changes = list("breath_type" = GAS_N2, "poison_type" = GAS_O2, "ideal_air_type" = /datum/gas_mixture/belly_air/nitrogen_breather)
 
 /datum/trait/negative/monolingual
 	name = "Monolingual"
@@ -170,7 +188,9 @@
 
 /datum/trait/negative/bad_swimmer
 	name = "Bad Swimmer"
-	desc = "You can't swim very well, all water slows you down a lot and you drown in deep water."
+	desc = "You can't swim very well, all water slows you down a lot and you drown in deep water. You also swim up and down 25% slower."
 	cost = -1
 	custom_only = FALSE
-	var_changes = list("bad_swimmer" = 1, "water_movement" = 4)
+	var_changes = list("bad_swimmer" = 1, "water_movement" = 4, "swim_mult" = 1.25)
+	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
+	excludes = list(/datum/trait/positive/good_swimmer)

@@ -28,11 +28,11 @@
 
 /datum/artifact_effect/goodfeeling/DoEffectTouch(var/mob/user)
 	if(user)
-		if (istype(user, /mob/living/carbon/human))
+		if (ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(prob(50))
 				if(prob(75))
-					to_chat(H, span_blue("<b><font size='[num2text(rand(1,5))]'>[pick(drastic_messages)]</b></font>"))
+					to_chat(H, span_blue(span_bold("<font size='[num2text(rand(1,5))]'>[pick(drastic_messages)]") + "</font>"))
 				else
 					to_chat(H, span_blue("[pick(messages)]"))
 

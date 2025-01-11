@@ -2,7 +2,9 @@
 abyssalamphithere - Vox
 admiraldragon - Vox
 adriano20037 - Protean
+adriano20037 - Xenochimera
 aetherelemental - Daemon
+afflatuskeeper - Xenochimera
 alphaprime1 - Protean
 amarewolf - Xenochimera
 amshaegaar - Vox
@@ -14,6 +16,7 @@ aruis - Protean
 aruis - Xenochimera
 ashburndracki - Protean
 athena14 - Xenochimera
+athena14 - Protean
 auraribbon - Black-Eyed Shadekin
 azmodan412 - Xenochimera
 beyondmylife - Protean
@@ -34,20 +37,24 @@ comradenitro - Protean
 coolcrow420 - Black-Eyed Shadekin
 crossexonar - Protean
 cryohydra - Protean
+ctrz - Protean
 cubejackal - Black-Eyed Shadekin
 detectivegoogle - Protean
 digi5 - Protean
 digi5 - Black-Eyed Shadekin
 digitalsquirrel95 - Black-Eyed Shadekin
 digitalsquirrel95 - Protean
+digitalsquirrel95 - Hanner
 draycu - Vox
 draykenthedragon - Xenochimera
+draykenthedragon - Protean
 durandaal - Teppi
 essbie - Black-Eyed Shadekin
 exgame - Vox
 falloutdog3 - Black-Eyed Shadekin
 flaktual - Vox
 flurriee - Protean
+foxfire53 - Xenochimera
 foxglovepurpur - Diona
 funnyman2003 - Xenochimera
 fuzlet - Protean
@@ -72,6 +79,8 @@ jademanique - Protean
 jademanique - Teppi
 jademanique - Xenochimera
 joltze - Black-Eyed Shadekin
+jparker890 - Vox
+juney7 - Hanner
 kered2 - Protean
 khanivore - Protean
 killjaden - Protean
@@ -96,16 +105,19 @@ losstinspess - Protean
 losstinspess - Xenochimera
 lykojeyot - Black-Eyed Shadekin
 negatist - Protean
+madmulk9 - Protean
 magpiemayhem - Vox
 magpiemayhem - Xenochimera
 makkinindorn - Protean
 marcobarko - Black-Eyed Shadekin
 marcobarko - Protean
+maxine64 - Xenochimera
 mewchild - Diona
 mewchild - Vox
 milu - Xenochimera
 mrsebbi - Xenochimera
 mullins111 - Black-Eyed Shadekin
+murchant - Teppi
 natje - Xenochimera
 nerdass - Protean
 newyorks - Protean
@@ -118,6 +130,7 @@ ontejbjoav - Black-Eyed Shadekin
 ontejbjoav - Diona
 oreganovulgaris - Xenochimera
 oscarholmes - Protean
+oscarholmes - Gamma Replicant
 owwy - Black-Eyed Shadekin
 oxenfree - Protean
 ozyton - Black-Eyed Shadekin
@@ -131,14 +144,18 @@ phoenixx0 - Vox
 pontifexminimus - Black-Eyed Shadekin
 pontifexminimus - Protean
 pontifexminimus - Xenochimera
+pontifexminimus - Hanner
 pugly43 - Protean
 qrocakes - Black-Eyed Shadekin
 radiantaurora - Protean
+rainbyplays - Protean
+ramomisama - Protean
 residentcody - Black-Eyed Shadekin
 residentcody - Protean
 revolvereloise - Protean
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
+romanatcolgate - Hanner
 rubyflamewing - Protean
 rykkastormheart - Xenochimera
 ryumi - Protean
@@ -148,12 +165,16 @@ satinisle - Protean
 scoutisafolflol - Xenochimera
 seagha - Vox
 seiga - Vox
+selter - Protean
 sepulchre - Vox
+sharplight - Protean
 shirosenshi - Xenochimera
 silvertalismen - Diona
 silvertalismen - Vox
 silvertalismen - Xenochimera
+silvertalismen - Hanner
 sirlionfur - Black-Eyed Shadekin
+sixberry - Black-Eyed Shadekin
 skylarks - Black-Eyed Shadekin
 slovakiani - Black-Eyed Shadekin
 slysilentclaw - Black-Eyed Shadekin
@@ -169,14 +190,18 @@ tastypred - Xenochimera
 terrestris - Common Skrellian
 terrestris - Vox
 thedavestdave - Protean
+theoun - Hanner
 timidvi - Diona
+tombomb90 - Protean
 torquegstc - Protean
 trifireblade - Protean
 trikonei - Protean
 umbraferros - Black-Eyed Shadekin
 umbraferros - Protean
 umbraferros - Xenochimera
+umbraferros - Hanner
 umbrenos - Black-Eyed Shadekin
+unkindnaysayer - Hanner
 varkaselyn - Protean
 varonis - Protean
 varonis - Xenochimera
@@ -198,3 +223,4 @@ yeehawguvnah - Xenochimera
 zalvine - Shadekin Empathy
 zammyman215 - Vox
 zeracyfr - Xenochimera
+zwadstheiguana - Diona

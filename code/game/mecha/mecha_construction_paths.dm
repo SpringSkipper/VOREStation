@@ -4,7 +4,7 @@
 
 /datum/construction/mecha/custom_action(step, obj/item/I, mob/user)
 	if(I.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/W = I.get_welder()
+		var/obj/item/weldingtool/W = I.get_welder()
 		if(W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
 		else
@@ -36,7 +36,7 @@
 
 /datum/construction/reversible/mecha/custom_action(index as num, diff as num, obj/item/I, mob/user as mob)
 	if(I.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/W = I.get_welder()
+		var/obj/item/weldingtool/W = I.get_welder()
 		if(W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
 		else
@@ -130,7 +130,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Peripherals control module is installed"),
 					 //8
-					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/peripherals,
+					 list("key"=/obj/item/circuitboard/mecha/ripley/peripherals,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Central control module is secured"),
 					 //9
@@ -138,7 +138,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Central control module is installed"),
 					 //10
-					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/main,
+					 list("key"=/obj/item/circuitboard/mecha/ripley/main,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //11
@@ -206,7 +206,7 @@
 				holder.icon_state = "ripley6"
 			else
 				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/ripley/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/ripley/main(get_turf(holder))
 				holder.icon_state = "ripley4"
 		if(8)
 			if(diff==FORWARD)
@@ -222,7 +222,7 @@
 				holder.icon_state = "ripley8"
 			else
 				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/ripley/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/ripley/peripherals(get_turf(holder))
 				holder.icon_state = "ripley6"
 		if(6)
 			if(diff==FORWARD)
@@ -338,7 +338,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Advanced capacitor is installed"),
 					 //8
-					 list("key"=/obj/item/weapon/stock_parts/capacitor/adv,
+					 list("key"=/obj/item/stock_parts/capacitor/adv,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Advanced scanner module is secured"),
 					 //9
@@ -346,7 +346,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Advanced scanner module is installed"),
 					 //10
-					 list("key"=/obj/item/weapon/stock_parts/scanning_module/adv,
+					 list("key"=/obj/item/stock_parts/scanning_module/adv,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Targeting module is secured"),
 					 //11
@@ -354,7 +354,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Targeting module is installed"),
 					 //12
-					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/targeting,
+					 list("key"=/obj/item/circuitboard/mecha/gygax/targeting,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Peripherals control module is secured"),
 					 //13
@@ -362,7 +362,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Peripherals control module is installed"),
 					 //14
-					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/peripherals,
+					 list("key"=/obj/item/circuitboard/mecha/gygax/peripherals,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Central control module is secured"),
 					 //15
@@ -370,7 +370,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Central control module is installed"),
 					 //16
-					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/main,
+					 list("key"=/obj/item/circuitboard/mecha/gygax/main,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //17
@@ -438,7 +438,7 @@
 				holder.icon_state = "gygax6"
 			else
 				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/gygax/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/main(get_turf(holder))
 				holder.icon_state = "gygax4"
 		if(14)
 			if(diff==FORWARD)
@@ -454,7 +454,7 @@
 				holder.icon_state = "gygax8"
 			else
 				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/gygax/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/peripherals(get_turf(holder))
 				holder.icon_state = "gygax6"
 		if(12)
 			if(diff==FORWARD)
@@ -470,7 +470,7 @@
 				holder.icon_state = "gygax10"
 			else
 				user.visible_message("[user] removes the weapon control module from [holder].", "You remove the weapon control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/gygax/targeting(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/targeting(get_turf(holder))
 				holder.icon_state = "gygax8"
 		if(10)
 			if(diff==FORWARD)
@@ -486,7 +486,7 @@
 				holder.icon_state = "gygax12"
 			else
 				user.visible_message("[user] removes the advanced scanner module from [holder].", "You remove the advanced scanner module from [holder].")
-				new /obj/item/weapon/stock_parts/scanning_module/adv(get_turf(holder))
+				new /obj/item/stock_parts/scanning_module/adv(get_turf(holder))
 				holder.icon_state = "gygax10"
 		if(8)
 			if(diff==FORWARD)
@@ -502,7 +502,7 @@
 				holder.icon_state = "gygax14"
 			else
 				user.visible_message("[user] removes the advanced capacitor from [holder].", "You remove the advanced capacitor from [holder].")
-				new /obj/item/weapon/stock_parts/capacitor/adv(get_turf(holder))
+				new /obj/item/stock_parts/capacitor/adv(get_turf(holder))
 				holder.icon_state = "gygax12"
 		if(6)
 			if(diff==FORWARD)
@@ -620,7 +620,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Advanced capacitor is installed"),
 					 //8
-					 list("key"=/obj/item/weapon/stock_parts/capacitor/adv,
+					 list("key"=/obj/item/stock_parts/capacitor/adv,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Advanced scanner module is secured"),
 					 //9
@@ -628,7 +628,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Advanced scanner module is installed"),
 					 //10
-					 list("key"=/obj/item/weapon/stock_parts/scanning_module/adv,
+					 list("key"=/obj/item/stock_parts/scanning_module/adv,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Medical module is secured"),
 					 //11
@@ -636,7 +636,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Medical module is installed"),
 					 //12
-					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/medical,
+					 list("key"=/obj/item/circuitboard/mecha/gygax/medical,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Peripherals control module is secured"),
 					 //13
@@ -644,7 +644,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Peripherals control module is installed"),
 					 //14
-					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/peripherals,
+					 list("key"=/obj/item/circuitboard/mecha/gygax/peripherals,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Central control module is secured"),
 					 //15
@@ -652,7 +652,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Central control module is installed"),
 					 //16
-					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/main,
+					 list("key"=/obj/item/circuitboard/mecha/gygax/main,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //17
@@ -720,7 +720,7 @@
 				holder.icon_state = "gygax6"
 			else
 				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/gygax/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/main(get_turf(holder))
 				holder.icon_state = "gygax4"
 		if(14)
 			if(diff==FORWARD)
@@ -736,7 +736,7 @@
 				holder.icon_state = "gygax8"
 			else
 				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/gygax/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/peripherals(get_turf(holder))
 				holder.icon_state = "gygax6"
 		if(12)
 			if(diff==FORWARD)
@@ -752,7 +752,7 @@
 				holder.icon_state = "gygax10"
 			else
 				user.visible_message("[user] removes the medical control module from [holder].", "You remove the medical control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/gygax/medical(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/medical(get_turf(holder))
 				holder.icon_state = "gygax8"
 		if(10)
 			if(diff==FORWARD)
@@ -768,7 +768,7 @@
 				holder.icon_state = "gygax12"
 			else
 				user.visible_message("[user] removes the advanced scanner module from [holder].", "You remove the advanced scanner module from [holder].")
-				new /obj/item/weapon/stock_parts/scanning_module/adv(get_turf(holder))
+				new /obj/item/stock_parts/scanning_module/adv(get_turf(holder))
 				holder.icon_state = "gygax10"
 		if(8)
 			if(diff==FORWARD)
@@ -784,7 +784,7 @@
 				holder.icon_state = "gygax14"
 			else
 				user.visible_message("[user] removes the advanced capacitor from [holder].", "You remove the advanced capacitor from [holder].")
-				new /obj/item/weapon/stock_parts/capacitor/adv(get_turf(holder))
+				new /obj/item/stock_parts/capacitor/adv(get_turf(holder))
 				holder.icon_state = "gygax12"
 		if(6)
 			if(diff==FORWARD)
@@ -907,7 +907,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Peripherals control module is installed"),
 					 //9
-					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/peripherals,
+					 list("key"=/obj/item/circuitboard/mecha/ripley/peripherals,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Central control module is secured"),
 					 //10
@@ -915,7 +915,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Central control module is installed"),
 					 //11
-					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/main,
+					 list("key"=/obj/item/circuitboard/mecha/ripley/main,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //12
@@ -983,7 +983,7 @@
 				holder.icon_state = "fireripley6"
 			else
 				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/ripley/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/ripley/main(get_turf(holder))
 				holder.icon_state = "fireripley4"
 		if(9)
 			if(diff==FORWARD)
@@ -999,7 +999,7 @@
 				holder.icon_state = "fireripley8"
 			else
 				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/ripley/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/ripley/peripherals(get_turf(holder))
 				holder.icon_state = "fireripley6"
 		if(7)
 			if(diff==FORWARD)
@@ -1123,7 +1123,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Advanced capacitor is installed"),
 					 //8
-					 list("key"=/obj/item/weapon/stock_parts/capacitor/adv,
+					 list("key"=/obj/item/stock_parts/capacitor/adv,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Advanced scanner module is secured"),
 					 //9
@@ -1131,7 +1131,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Advanced scanner module is installed"),
 					 //10
-					 list("key"=/obj/item/weapon/stock_parts/scanning_module/adv,
+					 list("key"=/obj/item/stock_parts/scanning_module/adv,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Targeting module is secured"),
 					 //11
@@ -1139,7 +1139,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Targeting module is installed"),
 					 //12
-					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/targeting,
+					 list("key"=/obj/item/circuitboard/mecha/durand/targeting,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Peripherals control module is secured"),
 					 //13
@@ -1147,7 +1147,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Peripherals control module is installed"),
 					 //14
-					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/peripherals,
+					 list("key"=/obj/item/circuitboard/mecha/durand/peripherals,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Central control module is secured"),
 					 //15
@@ -1155,7 +1155,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Central control module is installed"),
 					 //16
-					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/main,
+					 list("key"=/obj/item/circuitboard/mecha/durand/main,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //17
@@ -1224,7 +1224,7 @@
 				holder.icon_state = "durand6"
 			else
 				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/durand/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/durand/main(get_turf(holder))
 				holder.icon_state = "durand4"
 		if(14)
 			if(diff==FORWARD)
@@ -1240,7 +1240,7 @@
 				holder.icon_state = "durand8"
 			else
 				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/durand/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/durand/peripherals(get_turf(holder))
 				holder.icon_state = "durand6"
 		if(12)
 			if(diff==FORWARD)
@@ -1256,7 +1256,7 @@
 				holder.icon_state = "durand10"
 			else
 				user.visible_message("[user] removes the weapon control module from [holder].", "You remove the weapon control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/durand/targeting(get_turf(holder))
+				new /obj/item/circuitboard/mecha/durand/targeting(get_turf(holder))
 				holder.icon_state = "durand8"
 		if(10)
 			if(diff==FORWARD)
@@ -1272,7 +1272,7 @@
 				holder.icon_state = "durand12"
 			else
 				user.visible_message("[user] removes the advanced scanner module from [holder].", "You remove the advanced scanner module from [holder].")
-				new /obj/item/weapon/stock_parts/scanning_module/adv(get_turf(holder))
+				new /obj/item/stock_parts/scanning_module/adv(get_turf(holder))
 				holder.icon_state = "durand10"
 		if(8)
 			if(diff==FORWARD)
@@ -1288,7 +1288,7 @@
 				holder.icon_state = "durand14"
 			else
 				user.visible_message("[user] removes the advanced capacitor from [holder].", "You remove the advanced capacitor from [holder].")
-				new /obj/item/weapon/stock_parts/capacitor/adv(get_turf(holder))
+				new /obj/item/stock_parts/capacitor/adv(get_turf(holder))
 				holder.icon_state = "durand12"
 		if(6)
 			if(diff==FORWARD)
@@ -1405,7 +1405,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Peripherals control module is installed"),
 					 //8
-					 list("key"=/obj/item/weapon/circuitboard/mecha/odysseus/peripherals,
+					 list("key"=/obj/item/circuitboard/mecha/odysseus/peripherals,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="Central control module is secured"),
 					 //9
@@ -1413,7 +1413,7 @@
 					 		"backkey"=IS_CROWBAR,
 					 		"desc"="Central control module is installed"),
 					 //10
-					 list("key"=/obj/item/weapon/circuitboard/mecha/odysseus/main,
+					 list("key"=/obj/item/circuitboard/mecha/odysseus/main,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //11
@@ -1481,7 +1481,7 @@
 				holder.icon_state = "odysseus6"
 			else
 				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/odysseus/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/odysseus/main(get_turf(holder))
 				holder.icon_state = "odysseus4"
 		if(8)
 			if(diff==FORWARD)
@@ -1497,7 +1497,7 @@
 				holder.icon_state = "odysseus8"
 			else
 				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/odysseus/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/odysseus/peripherals(get_turf(holder))
 				holder.icon_state = "odysseus6"
 		if(6)
 			if(diff==FORWARD)
@@ -1614,7 +1614,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="Hand teleporter is installed"),
 					//8
-					list("key"=/obj/item/weapon/hand_tele,
+					list("key"=/obj/item/hand_tele,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="SMES coil is secured"),
 					//9
@@ -1622,7 +1622,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="SMES coil is installed"),
 					//10
-					list("key"=/obj/item/weapon/smes_coil/super_capacity,
+					list("key"=/obj/item/smes_coil/super_capacity,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="Targeting module is secured"),
 					//11
@@ -1630,7 +1630,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="Targeting module is installed"),
 					//12
-					list("key"=/obj/item/weapon/circuitboard/mecha/phazon/targeting,
+					list("key"=/obj/item/circuitboard/mecha/phazon/targeting,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="Peripherals control module is secured"),
 					//13
@@ -1638,7 +1638,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="Peripherals control module is installed"),
 					//14
-					list("key"=/obj/item/weapon/circuitboard/mecha/phazon/peripherals,
+					list("key"=/obj/item/circuitboard/mecha/phazon/peripherals,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="Central control module is secured"),
 					//15
@@ -1646,7 +1646,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="Central control module is installed"),
 					//16
-					list("key"=/obj/item/weapon/circuitboard/mecha/phazon/main,
+					list("key"=/obj/item/circuitboard/mecha/phazon/main,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is adjusted"),
 					//17
@@ -1713,7 +1713,7 @@
 				holder.icon_state = "phazon6"
 			else
 				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/phazon/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/phazon/main(get_turf(holder))
 				holder.icon_state = "phazon4"
 		if(14)
 			if(diff==FORWARD)
@@ -1729,7 +1729,7 @@
 				holder.icon_state = "phazon8"
 			else
 				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/phazon/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/phazon/peripherals(get_turf(holder))
 				holder.icon_state = "phazon6"
 		if(12)
 			if(diff==FORWARD)
@@ -1745,7 +1745,7 @@
 				holder.icon_state = "phazon10"
 			else
 				user.visible_message("[user] removes the weapon control module from [holder].", "You remove the weapon control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/phazon/targeting(get_turf(holder))
+				new /obj/item/circuitboard/mecha/phazon/targeting(get_turf(holder))
 				holder.icon_state = "phazon8"
 		if(10)
 			if(diff==FORWARD)
@@ -1761,7 +1761,7 @@
 				holder.icon_state = "phazon12"
 			else
 				user.visible_message("[user] removes the SMES coil from [holder].", "You remove the SMES coil from [holder].")
-				new /obj/item/weapon/smes_coil/super_capacity(get_turf(holder))
+				new /obj/item/smes_coil/super_capacity(get_turf(holder))
 				holder.icon_state = "phazon10"
 		if(8)
 			if(diff==FORWARD)
@@ -1777,7 +1777,7 @@
 				holder.icon_state = "phazon14"
 			else
 				user.visible_message("[user] removes the hand teleporter from [holder].", "You remove the hand teleporter from [holder].")
-				new /obj/item/weapon/hand_tele(get_turf(holder))
+				new /obj/item/hand_tele(get_turf(holder))
 				holder.icon_state = "phazon12"
 		if(6)
 			if(diff==FORWARD)
@@ -1893,7 +1893,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="Durand auxiliary board is installed"),
 					//8
-					list("key"=/obj/item/weapon/circuitboard/mecha/durand/peripherals,
+					list("key"=/obj/item/circuitboard/mecha/durand/peripherals,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="Phase coil is secured"),
 					//9
@@ -1909,7 +1909,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="Gygax balance system installed"),
 					//12
-					list("key"=/obj/item/weapon/circuitboard/mecha/gygax/peripherals,
+					list("key"=/obj/item/circuitboard/mecha/gygax/peripherals,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="Targeting module is secured"),
 					//13
@@ -1917,7 +1917,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="Targeting module is installed"),
 					//14
-					list("key"=/obj/item/weapon/circuitboard/mecha/imperion/targeting,
+					list("key"=/obj/item/circuitboard/mecha/imperion/targeting,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="Peripherals control module is secured"),
 					//15
@@ -1925,7 +1925,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="Peripherals control module is installed"),
 					//16
-					list("key"=/obj/item/weapon/circuitboard/mecha/imperion/peripherals,
+					list("key"=/obj/item/circuitboard/mecha/imperion/peripherals,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="Central control module is secured"),
 					//17
@@ -1933,7 +1933,7 @@
 							"backkey"=IS_CROWBAR,
 							"desc"="Central control module is installed"),
 					//18
-					list("key"=/obj/item/weapon/circuitboard/mecha/imperion/main,
+					list("key"=/obj/item/circuitboard/mecha/imperion/main,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is adjusted"),
 					//19
@@ -2000,7 +2000,7 @@
 				holder.icon_state = "janus6"
 			else
 				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/imperion/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/imperion/main(get_turf(holder))
 				holder.icon_state = "janus4"
 		if(16)
 			if(diff==FORWARD)
@@ -2016,7 +2016,7 @@
 				holder.icon_state = "janus8"
 			else
 				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/imperion/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/imperion/peripherals(get_turf(holder))
 				holder.icon_state = "janus6"
 		if(14)
 			if(diff==FORWARD)
@@ -2032,7 +2032,7 @@
 				holder.icon_state = "janus10"
 			else
 				user.visible_message("[user] removes the weapon control module from [holder].", "You remove the weapon control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/imperion/targeting(get_turf(holder))
+				new /obj/item/circuitboard/mecha/imperion/targeting(get_turf(holder))
 				holder.icon_state = "janus8"
 		if(12)
 			if(diff==FORWARD)
@@ -2048,7 +2048,7 @@
 				holder.icon_state = "janus12"
 			else
 				user.visible_message("[user] removes the Gygax control module from [holder].", "You remove the Gygax control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/gygax/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/peripherals(get_turf(holder))
 				holder.icon_state = "janus10"
 		if(10)
 			if(diff==FORWARD)
@@ -2080,7 +2080,7 @@
 				holder.icon_state = "janus16"
 			else
 				user.visible_message("[user] removes the Durand control module from [holder].", "You remove the Durand control module from [holder].")
-				new /obj/item/weapon/circuitboard/mecha/durand/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/durand/peripherals(get_turf(holder))
 				holder.icon_state = "janus14"
 		if(6)
 			if(diff==FORWARD)
@@ -2130,4 +2130,572 @@
 /datum/construction/reversible/mecha/janus/spawn_result()
 	..()
 	feedback_inc("mecha_janus_created",1)
+	return
+
+//Fighters
+
+//////////////////////
+//		Pinnace
+//////////////////////
+/datum/construction/mecha/fighter/pinnace_chassis
+	result = "/obj/mecha/combat/fighter/pinnace"
+	steps = list(list("key"=/obj/item/mecha_parts/fighter/part/pinnace_core),//1
+					 list("key"=/obj/item/mecha_parts/fighter/part/pinnace_cockpit),//2
+					 list("key"=/obj/item/mecha_parts/fighter/part/pinnace_main_engine),//3
+					 list("key"=/obj/item/mecha_parts/fighter/part/pinnace_left_engine),//4
+					 list("key"=/obj/item/mecha_parts/fighter/part/pinnace_right_engine),//5
+					 list("key"=/obj/item/mecha_parts/fighter/part/pinnace_left_wing),//6
+					 list("key"=/obj/item/mecha_parts/fighter/part/pinnace_right_wing)//final
+					)
+
+/datum/construction/mecha/fighter/pinnace_chassis/custom_action(step, obj/item/I, mob/user)
+	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
+	holder.add_overlay("[I.icon_state]+o")
+	qdel(I)
+	return 1
+
+/datum/construction/mecha/fighter/pinnace_chassis/action(obj/item/I,mob/user as mob)
+	return check_all_steps(I,user)
+
+/datum/construction/mecha/fighter/pinnace_chassis/spawn_result()
+	var/obj/item/mecha_parts/chassis/const_holder = holder
+	const_holder.construct = new /datum/construction/reversible/mecha/fighter/pinnace(const_holder)
+	const_holder.icon = 'icons/mecha/fighters_construction64x64.dmi'
+	const_holder.icon_state = "pinnace0"
+	const_holder.density = 1
+	spawn()
+		qdel(src)
+	return
+
+/datum/construction/reversible/mecha/fighter/pinnace
+	result = "/obj/mecha/combat/fighter/pinnace"
+	steps = list(
+					//1
+					list("key"=/obj/item/weldingtool,
+							"backkey"=IS_WRENCH,
+							"desc"="External armor is bolted into place."),
+					//2
+					list("key"=IS_WRENCH,
+							"backkey"=IS_CROWBAR,
+							"desc"="External armor is installed."),
+					//3
+					list("key"=/obj/item/stack/material/plasteel,
+							"backkey"=/obj/item/weldingtool,
+							"desc"="The internal armor is welded into place."),
+					//4
+					list("key"=/obj/item/weldingtool,
+							"backkey"=IS_WRENCH,
+							"desc"="The internal armor is bolted into place."),
+					//5
+					list("key"=IS_WRENCH,
+							"backkey"=IS_CROWBAR,
+							"desc"="The internal armor is installed."),
+					//6
+					list("key"=/obj/item/stack/material/steel,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The manual flight control instruments are secured."),
+					//7
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The manual flight control instruments are installed."),
+					//8
+					list("key"=/obj/item/circuitboard/mecha/fighter/pinnace/cockpitboard,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The advanced capacitor is secured."),
+					//9
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The advanced capacitor is installed."),
+					//10
+					list("key"=/obj/item/stock_parts/capacitor/adv,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The targeting module is secured."),
+					//11
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The targeting module is installed."),
+					//12
+					list("key"=/obj/item/circuitboard/mecha/fighter/pinnace/targeting,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The flight control module is secured."),
+					//13
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The flight control module is installed."),
+					//14
+					list("key"=/obj/item/circuitboard/mecha/fighter/pinnace/flight,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The central control module is secured."),
+					//15
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The central control module is installed."),
+					//16
+					list("key"=/obj/item/circuitboard/mecha/fighter/pinnace/main,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The internal wiring is adjusted."),
+					//17
+					list("key"=/obj/item/tool/wirecutters,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The internal wiring is added."),
+					//18
+					list("key"=/obj/item/stack/cable_coil,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The hydraulic landing gear are deployed."),
+					//19
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_WRENCH,
+							"desc"="The hydraulic landing gear are attached."),
+					//20
+					list("key"=IS_WRENCH,
+							"desc"="The hydraulic landing gear are detached.")
+					)
+
+/datum/construction/reversible/mecha/fighter/pinnace/action(obj/item/I,mob/user as mob)
+	return check_step(I,user)
+
+/datum/construction/reversible/mecha/fighter/pinnace/custom_action(index, diff, obj/item/I, mob/user)
+	if(!..())
+		return 0
+
+	switch(index)
+		if(20)
+			user.visible_message("[user] attaches [holder]'s hydraulic landing gear.", "You attach [holder]'s hydraulic landing gear.")
+			holder.icon_state = "pinnace1"
+		if(19)
+			if(diff==FORWARD)
+				user.visible_message("[user] deploys [holder]'s hydraulic landing gear.", "You deploy [holder]'s hydraulic landing gear.")
+				holder.icon_state = "pinnace2"
+			else
+				user.visible_message("[user] removes [holder]'s hydraulic landing gear.", "You remove [holder]'s hydraulic landing gear.")
+				holder.icon_state = "pinnace0"
+		if(18)
+			if(diff==FORWARD)
+				user.visible_message("[user] adds the internal wiring to [holder].", "You add the internal wiring to [holder].")
+				holder.icon_state = "pinnace3"
+			else
+				user.visible_message("[user] retracts [holder]'s hydraulic landing gear.", "You retract [holder]'s hydraulic landing gear.")
+				holder.icon_state = "pinnace1"
+		if(17)
+			if(diff==FORWARD)
+				user.visible_message("[user] adjusts the internal wiring of [holder].", "You adjust the internal wiring of [holder].")
+				holder.icon_state = "pinnace4"
+			else
+				user.visible_message("[user] removes the internal wiring from [holder].", "You remove the internal wiring from [holder].")
+				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
+				coil.amount = 4
+				holder.icon_state = "pinnace2"
+		if(16)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the central control module into [holder].", "You install the central control module into [holder].")
+				qdel(I)
+				holder.icon_state = "pinnace5"
+			else
+				user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
+				holder.icon_state = "pinnace3"
+		if(15)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the central control module.", "You secure the central control module.")
+				holder.icon_state = "pinnace6"
+			else
+				user.visible_message("[user] removes the central control module from [holder].", "You remove the central control module from [holder].")
+				new /obj/item/circuitboard/mecha/fighter/pinnace/main(get_turf(holder))
+				holder.icon_state = "pinnace4"
+		if(14)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the flight control module into [holder].", "You install the flight control module into [holder].")
+				qdel(I)
+				holder.icon_state = "pinnace7"
+			else
+				user.visible_message("[user] unfastens the central control module.", "You unfasten the central control module.")
+				holder.icon_state = "pinnace5"
+		if(13)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the flight control module.", "You secure the flight control module.")
+				holder.icon_state = "pinnace8"
+			else
+				user.visible_message("[user] removes the flight control module from [holder].", "You remove the flight control module from [holder].")
+				new /obj/item/circuitboard/mecha/fighter/pinnace/flight(get_turf(holder))
+				holder.icon_state = "pinnace6"
+		if(12)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the targeting control module into [holder].", "You install the targeting control module into [holder].")
+				qdel(I)
+				holder.icon_state = "pinnace9"
+			else
+				user.visible_message("[user] unfastens the peripherals control module.", "You unfasten the peripherals control module.")
+				holder.icon_state = "pinnace7"
+		if(11)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the targeting control module.", "You secure the targeting control module.")
+				holder.icon_state = "pinnace10"
+			else
+				user.visible_message("[user] removes the targeting control module from [holder].", "You remove the targeting control module from [holder].")
+				new /obj/item/circuitboard/mecha/fighter/pinnace/targeting(get_turf(holder))
+				holder.icon_state = "pinnace8"
+		if(10)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the advanced capacitor into [holder].", "You install the advanced capacitor into [holder].")
+				qdel(I)
+				holder.icon_state = "pinnace11"
+			else
+				user.visible_message("[user] unfastens the targeting control module.", "You unfasten the targeting control module.")
+				holder.icon_state = "pinnace9"
+		if(9)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the advanced capacitor.", "You secure the advanced capacitor.")
+				holder.icon_state = "pinnace12"
+			else
+				user.visible_message("[user] removes the advanced capacitor from [holder].", "You remove the advanced capacitor from [holder].")
+				new /obj/item/stock_parts/capacitor/adv(get_turf(holder))
+				holder.icon_state = "pinnace10"
+		if(8)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the manual flight controls to [holder].", "You install the manual flight controls to [holder].")
+				qdel(I)
+				holder.icon_state = "pinnace13"
+			else
+				user.visible_message("[user] unfastens the advanced capacitor.", "You unfasten the advanced capacitor.")
+				holder.icon_state = "pinnace11"
+		if(7)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the manual flight controls.", "You secure the manual flight controls.")
+				holder.icon_state = "pinnace14"
+			else
+				user.visible_message("[user] removes the manual flight controls from [holder].", "You remove the manual flight controls from [holder].")
+				new /obj/item/circuitboard/mecha/fighter/pinnace/cockpitboard(get_turf(holder))
+				holder.icon_state = "pinnace12"
+		if(6)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the internal armor layer to [holder].", "You install the internal armor layer to [holder].")
+				holder.icon_state = "pinnace19"
+			else
+				user.visible_message("[user] unfastens the manual flight controls.", "You unfasten the manual flight controls.")
+				holder.icon_state = "pinnace13"
+		if(5)
+			if(diff==FORWARD)
+				user.visible_message("[user] bolts the internal armor layer.", "You bolt the internal armor layer.")
+				holder.icon_state = "pinnace20"
+			else
+				user.visible_message("[user] pries the internal armor layer from [holder].", "You pry the internal armor layer from [holder].")
+				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
+				MS.amount = 5
+				holder.icon_state = "pinnace14"
+		if(4)
+			if(diff==FORWARD)
+				user.visible_message("[user] welds the internal armor layer into place on [holder].", "You weld the internal armor layer into place on [holder].")
+				holder.icon_state = "pinnace21"
+			else
+				user.visible_message("[user] unbolt the internal armor layer.", "You unbolt the internal armor layer.")
+				holder.icon_state = "pinnace19"
+		if(3)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the external reinforced armor layer to [holder].", "You install the external reinforced armor layer to [holder].")
+				holder.icon_state = "pinnace22"
+			else
+				user.visible_message("[user] cuts internal armor layer from [holder].", "You cut the internal armor layer from [holder].")
+				holder.icon_state = "pinnace20"
+		if(2)
+			if(diff==FORWARD)
+				user.visible_message("[user] bolts external armor layer.", "You bolt external reinforced armor layer.")
+				holder.icon_state = "pinnace23"
+			else
+				user.visible_message("[user] pries the external armor layer from [holder].", "You pry external armor layer from [holder].")
+				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
+				MS.amount = 5
+				holder.icon_state = "pinnace21"
+		if(1)
+			if(diff==FORWARD)
+				user.visible_message("[user] welds the external armor layer to [holder].", "You weld the external armor layer to [holder].")
+			else
+				user.visible_message("[user] unbolts the external armor layer.", "You unbolt the external armor layer.")
+				holder.icon_state = "pinnace22"
+	return 1
+
+/datum/construction/reversible/mecha/fighter/pinnace/spawn_result()
+	..()
+	feedback_inc("mecha_fighter_pinnace_created",1)
+	return
+
+//////////////////////
+//		Baron
+//////////////////////
+/datum/construction/mecha/fighter/baron_chassis
+	result = "/obj/mecha/combat/fighter/baron"
+	steps = list(list("key"=/obj/item/mecha_parts/fighter/part/baron_core),//1
+					 list("key"=/obj/item/mecha_parts/fighter/part/baron_cockpit),//2
+					 list("key"=/obj/item/mecha_parts/fighter/part/baron_main_engine),//3
+					 list("key"=/obj/item/mecha_parts/fighter/part/baron_left_engine),//4
+					 list("key"=/obj/item/mecha_parts/fighter/part/baron_right_engine),//5
+					 list("key"=/obj/item/mecha_parts/fighter/part/baron_left_wing),//6
+					 list("key"=/obj/item/mecha_parts/fighter/part/baron_right_wing)//final
+					)
+
+/datum/construction/mecha/fighter/baron_chassis/custom_action(step, obj/item/I, mob/user)
+	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
+	holder.add_overlay("[I.icon_state]+o")
+	qdel(I)
+	return 1
+
+/datum/construction/mecha/fighter/baron_chassis/action(obj/item/I,mob/user as mob)
+	return check_all_steps(I,user)
+
+/datum/construction/mecha/fighter/baron_chassis/spawn_result()
+	var/obj/item/mecha_parts/chassis/const_holder = holder
+	const_holder.construct = new /datum/construction/reversible/mecha/fighter/baron(const_holder)
+	const_holder.icon = 'icons/mecha/fighters_construction64x64.dmi'
+	const_holder.icon_state = "baron0"
+	const_holder.density = 1
+	spawn()
+		qdel(src)
+	return
+
+/datum/construction/reversible/mecha/fighter/baron
+	result = "/obj/mecha/combat/fighter/baron"
+	steps = list(
+					//1
+					list("key"=/obj/item/weldingtool,
+							"backkey"=IS_WRENCH,
+							"desc"="External armor is bolted into place."),
+					//2
+					list("key"=IS_WRENCH,
+							"backkey"=IS_CROWBAR,
+							"desc"="External armor is installed."),
+					//3
+					list("key"=/obj/item/stack/material/plasteel,
+							"backkey"=/obj/item/weldingtool,
+							"desc"="The internal armor is welded into place."),
+					//4
+					list("key"=/obj/item/weldingtool,
+							"backkey"=IS_WRENCH,
+							"desc"="The internal armor is bolted into place."),
+					//5
+					list("key"=IS_WRENCH,
+							"backkey"=IS_CROWBAR,
+							"desc"="The internal armor is installed."),
+					//6
+					list("key"=/obj/item/stack/material/steel,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The manual flight control instruments are secured."),
+					//7
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The manual flight control instruments are installed."),
+					//8
+					list("key"=/obj/item/circuitboard/mecha/fighter/baron/cockpitboard,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The advanced capacitor is secured."),
+					//9
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The advanced capacitor is installed."),
+					//10
+					list("key"=/obj/item/stock_parts/capacitor/adv,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The targeting module is secured."),
+					//11
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The targeting module is installed."),
+					//12
+					list("key"=/obj/item/circuitboard/mecha/fighter/baron/targeting,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The flight control module is secured."),
+					//13
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The flight control module is installed."),
+					//14
+					list("key"=/obj/item/circuitboard/mecha/fighter/baron/flight,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The central control module is secured."),
+					//15
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_CROWBAR,
+							"desc"="The central control module is installed."),
+					//16
+					list("key"=/obj/item/circuitboard/mecha/fighter/baron/main,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The internal wiring is adjusted."),
+					//17
+					list("key"=/obj/item/tool/wirecutters,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The internal wiring is added."),
+					//18
+					list("key"=/obj/item/stack/cable_coil,
+							"backkey"=IS_SCREWDRIVER,
+							"desc"="The hydraulic landing gear are deployed."),
+					//19
+					list("key"=IS_SCREWDRIVER,
+							"backkey"=IS_WRENCH,
+							"desc"="The hydraulic landing gear are attached."),
+					//20
+					list("key"=IS_WRENCH,
+							"desc"="The hydraulic landing gear are detached.")
+					)
+
+/datum/construction/reversible/mecha/fighter/baron/action(obj/item/I,mob/user as mob)
+	return check_step(I,user)
+
+/datum/construction/reversible/mecha/fighter/baron/custom_action(index, diff, obj/item/I, mob/user)
+	if(!..())
+		return 0
+
+	switch(index)
+		if(20)
+			user.visible_message("[user] attaches [holder]'s hydraulic landing gear.", "You attach [holder]'s hydraulic landing gear.")
+			holder.icon_state = "baron1"
+		if(19)
+			if(diff==FORWARD)
+				user.visible_message("[user] deploys [holder]'s hydraulic landing gear.", "You deploy [holder]'s hydraulic landing gear.")
+				holder.icon_state = "baron2"
+			else
+				user.visible_message("[user] removes [holder]'s hydraulic landing gear.", "You remove [holder]'s hydraulic landing gear.")
+				holder.icon_state = "baron0"
+		if(18)
+			if(diff==FORWARD)
+				user.visible_message("[user] adds the internal wiring to [holder].", "You add the internal wiring to [holder].")
+				holder.icon_state = "baron3"
+			else
+				user.visible_message("[user] retracts [holder]'s hydraulic landing gear.", "You retract [holder]'s hydraulic landing gear.")
+				holder.icon_state = "baron1"
+		if(17)
+			if(diff==FORWARD)
+				user.visible_message("[user] adjusts the internal wiring of [holder].", "You adjust the internal wiring of [holder].")
+				holder.icon_state = "baron4"
+			else
+				user.visible_message("[user] removes the internal wiring from [holder].", "You remove the internal wiring from [holder].")
+				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
+				coil.amount = 4
+				holder.icon_state = "baron2"
+		if(16)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the central control module into [holder].", "You install the central control module into [holder].")
+				qdel(I)
+				holder.icon_state = "baron5"
+			else
+				user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
+				holder.icon_state = "baron3"
+		if(15)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the central control module.", "You secure the central control module.")
+				holder.icon_state = "baron6"
+			else
+				user.visible_message("[user] removes the central control module from [holder].", "You remove the central control module from [holder].")
+				new /obj/item/circuitboard/mecha/fighter/baron/main(get_turf(holder))
+				holder.icon_state = "baron4"
+		if(14)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the flight control module into [holder].", "You install the flight control module into [holder].")
+				qdel(I)
+				holder.icon_state = "baron7"
+			else
+				user.visible_message("[user] unfastens the central control module.", "You unfasten the central control module.")
+				holder.icon_state = "baron5"
+		if(13)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the flight control module.", "You secure the flight control module.")
+				holder.icon_state = "baron8"
+			else
+				user.visible_message("[user] removes the flight control module from [holder].", "You remove the flight control module from [holder].")
+				new /obj/item/circuitboard/mecha/fighter/baron/flight(get_turf(holder))
+				holder.icon_state = "baron6"
+		if(12)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the targeting control module into [holder].", "You install the targeting control module into [holder].")
+				qdel(I)
+				holder.icon_state = "baron9"
+			else
+				user.visible_message("[user] unfastens the peripherals control module.", "You unfasten the peripherals control module.")
+				holder.icon_state = "baron7"
+		if(11)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the targeting control module.", "You secure the targeting control module.")
+				holder.icon_state = "baron10"
+			else
+				user.visible_message("[user] removes the targeting control module from [holder].", "You remove the targeting control module from [holder].")
+				new /obj/item/circuitboard/mecha/fighter/baron/targeting(get_turf(holder))
+				holder.icon_state = "baron8"
+		if(10)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the advanced capacitor into [holder].", "You install the advanced capacitor into [holder].")
+				qdel(I)
+				holder.icon_state = "baron11"
+			else
+				user.visible_message("[user] unfastens the targeting control module.", "You unfasten the targeting control module.")
+				holder.icon_state = "baron9"
+		if(9)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the advanced capacitor.", "You secure the advanced capacitor.")
+				holder.icon_state = "baron12"
+			else
+				user.visible_message("[user] removes the advanced capacitor from [holder].", "You remove the advanced capacitor from [holder].")
+				new /obj/item/stock_parts/capacitor/adv(get_turf(holder))
+				holder.icon_state = "baron10"
+		if(8)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the manual flight controls to [holder].", "You install the manual flight controls to [holder].")
+				qdel(I)
+				holder.icon_state = "baron13"
+			else
+				user.visible_message("[user] unfastens the advanced capacitor.", "You unfasten the advanced capacitor.")
+				holder.icon_state = "baron11"
+		if(7)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the manual flight controls.", "You secure the manual flight controls.")
+				holder.icon_state = "baron14"
+			else
+				user.visible_message("[user] removes the manual flight controls from [holder].", "You remove the manual flight controls from [holder].")
+				new /obj/item/circuitboard/mecha/fighter/baron/cockpitboard(get_turf(holder))
+				holder.icon_state = "baron12"
+		if(6)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the internal armor layer to [holder].", "You install the internal armor layer to [holder].")
+				holder.icon_state = "baron19"
+			else
+				user.visible_message("[user] unfastens the manual flight controls.", "You unfasten the manual flight controls.")
+				holder.icon_state = "baron13"
+		if(5)
+			if(diff==FORWARD)
+				user.visible_message("[user] bolts the internal armor layer.", "You bolt the internal armor layer.")
+				holder.icon_state = "baron20"
+			else
+				user.visible_message("[user] pries the internal armor layer from [holder].", "You pry the internal armor layer from [holder].")
+				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
+				MS.amount = 5
+				holder.icon_state = "baron14"
+		if(4)
+			if(diff==FORWARD)
+				user.visible_message("[user] welds the internal armor layer into place on [holder].", "You weld the internal armor layer into place on [holder].")
+				holder.icon_state = "baron21"
+			else
+				user.visible_message("[user] unbolt the internal armor layer.", "You unbolt the internal armor layer.")
+				holder.icon_state = "baron19"
+		if(3)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs the external reinforced armor layer to [holder].", "You install the external reinforced armor layer to [holder].")
+				holder.icon_state = "baron22"
+			else
+				user.visible_message("[user] cuts internal armor layer from [holder].", "You cut the internal armor layer from [holder].")
+				holder.icon_state = "baron20"
+		if(2)
+			if(diff==FORWARD)
+				user.visible_message("[user] bolts external armor layer.", "You bolt external reinforced armor layer.")
+				holder.icon_state = "baron23"
+			else
+				user.visible_message("[user] pries the external armor layer from [holder].", "You pry external armor layer from [holder].")
+				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
+				MS.amount = 5
+				holder.icon_state = "baron21"
+		if(1)
+			if(diff==FORWARD)
+				user.visible_message("[user] welds the external armor layer to [holder].", "You weld the external armor layer to [holder].")
+			else
+				user.visible_message("[user] unbolts the external armor layer.", "You unbolt the external armor layer.")
+				holder.icon_state = "baron22"
+	return 1
+
+/datum/construction/reversible/mecha/fighter/baron/spawn_result()
+	..()
+	feedback_inc("mecha_fighter_baron_created",1)
 	return

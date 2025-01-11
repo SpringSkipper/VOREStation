@@ -121,7 +121,7 @@
 
 /datum/robot_sprite/service/drone
 	name = "AG Model-Serv"
-	sprite_icon_state = "drone-crisis"
+	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 
 /datum/robot_sprite/service/drone_hydro
@@ -206,13 +206,13 @@
 	rest_sprite_options = list("Default")
 	has_extra_customization = TRUE
 
-	var/list/booze_options = list("Beer" = "booze",
+	var/list/booze_options = list(REAGENT_BEER = "booze",
 								  "Space Mountain Wind" = "boozegreen",
 								  "Curacao" = "boozeblue",
-								  "Grape Soda" = "boozepurple",
+								  REAGENT_GRAPESODA = "boozepurple",
 								  "Demon's Blood" = "boozered",
-								  "Whiskey Soda" = "boozeorange",
-								  "Coffee" = "boozebrown")
+								  REAGENT_WHISKEYSODA = "boozeorange",
+								  REAGENT_COFFEE = "boozebrown")
 
 /datum/robot_sprite/dogborg/service/booze/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
 	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"])
@@ -220,11 +220,11 @@
 	else
 		ourborg.icon_state = booze_options[ourborg.sprite_extra_customization["boozehound"]]
 
-/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1)
-	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"])
+/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
+	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"] || b_class != "sleeper")
 		return ..()
 	else
-		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-sleeper-[size]"
+		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-[b_class]-[size]"
 
 /datum/robot_sprite/dogborg/service/booze/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))
@@ -241,7 +241,7 @@
 			ourborg.sprite_extra_customization += "boozehound"
 		ourborg.sprite_extra_customization["boozehound"] = choice
 		playsound(ourborg.loc, 'sound/effects/bubbles.ogg', 100, 0, 4)
-		to_chat(ourborg, "<span class='filter_notice'>Your tank now displays [choice]. Drink up and enjoy!</span>")
+		to_chat(ourborg, span_filter_notice("Your tank now displays [choice]. Drink up and enjoy!"))
 		ourborg.update_icon()
 		return 1
 
@@ -276,7 +276,6 @@
 	sprite_icon_state = "newmeka"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
-	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/service/mmeka
@@ -284,7 +283,6 @@
 	sprite_icon_state = "mmeka"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
-	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/service/fmeka
@@ -292,7 +290,6 @@
 	sprite_icon_state = "fmeka"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
-	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/service/k4t
@@ -311,6 +308,23 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
+/datum/robot_sprite/dogborg/tall/service/dullahanv3
+	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
+	//named v3 to avoid conflicts with downstream
+
+/datum/robot_sprite/dogborg/tall/service/dullahanv3/basic
+	name = "Dullahan service v3"
+	sprite_icon_state = "dullahanservice"
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")
+
+/datum/robot_sprite/dogborg/tall/service/dullahanv3/barista
+	name = "Dullahan matcha v3"
+	sprite_icon_state = "dullahanbarista"
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")
 
 // Clerical
 

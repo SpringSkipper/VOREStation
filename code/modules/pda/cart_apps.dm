@@ -45,7 +45,7 @@
 			status_signal.data["msg1"] = data1
 			status_signal.data["msg2"] = data2
 			var/mob/user = pda.fingerprintslast
-			if(istype(pda.loc, /mob/living))
+			if(isliving(pda.loc))
 				user = pda.loc
 			log_admin("STATUS: [user] set status screen with [pda]. Message: [data1] [data2]")
 			message_admins("STATUS: [user] set status screen with [pda]. Message: [data1] [data2]")
@@ -138,7 +138,7 @@
 	else
 		for(var/datum/data/record/R as anything in sortRecord(data_core.general))
 			if(R)
-				records += list(list(Name = R.fields["name"], "ref" = "\ref[R]"))
+				records += list(list(name = R.fields["name"], "ref" = "\ref[R]"))
 		data["recordsList"] = records
 		data["records"] = null
 		return null
@@ -229,7 +229,7 @@
 	for(var/datum/supply_order/SO as anything in SSsupply.shoppinglist)
 
 		supplyOrderCount++
-		supplyOrderData[++supplyOrderData.len] = list("Number" = SO.ordernum, "Name" = html_encode(SO.object.name), "ApprovedBy" = SO.ordered_by, "Comment" = html_encode(SO.comment))
+		supplyOrderData[++supplyOrderData.len] = list("Number" = SO.ordernum, "Name" = html_encode(SO.object.name), "ApprovedBy" = SO.approved_by, "Comment" = html_encode(SO.comment))
 
 	supplyData["approved"] = supplyOrderData
 	supplyData["approved_count"] = supplyOrderCount
@@ -264,7 +264,7 @@
 		JaniData["user_loc"] = list("x" = 0, "y" = 0)
 
 	var/MopData[0]
-	for(var/obj/item/weapon/mop/M in all_mops)//GLOB.janitorial_equipment)
+	for(var/obj/item/mop/M in all_mops)//GLOB.janitorial_equipment)
 		var/turf/ml = get_turf(M)
 		if(ml)
 			if(ml.z != cl.z)

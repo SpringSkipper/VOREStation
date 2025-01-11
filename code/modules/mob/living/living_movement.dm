@@ -17,9 +17,9 @@
 /mob/living/SelfMove(turf/n, direct, movetime)
 	// If on walk intent, don't willingly step into hazardous tiles.
 	// Unless the walker is confused.
-	if(m_intent == "walk" && confused <= 0)
+	if(m_intent == I_WALK && confused <= 0)
 		if(!n.is_safe_to_enter(src))
-			to_chat(src, span("warning", "\The [n] is dangerous to move into."))
+			to_chat(src, span_warning("\The [n] is dangerous to move into."))
 			return FALSE // In case any code wants to know if movement happened.
 	return ..() // Parent call should make the mob move.
 
@@ -51,21 +51,21 @@ default behaviour is:
 	if(now_pushing || !loc || buckled == AM)
 		return
 	now_pushing = 1
-	if (istype(AM, /mob/living))
+	if (isliving(AM))
 		var/mob/living/tmob = AM
 
 		//Even if we don't push/swap places, we "touched" them, so spread fire
 		spread_fire(tmob)
 
 		for(var/mob/living/M in range(tmob, 1))
-			if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
+			if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
 				if ( !(world.time % 5) )
-					to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
+					to_chat(src, span_warning("[tmob] is restrained, you cannot push past"))
 				now_pushing = 0
 				return
 			if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
 				if ( !(world.time % 5) )
-					to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
+					to_chat(src, span_warning("[tmob] is restraining [M], you cannot push past"))
 				now_pushing = 0
 				return
 
@@ -144,7 +144,7 @@ default behaviour is:
 		if(ishuman(tmob))
 			var/mob/living/carbon/human/H = tmob
 			if(H.species.lightweight == 1 && prob(50))
-				H.visible_message("<span class='warning'>[src] bumps into [H], knocking them off balance!</span>")
+				H.visible_message(span_warning("[src] bumps into [H], knocking them off balance!"))
 				H.Weaken(5)
 				now_pushing = 0
 				return
@@ -152,16 +152,16 @@ default behaviour is:
 		if(step_mechanics_pref && tmob.step_mechanics_pref)
 			if(handle_micro_bump_other(tmob)) return
 		// VOREStation Edit - End
-		if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
+		if(ishuman(tmob) && (FAT in tmob.mutations))
 			if(prob(40) && !(FAT in src.mutations))
-				to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
+				to_chat(src, span_danger("You fail to push [tmob]'s fat ass out of the way."))
 				now_pushing = 0
 				return
-		if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
+		if(tmob.r_hand && istype(tmob.r_hand, /obj/item/shield/riot))
 			if(prob(99))
 				now_pushing = 0
 				return
-		if(tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
+		if(tmob.l_hand && istype(tmob.l_hand, /obj/item/shield/riot))
 			if(prob(99))
 				now_pushing = 0
 				return
@@ -175,16 +175,16 @@ default behaviour is:
 	. = ..()
 	if (!istype(AM, /atom/movable) || AM.anchored)
 		//VOREStation Edit - object-specific proc for running into things
-		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying)
+		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent==I_RUN) || flying)
 			AM.stumble_into(src)
 		//VOREStation Edit End
 		/* VOREStation Removal - See above
-		if(confused && prob(50) && m_intent=="run")
+		if(confused && prob(50) && m_intent==I_RUN)
 			Weaken(2)
 			playsound(src, "punch", 25, 1, -1)
-			visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
+			visible_message(span_warning("[src] [pick("ran", "slammed")] into \the [AM]!"))
 			src.apply_damage(5, BRUTE)
-			to_chat(src, "<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
+			to_chat(src, span_warning("You just [pick("ran", "slammed")] into \the [AM]!"))
 			*/ // VOREStation Removal End
 		return
 	if (!now_pushing)
@@ -211,7 +211,7 @@ default behaviour is:
 			Move(T, t, move_time)
 
 		if(ishuman(AM) && AM:grabbed_by)
-			for(var/obj/item/weapon/grab/G in AM:grabbed_by)
+			for(var/obj/item/grab/G in AM:grabbed_by)
 				step(G:assailant, get_dir(G:assailant, AM))
 				G.adjust_position()
 		now_pushing = 0
@@ -264,9 +264,9 @@ default behaviour is:
 
 /mob/living/proc/dragged(var/mob/living/dragger, var/oldloc)
 	var/area/A = get_area(src)
-	if(lying && !buckled && pull_damage() && A.has_gravity() && (prob(getBruteLoss() * 200 / maxHealth)))
+	if(lying && !buckled && pull_damage() && A.get_gravity() && (prob(getBruteLoss() * 200 / maxHealth)))
 		adjustBruteLoss(2)
-		visible_message("<span class='danger'>\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
+		visible_message(span_danger("\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!"))
 
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()
@@ -303,7 +303,7 @@ default behaviour is:
 
 	if(!isturf(loc))
 		return
-	else if(lastarea?.has_gravity == 0)
+	else if(lastarea?.get_gravity() == 0)
 		inertial_drift()
 	//VOREStation Edit Start
 	else if(flying)

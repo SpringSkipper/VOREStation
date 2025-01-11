@@ -62,7 +62,7 @@
 	if(prob(chance))
 		if(A.opacity)
 			//display a message so that people on the other side aren't so confused
-			A.visible_message("<span class='warning'>\The [src] pierces through \the [A]!</span>")
+			A.visible_message(span_warning("\The [src] pierces through \the [A]!"))
 		return 1
 
 	return 0
@@ -237,7 +237,7 @@
 	SA_vulnerability = SA_ANIMAL
 	hud_state = "rifle_heavy"
 
-/obj/item/projectile/bullet/rifle/a145 // 14.5�114mm is bigger than a .50 BMG round.
+/obj/item/projectile/bullet/rifle/a145 // 14.5×114mm is bigger than a .50 BMG round.
 	fire_sound = 'sound/weapons/Gunshot_cannon.ogg' // This is literally an anti-tank rifle caliber. It better sound like a fucking cannon.
 	damage = 80
 	stun = 3

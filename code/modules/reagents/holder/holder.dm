@@ -1,5 +1,3 @@
-#define PROCESS_REACTION_ITER 5 //when processing a reaction, iterate this many times
-
 /datum/reagents
 	var/list/datum/reagent/reagent_list = list()
 	var/total_volume = 0
@@ -111,7 +109,7 @@
 
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
-			if(current.id == "blood")
+			if(current.id == REAGENT_ID_BLOOD)
 				if(LAZYLEN(data) && !isnull(data["species"]) && !isnull(current.data["species"]) && data["species"] != current.data["species"])	// Species bloodtypes are already incompatible, this just stops it from mixing into the one already in a container.
 					continue
 

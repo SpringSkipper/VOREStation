@@ -36,7 +36,7 @@
 				m.forceMove(src.loc)
 			else
 				m.forceMove(get_turf(src.loc))
-			m.visible_message("<span class = 'notice'>\The [m] tumbles out of \the [src]!</span>")
+			m.visible_message(span_notice("\The [m] tumbles out of \the [src]!"))
 	//VOREStation Add End
 
 	return ..()
@@ -57,7 +57,7 @@
 /obj/CanUseTopic(var/mob/user, var/datum/tgui_state/state = GLOB.tgui_default_state)
 	if(user.CanUseObjTopic(src))
 		return ..()
-	to_chat(user, "<span class='danger'>\icon[src][bicon(src)]Access Denied!</span>")
+	to_chat(user, span_danger("[icon2html(src, user.client)]Access Denied!"))
 	return STATUS_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(var/obj/O)
@@ -102,7 +102,7 @@
 			if ((M.client && M.machine == src))
 				is_in_use = 1
 				src.attack_hand(M)
-		if (istype(usr, /mob/living/silicon/ai) || istype(usr, /mob/living/silicon/robot))
+		if (isAI(usr) || isrobot(usr))
 			if (!(usr in nearby))
 				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 					is_in_use = 1
@@ -110,7 +110,7 @@
 
 		// check for TK users
 
-		if (istype(usr, /mob/living/carbon/human))
+		if (ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(H.get_type_in_hands(/obj/item/tk_grab))
 				if(!(H in nearby))
@@ -165,7 +165,7 @@
 /*
 	var/mob/mo = locate(/mob) in src
 	if(mo)
-		var/rendered = "<span class='game say'><span class='name'>[M.name]: </span> <span class='message'>[text]</span></span>"
+		var/rendered = span_game(span_say(span_name("[M.name]:") + " " + span_message("[text]"))))
 		mo.show_message(rendered, 2)
 		*/
 	return

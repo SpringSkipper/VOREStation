@@ -118,8 +118,6 @@
 "av" = (
 /obj/effect/overlay/snow/floor,
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
@@ -201,7 +199,7 @@
 	},
 /area/surface/outside/ocean)
 "aI" = (
-/obj/item/weapon/banner/nt,
+/obj/item/banner/nt,
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
 /area/surface/outside/plains/outpost)
 "aJ" = (
@@ -258,7 +256,7 @@
 /area/surface/outpost/mining_main/storage)
 "aT" = (
 /obj/structure/table/steel,
-/obj/item/weapon/pickaxe,
+/obj/item/pickaxe,
 /obj/effect/floor_decal/corner/brown{
 	dir = 5
 	},
@@ -271,7 +269,7 @@
 "aU" = (
 /obj/structure/table/steel,
 /obj/machinery/cell_charger,
-/obj/item/weapon/cell/high,
+/obj/item/cell/high,
 /obj/effect/floor_decal/corner/brown{
 	dir = 5
 	},
@@ -305,29 +303,29 @@
 /area/surface/outpost/mining_main/storage)
 "aW" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/weapon/pickaxe,
+/obj/item/storage/belt/utility,
+/obj/item/pickaxe,
 /obj/effect/floor_decal/corner/brown/full{
 	dir = 8
 	},
-/obj/item/device/gps/mining,
-/obj/item/device/gps/mining,
-/obj/item/device/gps/mining,
+/obj/item/gps/mining,
+/obj/item/gps/mining,
+/obj/item/gps/mining,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/mining_main)
 "aX" = (
 /obj/effect/floor_decal/corner/brown{
 	dir = 5
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 21
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/tool/crowbar,
+/obj/item/tool/wrench,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/mining_main)
 "aY" = (
@@ -357,9 +355,9 @@
 /area/surface/outpost/mining_main)
 "ba" = (
 /obj/structure/table/steel,
-/obj/item/weapon/mining_scanner,
-/obj/item/weapon/mining_scanner,
-/obj/item/weapon/mining_scanner,
+/obj/item/mining_scanner,
+/obj/item/mining_scanner,
+/obj/item/mining_scanner,
 /obj/effect/floor_decal/corner/brown{
 	dir = 5
 	},
@@ -375,7 +373,7 @@
 /obj/effect/floor_decal/corner/brown/full{
 	dir = 8
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 21
@@ -400,8 +398,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -494,8 +490,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
@@ -512,8 +506,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_grid,
@@ -526,8 +518,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -540,8 +530,6 @@
 	dir = 1
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
@@ -741,10 +729,10 @@
 /area/surface/outpost/mining_main/storage)
 "bW" = (
 /obj/structure/table/rack,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/shovel,
+/obj/item/pickaxe,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/obj/item/shovel,
 /obj/effect/floor_decal/corner/brown{
 	dir = 10
 	},
@@ -752,10 +740,10 @@
 /area/surface/outpost/mining_main/storage)
 "bX" = (
 /obj/structure/table/rack,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/shovel,
+/obj/item/pickaxe,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/obj/item/shovel,
 /obj/effect/floor_decal/corner/brown{
 	dir = 10
 	},
@@ -776,8 +764,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -855,13 +841,13 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/security)
 "cj" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 21
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/book/codex/corp_regs,
+/obj/item/book/codex/corp_regs,
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
@@ -904,8 +890,8 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/recharger,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/device/defib_kit/loaded,
+/obj/item/tool/screwdriver,
+/obj/item/defib_kit/loaded,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
@@ -981,8 +967,6 @@
 	dir = 8
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -1000,9 +984,9 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/mining_main)
 "cA" = (
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/tool/crowbar,
+/obj/item/tool/wrench,
+/obj/item/storage/toolbox/mechanical,
 /obj/structure/table/steel,
 /obj/machinery/light,
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -1078,7 +1062,7 @@
 /turf/simulated/wall,
 /area/surface/outpost/main/gateway)
 "cL" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -1145,8 +1129,8 @@
 /obj/structure/window/reinforced,
 /obj/structure/table/rack,
 /obj/item/bodybag/cryobag,
-/obj/item/weapon/storage/toolbox/emergency,
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/toolbox/emergency,
+/obj/item/storage/firstaid/regular,
 /obj/random/medical/lite,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
@@ -1181,13 +1165,13 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
+/obj/item/tank/oxygen,
+/obj/item/tank/oxygen,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/weapon/extinguisher,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/extinguisher,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -1276,7 +1260,7 @@
 	pixel_y = 23
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/donut,
+/obj/item/storage/box/donut,
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
@@ -1380,8 +1364,8 @@
 	dir = 4
 	},
 /obj/structure/table/glass,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone{
+/obj/item/tool/wrench,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
 	pixel_x = 7;
 	pixel_y = 1
 	},
@@ -1425,16 +1409,14 @@
 /area/surface/outpost/mining_main/emergencystorage)
 "dy" = (
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/mining_main/emergencystorage)
 "dz" = (
-/obj/item/device/t_scanner,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/t_scanner,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /obj/structure/table/steel,
 /obj/random/maintenance/engineering,
 /obj/random/maintenance/clean,
@@ -1674,8 +1656,6 @@
 /area/surface/outpost/mining_main/emergencystorage)
 "dZ" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/border_only,
@@ -1706,13 +1686,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -1839,8 +1815,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
@@ -1858,8 +1832,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/glass_security{
@@ -1873,8 +1845,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -1893,8 +1863,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -1909,13 +1877,9 @@
 	dir = 1
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
@@ -1926,13 +1890,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
@@ -1950,8 +1910,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/glass_medical{
@@ -1967,8 +1925,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -2054,8 +2010,6 @@
 /area/surface/outpost/mining_main)
 "eD" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -2077,8 +2031,6 @@
 /area/surface/outpost/mining_main)
 "eG" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2160,13 +2112,13 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = 1;
 	pixel_y = 9
 	},
-/obj/item/device/flash,
-/obj/item/weapon/pen,
-/obj/item/weapon/tool/crowbar,
+/obj/item/flash,
+/obj/item/pen,
+/obj/item/tool/crowbar,
 /obj/machinery/light,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -2190,8 +2142,6 @@
 /area/surface/outpost/main/security)
 "eT" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/borderfloor/corner,
@@ -2213,8 +2163,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -2231,8 +2179,8 @@
 /area/surface/outpost/main/gateway)
 "eY" = (
 /obj/structure/closet/emcloset,
-/obj/item/weapon/storage/toolbox/emergency,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/machinery/light_switch{
 	pixel_x = 11;
@@ -2249,8 +2197,6 @@
 "eZ" = (
 /obj/structure/closet/l3closet/scientist,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/borderfloorwhite/corner{
@@ -2269,7 +2215,7 @@
 /area/surface/outpost/main/first_aid)
 "fb" = (
 /obj/structure/table/glass,
-/obj/item/weapon/tool/crowbar,
+/obj/item/tool/crowbar,
 /obj/item/bodybag,
 /obj/item/bodybag/cryobag,
 /obj/effect/floor_decal/borderfloorwhite/corner,
@@ -2282,11 +2228,11 @@
 	dir = 8
 	},
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	pixel_x = 0;
 	pixel_y = 0
 	},
@@ -2297,11 +2243,11 @@
 /area/surface/outpost/main/first_aid)
 "fd" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/toxin{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_x = 0;
 	pixel_y = 0
 	},
@@ -2402,24 +2348,18 @@
 /area/surface/outpost/mining_main)
 "fl" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
 /area/surface/outpost/mining_main)
 "fm" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/surface/outpost/mining_main)
 "fn" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/hologram/holopad,
@@ -2428,8 +2368,6 @@
 /area/surface/outpost/mining_main)
 "fo" = (
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -2439,21 +2377,15 @@
 	dir = 8
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
 /area/surface/outpost/mining_main)
 "fp" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2471,8 +2403,6 @@
 "fq" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2486,8 +2416,6 @@
 /area/surface/outpost/mining_main/refinery)
 "fr" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2505,8 +2433,6 @@
 /area/surface/outpost/mining_main/refinery)
 "fs" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2521,8 +2447,6 @@
 /area/surface/outpost/mining_main/refinery)
 "ft" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2536,8 +2460,6 @@
 /area/surface/outpost/mining_main/refinery)
 "fu" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/camera/network/mining{
@@ -2577,8 +2499,8 @@
 	name = "explorer crate";
 	req_access = list(43)
 	},
-/obj/item/weapon/storage/belt/utility/full,
-/obj/item/weapon/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/security)
 "fz" = (
@@ -2617,8 +2539,8 @@
 	name = "explorer crate";
 	req_access = list(43)
 	},
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/pill_bottle/spaceacillin,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/pill_bottle/spaceacillin,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /turf/simulated/floor/tiled,
@@ -2631,8 +2553,6 @@
 	name = "Gateway Access"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel_grid,
@@ -2851,8 +2771,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -2887,7 +2805,7 @@
 	c_tag = "MO - SAR Prep";
 	dir = 2
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 21
@@ -2898,7 +2816,7 @@
 /obj/structure/closet/secure_closet/medical_wall/pills{
 	pixel_y = 32
 	},
-/obj/item/weapon/storage/pill_bottle/spaceacillin,
+/obj/item/storage/pill_bottle/spaceacillin,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/first_aid)
 "gg" = (
@@ -2937,8 +2855,6 @@
 "gl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -3106,8 +3022,6 @@
 /area/surface/outpost/main)
 "gz" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
@@ -3179,7 +3093,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/first_aid)
 "gG" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/first_aid)
 "gH" = (
@@ -3225,8 +3139,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/engineering{
@@ -3307,7 +3219,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -3327,16 +3239,16 @@
 	dir = 8;
 	layer = 2.6
 	},
-/obj/item/device/gps/explorer{
+/obj/item/gps/explorer{
 	pixel_x = -5;
 	pixel_y = -5
 	},
-/obj/item/device/gps/explorer{
+/obj/item/gps/explorer{
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/item/device/gps,
-/obj/item/device/gps{
+/obj/item/gps,
+/obj/item/gps{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -3358,7 +3270,7 @@
 /obj/structure/closet/secure_closet/explorer,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/green/border,
-/obj/item/device/binoculars,
+/obj/item/binoculars,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/security)
 "he" = (
@@ -3383,7 +3295,7 @@
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/green/border,
-/obj/item/weapon/pickaxe,
+/obj/item/pickaxe,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -22
@@ -3403,8 +3315,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -3427,10 +3337,10 @@
 /area/surface/outpost/main/first_aid)
 "hl" = (
 /obj/structure/table/steel,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/multitool,
 /obj/machinery/ai_status_display{
 	pixel_y = -32
 	},
@@ -3453,21 +3363,21 @@
 	pixel_x = 0;
 	pixel_y = -32
 	},
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/empty,
 /obj/machinery/iv_drip,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/first_aid)
 "ho" = (
 /obj/structure/closet/secure_closet/sar,
 /obj/machinery/light,
-/obj/item/weapon/storage/box/bodybags,
+/obj/item/storage/box/bodybags,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/white/border,
 /obj/item/roller/adv,
-/obj/item/weapon/storage/pill_bottle/spaceacillin,
+/obj/item/storage/pill_bottle/spaceacillin,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/first_aid)
 "hp" = (
@@ -3477,7 +3387,7 @@
 /obj/item/roller/adv{
 	pixel_y = 5
 	},
-/obj/item/weapon/storage/pill_bottle/spaceacillin,
+/obj/item/storage/pill_bottle/spaceacillin,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/first_aid)
 "hq" = (
@@ -3493,8 +3403,8 @@
 /area/surface/outpost/main/first_aid)
 "hr" = (
 /obj/structure/table/steel,
-/obj/item/device/gps/medical,
-/obj/item/device/gps/medical{
+/obj/item/gps/medical,
+/obj/item/gps/medical{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -3504,29 +3414,21 @@
 /area/surface/outpost/main/first_aid)
 "hs" = (
 /obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/mining_main/gen_room)
 "ht" = (
 /obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/mining_main/gen_room)
 "hu" = (
 /obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
@@ -3566,8 +3468,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -3618,8 +3518,6 @@
 /area/surface/outpost/mining_main/gen_room)
 "hI" = (
 /obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -3635,8 +3533,6 @@
 /area/surface/outpost/mining_main/gen_room)
 "hK" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -3661,8 +3557,6 @@
 /area/surface/outpost/mining_main/gen_room)
 "hN" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
@@ -3740,11 +3634,11 @@
 	pixel_x = 0;
 	pixel_y = -32
 	},
-/obj/item/device/paicard,
+/obj/item/paicard,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/green/border,
-/obj/item/weapon/hand_labeler,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/hand_labeler,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/security)
 "hY" = (
@@ -3773,7 +3667,7 @@
 /area/surface/outpost/main/garage)
 "id" = (
 /obj/structure/table/steel,
-/obj/item/weapon/weldpack,
+/obj/item/weldpack,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/garage)
 "ie" = (
@@ -3807,8 +3701,8 @@
 /area/surface/outpost/main/garage)
 "ij" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/emergency{
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/emergency{
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3837,8 +3731,6 @@
 /area/surface/outpost/mining_main/gen_room)
 "im" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/machinery/pipedispenser,
@@ -3846,13 +3738,9 @@
 /area/surface/outpost/mining_main/gen_room)
 "in" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/plating,
@@ -3863,8 +3751,6 @@
 	dir = 5
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -3874,8 +3760,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3930,7 +3814,7 @@
 /turf/simulated/floor/plating,
 /area/surface/outpost/mining_main/gen_room)
 "iw" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -3942,8 +3826,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -4005,8 +3887,6 @@
 	dir = 8
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -4015,7 +3895,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	name = "Station Intercom (General)";
 	pixel_x = 21
@@ -4032,7 +3912,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -25
 	},
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/garage)
 "iG" = (
@@ -4043,13 +3923,13 @@
 /area/surface/outpost/main/garage)
 "iI" = (
 /obj/structure/table/steel,
-/obj/item/weapon/weldingtool,
-/obj/item/device/floor_painter,
+/obj/item/weldingtool,
+/obj/item/floor_painter,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/outpost/main/garage)
 "iJ" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/machinery/light/small{
 	dir = 8;
 	pixel_x = 0
@@ -4097,7 +3977,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -4179,15 +4059,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/outpost/main/telecomms)
 "iX" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "south bump";
@@ -4201,7 +4079,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/item/weapon/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/teleporter)
 "iY" = (
@@ -4209,7 +4087,7 @@
 /area/surface/outpost/main/teleporter)
 "iZ" = (
 /obj/machinery/bluespace_beacon,
-/obj/item/device/radio/beacon,
+/obj/item/radio/beacon,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
@@ -4217,8 +4095,6 @@
 	dir = 6
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/machinery/hologram/holopad,
@@ -4235,7 +4111,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -4368,13 +4244,9 @@
 /area/surface/outpost/main/teleporter)
 "jn" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -4383,8 +4255,6 @@
 /area/surface/outpost/main/gen_room)
 "jo" = (
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/machinery/alarm{
@@ -4402,8 +4272,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/highsecurity{
@@ -4494,7 +4362,7 @@
 "jA" = (
 /obj/structure/table/steel,
 /obj/machinery/recharger,
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/gen_room)
 "jB" = (
@@ -4502,8 +4370,6 @@
 /area/surface/outpost/main/gen_room)
 "jC" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -4517,8 +4383,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/light,
@@ -4535,8 +4399,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -4608,8 +4470,6 @@
 "jP" = (
 /obj/effect/overlay/snow/floor,
 /obj/structure/cable/heavyduty{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/heavyduty{
@@ -4717,13 +4577,9 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -4740,8 +4596,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -4754,8 +4608,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -4774,8 +4626,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -4784,13 +4634,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled,
@@ -4803,8 +4649,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -4816,18 +4660,12 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -4837,8 +4675,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -4852,8 +4688,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock,
@@ -4865,8 +4699,6 @@
 	icon_state = "warning"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4900,8 +4732,6 @@
 /area/surface/outpost/main/gen_room)
 "kl" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/light/small{
@@ -4966,8 +4796,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment{
@@ -5016,20 +4844,16 @@
 /area/surface/outpost/main/gen_room)
 "kw" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /obj/random/tech_supply,
 /obj/random/tech_supply,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/gen_room)
 "kx" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/firealarm{
@@ -5060,8 +4884,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -5098,7 +4920,7 @@
 /area/surface/outpost/main/garage)
 "kI" = (
 /obj/item/inflatable/door/torn,
-/obj/item/weapon/tool/screwdriver,
+/obj/item/tool/screwdriver,
 /turf/simulated/floor,
 /area/surface/outpost/main/garage)
 "kJ" = (
@@ -5143,8 +4965,6 @@
 /area/surface/outpost/main)
 "kP" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -5153,13 +4973,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled,
@@ -5280,8 +5096,6 @@
 "lj" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -5300,8 +5114,6 @@
 	dir = 10
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/disposalpipe/junction,
@@ -5418,7 +5230,7 @@
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/construction_area)
 "ly" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/construction_area)
 "lz" = (
@@ -5458,7 +5270,7 @@
 	icon_state = "alarm0";
 	pixel_x = -22
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
 /obj/random/maintenance/engineering,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
@@ -5468,13 +5280,11 @@
 /area/surface/outpost/main/bar)
 "lF" = (
 /obj/structure/table/marble,
-/obj/item/weapon/stool,
+/obj/item/stool,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/bar)
 "lG" = (
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/plating,
@@ -5503,7 +5313,7 @@
 	pixel_x = 24
 	},
 /obj/item/frame/extinguisher_cabinet,
-/obj/item/weapon/extinguisher,
+/obj/item/extinguisher,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/bar)
 "lJ" = (
@@ -5516,7 +5326,7 @@
 /turf/simulated/floor/tiled/steel/sif/planetuse,
 /area/surface/outpost/main/corridor)
 "lL" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -5572,8 +5382,6 @@
 	dir = 5
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
@@ -5701,7 +5509,7 @@
 /area/surface/outpost/main)
 "mf" = (
 /obj/structure/closet/toolcloset,
-/obj/item/device/flashlight/maglight,
+/obj/item/flashlight/maglight,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/construction_area)
 "mg" = (
@@ -5724,8 +5532,6 @@
 /area/surface/outpost/main/gen_room/smes)
 "mj" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -5736,7 +5542,7 @@
 	c_tag = "MO - Bar West";
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -5756,7 +5562,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/bar)
 "mn" = (
@@ -5767,8 +5573,6 @@
 /area/surface/outpost/main/bar)
 "mo" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -5780,7 +5584,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/item/weapon/stock_parts/motor,
+/obj/item/stock_parts/motor,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/bar)
 "mq" = (
@@ -5852,7 +5656,7 @@
 "mz" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
@@ -5875,8 +5679,6 @@
 	dir = 6
 	},
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled,
@@ -5887,8 +5689,6 @@
 	pixel_y = 0
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/disposalpipe/segment,
@@ -5937,7 +5737,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main)
 "mH" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -5968,9 +5768,9 @@
 /area/surface/outpost/main)
 "mK" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
 /obj/item/frame/light,
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/construction_area)
 "mL" = (
@@ -5993,13 +5793,9 @@
 /area/surface/outpost/main/gen_room)
 "mN" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/alarm{
@@ -6019,8 +5815,6 @@
 /area/surface/outpost/main/bar)
 "mQ" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -6028,7 +5822,7 @@
 /area/surface/outpost/main/bar)
 "mR" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /obj/machinery/camera/network/main_outpost{
 	c_tag = "MO - Bar East";
 	dir = 8
@@ -6076,7 +5870,7 @@
 /area/surface/outpost/main/gym)
 "mY" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
 /obj/machinery/alarm{
 	dir = 8;
 	icon_state = "alarm0";
@@ -6107,8 +5901,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -6119,7 +5911,7 @@
 	icon_state = "tube1";
 	pixel_x = 0
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -6158,8 +5950,6 @@
 /area/surface/outpost/main/construction_area)
 "ni" = (
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6193,8 +5983,6 @@
 "nl" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/engineering{
@@ -6224,8 +6012,6 @@
 /area/surface/outpost/main/bar)
 "np" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -6305,13 +6091,13 @@
 /area/surface/outpost/main/gym)
 "nA" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/cups,
+/obj/item/storage/box/cups,
 /obj/machinery/computer/security/telescreen/entertainment{
 	icon_state = "frame";
 	pixel_x = 32;
 	pixel_y = 0
 	},
-/obj/item/weapon/book/codex/lore/vir,
+/obj/item/book/codex/lore/vir,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/gym)
 "nB" = (
@@ -6319,8 +6105,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -6363,7 +6147,7 @@
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/construction_area)
 "nI" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -6371,8 +6155,6 @@
 /area/surface/outpost/main/construction_area)
 "nJ" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6393,16 +6175,12 @@
 /area/surface/outpost/main/dorms)
 "nN" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/dorms)
 "nO" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6444,13 +6222,11 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/gym)
 "nS" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/gym)
 "nT" = (
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -6465,8 +6241,6 @@
 /area/surface/outpost/main/gym)
 "nU" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/camera/network/main_outpost{
@@ -6476,7 +6250,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/gym)
 "nV" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/structure/cable/blue{
 	d2 = 8;
 	icon_state = "0-8"
@@ -6548,8 +6322,6 @@
 "oe" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6565,14 +6337,12 @@
 /area/surface/outpost/main/construction_area)
 "og" = (
 /obj/structure/table/standard,
-/obj/item/device/paicard,
-/obj/item/weapon/book/codex/lore/vir,
+/obj/item/paicard,
+/obj/item/book/codex/lore/vir,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/dorms)
 "oh" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/extinguisher_cabinet{
@@ -6587,8 +6357,6 @@
 	name = "Bar"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6610,7 +6378,7 @@
 	icon_state = "alarm0";
 	pixel_x = -22
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 21
@@ -6669,8 +6437,6 @@
 	name = "Gym"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -6770,8 +6536,6 @@
 /area/surface/outpost/main/dorms)
 "oC" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6830,8 +6594,6 @@
 /area/surface/outpost/main/dorms)
 "oG" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment{
@@ -6899,8 +6661,6 @@
 /area/surface/outpost/main/dorms)
 "oL" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment{
@@ -7141,8 +6901,6 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -7208,8 +6966,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment{
@@ -7319,8 +7075,6 @@
 /area/surface/outpost/main/dorms)
 "pt" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/machinery/hologram/holopad,
@@ -7335,8 +7089,6 @@
 /area/surface/outpost/main/dorms)
 "pu" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -7347,8 +7099,6 @@
 /area/surface/outpost/main/dorms)
 "pv" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7361,13 +7111,9 @@
 /area/surface/outpost/main/dorms)
 "pw" = (
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7380,13 +7126,9 @@
 /area/surface/outpost/main/dorms)
 "px" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7400,8 +7142,6 @@
 "py" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7414,8 +7154,6 @@
 /area/surface/outpost/main/dorms)
 "pz" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -7428,13 +7166,9 @@
 /area/surface/outpost/main/dorms)
 "pA" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/hologram/holopad,
@@ -7445,8 +7179,6 @@
 /area/surface/outpost/main/dorms)
 "pB" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7457,8 +7189,6 @@
 /area/surface/outpost/main/dorms)
 "pC" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7476,8 +7206,6 @@
 "pD" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7491,8 +7219,6 @@
 /area/surface/outpost/main/corridor)
 "pE" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7598,8 +7324,6 @@
 /area/surface/outpost/main/corridor)
 "pO" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
@@ -7608,8 +7332,6 @@
 /area/surface/outpost/main)
 "pP" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7622,8 +7344,6 @@
 /area/surface/outpost/main)
 "pQ" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -7640,13 +7360,9 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/hologram/holopad,
@@ -7715,7 +7431,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/surface/outpost/main/dorms)
 "pZ" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -7744,14 +7460,14 @@
 	pixel_y = -25
 	},
 /obj/structure/closet/crate,
-/obj/item/weapon/bedsheet,
-/obj/item/weapon/bedsheet/blue,
-/obj/item/weapon/bedsheet/brown,
-/obj/item/weapon/bedsheet/green,
-/obj/item/weapon/bedsheet/orange,
-/obj/item/weapon/bedsheet/purple,
-/obj/item/weapon/bedsheet/red,
-/obj/item/weapon/bedsheet/yellow,
+/obj/item/bedsheet,
+/obj/item/bedsheet/blue,
+/obj/item/bedsheet/brown,
+/obj/item/bedsheet/green,
+/obj/item/bedsheet/orange,
+/obj/item/bedsheet/purple,
+/obj/item/bedsheet/red,
+/obj/item/bedsheet/yellow,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/green/border,
 /obj/effect/floor_decal/borderfloor/corner2{
@@ -7922,7 +7638,7 @@
 	name = "Statue";
 	pixel_y = 2
 	},
-/obj/item/device/gps/internal/base,
+/obj/item/gps/internal/base,
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/outpost/main/corridor)
 "qv" = (
@@ -8004,15 +7720,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main)
 "qG" = (
 /obj/structure/disposalpipe/segment,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	name = "Station Intercom (General)";
 	pixel_x = 21
@@ -8083,7 +7797,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/restroom)
 "qN" = (
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/bikehorn/rubberducky,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9;
 	pixel_y = 0
@@ -8213,9 +7927,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/outpost/main)
 "qZ" = (
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/tool/crowbar,
+/obj/item/tool/wrench,
+/obj/item/storage/toolbox/mechanical,
 /obj/structure/table/steel,
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/firealarm{
@@ -8246,8 +7960,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/camera/network/main_outpost{
@@ -8276,8 +7988,6 @@
 /area/surface/outpost/main/restroom)
 "rh" = (
 /obj/structure/cable/blue{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -8290,12 +8000,12 @@
 /area/surface/outpost/main/restroom)
 "ri" = (
 /obj/structure/table/standard,
-/obj/item/weapon/towel,
-/obj/item/weapon/towel,
-/obj/item/weapon/towel,
-/obj/item/weapon/towel,
-/obj/item/weapon/towel,
-/obj/item/weapon/towel,
+/obj/item/towel,
+/obj/item/towel,
+/obj/item/towel,
+/obj/item/towel,
+/obj/item/towel,
+/obj/item/towel,
 /obj/random/soap,
 /obj/random/soap,
 /obj/machinery/power/apc{
@@ -8331,7 +8041,7 @@
 /area/surface/outpost/main/restroom)
 "rk" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/carpet/purcarpet,
 /area/surface/outpost/main/dorms)
 "rl" = (
@@ -8413,7 +8123,7 @@
 /area/surface/outpost/main/dorms)
 "rs" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/green,
+/obj/item/bedsheet/green,
 /obj/machinery/alarm{
 	frequency = 1441;
 	pixel_y = 22
@@ -8425,7 +8135,7 @@
 /area/surface/outpost/main/dorms)
 "rt" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/yellow,
+/obj/item/bedsheet/yellow,
 /obj/machinery/alarm{
 	frequency = 1441;
 	pixel_y = 22
@@ -8499,7 +8209,7 @@
 /turf/simulated/floor/carpet/blucarpet,
 /area/surface/outpost/main/dorms)
 "rz" = (
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/floor/carpet/blucarpet,
 /area/surface/outpost/main/dorms)
@@ -8554,8 +8264,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/wingrille_spawn/reinforced,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -8571,8 +8279,6 @@
 "rH" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock{
@@ -8596,7 +8302,7 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/surface/outpost/main/dorms)
 "rK" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -8604,7 +8310,7 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/surface/outpost/main/dorms)
 "rL" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -8634,8 +8340,8 @@
 	pixel_y = 0;
 	specialfunctions = 4
 	},
-/obj/item/weapon/stool/padded,
-/obj/item/device/radio/intercom{
+/obj/item/stool/padded,
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -8672,12 +8378,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/corridor)
 "rQ" = (
-/obj/item/weapon/stool/padded,
-/obj/item/device/radio/intercom{
+/obj/item/stool/padded,
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -8700,7 +8406,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/main/dorms)
 "rS" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -8717,7 +8423,7 @@
 /turf/simulated/floor/carpet/blucarpet,
 /area/surface/outpost/main/dorms)
 "rT" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -8730,7 +8436,7 @@
 	dir = 1;
 	pixel_y = -25
 	},
-/obj/item/device/gps{
+/obj/item/gps{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -8778,7 +8484,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "sa" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -8817,8 +8523,6 @@
 /area/surface/outpost/main/pool)
 "sd" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
@@ -8828,8 +8532,6 @@
 /area/surface/outpost/main/pool)
 "se" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
@@ -8847,13 +8549,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/camera/network/main_outpost{
@@ -8866,8 +8564,6 @@
 /area/surface/outpost/main/pool)
 "sg" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
@@ -8884,16 +8580,12 @@
 /area/surface/outpost/main/pool)
 "sh" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "si" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/alarm{
@@ -8903,8 +8595,6 @@
 /area/surface/outpost/main/pool)
 "sj" = (
 /obj/structure/cable/blue{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/light/spot{
@@ -8914,8 +8604,6 @@
 /area/surface/outpost/main/pool)
 "sk" = (
 /obj/structure/cable/blue{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -8978,7 +8666,7 @@
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/pool)
 "st" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "su" = (
@@ -9027,7 +8715,7 @@
 /area/surface/outpost/main/pool)
 "sA" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/purple,
+/obj/item/bedsheet/purple,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -25
@@ -9094,7 +8782,7 @@
 /area/surface/outpost/main/dorms)
 "sG" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/red,
+/obj/item/bedsheet/red,
 /obj/machinery/alarm{
 	frequency = 1441;
 	pixel_y = 22
@@ -9106,7 +8794,7 @@
 /area/surface/outpost/main/dorms)
 "sH" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/red,
+/obj/item/bedsheet/red,
 /obj/machinery/alarm{
 	frequency = 1441;
 	pixel_y = 22
@@ -9171,7 +8859,7 @@
 /area/surface/outpost/main/dorms)
 "sM" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -25
@@ -9205,7 +8893,7 @@
 /area/surface/outpost/main/pool)
 "sP" = (
 /obj/structure/table/glass,
-/obj/item/device/paicard,
+/obj/item/paicard,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "sQ" = (
@@ -9245,7 +8933,7 @@
 /area/surface/outpost/main/pool)
 "sX" = (
 /obj/structure/table/glass,
-/obj/item/weapon/inflatable_duck,
+/obj/item/inflatable_duck,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "sY" = (
@@ -9257,8 +8945,8 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/surface/outpost/main/dorms)
 "sZ" = (
-/obj/item/weapon/stool/padded,
-/obj/item/device/radio/intercom{
+/obj/item/stool/padded,
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -9275,8 +8963,8 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/surface/outpost/main/dorms)
 "ta" = (
-/obj/item/weapon/stool/padded,
-/obj/item/device/radio/intercom{
+/obj/item/stool/padded,
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -9314,8 +9002,8 @@
 /turf/simulated/floor/carpet,
 /area/surface/outpost/main/dorms)
 "td" = (
-/obj/item/weapon/stool,
-/obj/item/device/radio/intercom{
+/obj/item/stool,
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -9332,8 +9020,8 @@
 /turf/simulated/floor/carpet,
 /area/surface/outpost/main/dorms)
 "te" = (
-/obj/item/weapon/stool/padded,
-/obj/item/device/radio/intercom{
+/obj/item/stool/padded,
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -9399,7 +9087,7 @@
 	pixel_x = -32;
 	pixel_y = 0
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/machinery/camera/network/main_outpost{
 	c_tag = "MO - Pool West";
 	dir = 4
@@ -9409,14 +9097,14 @@
 "tn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/hologram/holopad,
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "to" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 9
 	},
-/obj/item/weapon/beach_ball,
+/obj/item/beach_ball,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "tp" = (
@@ -9434,7 +9122,7 @@
 "tr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/hologram/holopad,
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "ts" = (
@@ -9443,7 +9131,7 @@
 	pixel_x = 32;
 	pixel_y = 0
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/machinery/camera/network/main_outpost{
 	c_tag = "MO - Pool East";
 	dir = 8
@@ -9472,7 +9160,7 @@
 /area/surface/outpost/main/pool)
 "tw" = (
 /obj/structure/table/glass,
-/obj/item/weapon/book/codex/lore/vir,
+/obj/item/book/codex/lore/vir,
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
@@ -9573,14 +9261,14 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "tP" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "tQ" = (
@@ -9609,8 +9297,8 @@
 /area/surface/outpost/main/pool)
 "tV" = (
 /obj/structure/closet/emcloset,
-/obj/item/weapon/storage/toolbox/emergency,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
@@ -9624,7 +9312,7 @@
 /area/surface/outpost/main/pool)
 "tY" = (
 /obj/machinery/light/spot,
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "tZ" = (
@@ -9634,7 +9322,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
 "ua" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -9786,8 +9474,6 @@
 "uw" = (
 /obj/effect/overlay/snow/floor,
 /obj/structure/cable/heavyduty{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/disposalpipe/segment{
@@ -9938,7 +9624,7 @@
 /turf/simulated/wall,
 /area/surface/outpost/research/xenoresearch)
 "uP" = (
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -9985,7 +9671,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoresearch/smes)
 "uV" = (
@@ -10020,8 +9706,6 @@
 	dir = 1
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/freezer,
@@ -10038,9 +9722,9 @@
 /area/surface/outpost/research/xenoresearch/restroom)
 "va" = (
 /obj/structure/table/standard,
-/obj/item/weapon/towel,
-/obj/item/weapon/towel,
-/obj/item/weapon/towel,
+/obj/item/towel,
+/obj/item/towel,
+/obj/item/towel,
 /obj/random/soap,
 /obj/random/soap,
 /obj/structure/cable/green{
@@ -10057,7 +9741,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -10101,7 +9785,7 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/machinery/light,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/outpost/main)
 "vh" = (
@@ -10109,11 +9793,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -2;
 	pixel_y = 5
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/research/xenoresearch)
 "vi" = (
@@ -10127,7 +9811,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/carpet/bcarpet,
 /area/surface/outpost/main/dorms)
 "vj" = (
@@ -10179,8 +9863,6 @@
 /area/surface/outpost/research/xenoresearch/emergencystorage)
 "vs" = (
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/plating,
@@ -10206,11 +9888,9 @@
 	},
 /obj/structure/table/steel,
 /obj/machinery/cell_charger,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/weldpack,
+/obj/item/cell/high,
+/obj/item/weldpack,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating,
@@ -10257,7 +9937,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -10265,8 +9945,6 @@
 /area/surface/outpost/research/xenoresearch/restroom)
 "vz" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -10379,8 +10057,6 @@
 "vO" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock{
@@ -10391,8 +10067,6 @@
 "vP" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -10407,8 +10081,6 @@
 "vQ" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -10485,7 +10157,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/research/xenoresearch)
 "vZ" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	name = "Station Intercom (General)";
 	pixel_x = 21
@@ -10539,8 +10211,6 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white,
@@ -10591,8 +10261,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -10658,8 +10326,6 @@
 /area/surface/outpost/research/xenoresearch)
 "wp" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -10770,7 +10436,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 21
@@ -10812,13 +10478,9 @@
 /area/surface/outpost/research/xenoresearch)
 "wG" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/white,
@@ -10826,16 +10488,12 @@
 "wH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoresearch)
 "wI" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/alarm{
@@ -10847,8 +10505,6 @@
 "wJ" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -10858,18 +10514,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/disposalpipe/junction{
@@ -10887,11 +10537,9 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -10902,8 +10550,6 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/border_only,
@@ -10914,13 +10560,9 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -10930,29 +10572,21 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoresearch)
 "wP" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -10963,8 +10597,6 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -10974,8 +10606,6 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -10985,16 +10615,12 @@
 /area/surface/outpost/research/xenoresearch)
 "wS" = (
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11006,8 +10632,6 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -11020,8 +10644,6 @@
 	dir = 8
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -11031,8 +10653,6 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11043,8 +10663,6 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/border_only,
@@ -11057,8 +10675,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11093,8 +10709,6 @@
 "xc" = (
 /obj/machinery/light,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white,
@@ -11111,8 +10725,6 @@
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "xf" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11172,8 +10784,6 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_medical,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11209,8 +10819,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass_research{
@@ -11338,8 +10946,6 @@
 	dir = 1
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -11435,16 +11041,12 @@
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "xG" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "xH" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11466,7 +11068,7 @@
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
-/obj/item/device/radio{
+/obj/item/radio{
 	frequency = 1487;
 	icon_state = "med_walkietalkie";
 	name = "Medbay Emergency Radio Link"
@@ -11505,8 +11107,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
@@ -11558,7 +11158,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -11568,8 +11168,6 @@
 "xW" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -11605,29 +11203,29 @@
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "xZ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/red{
+/obj/item/folder/red{
 	pixel_y = 3
 	},
-/obj/item/weapon/folder/blue{
+/obj/item/folder/blue{
 	pixel_x = 5
 	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "ya" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -2;
 	pixel_y = 5
 	},
-/obj/item/weapon/pen/blue{
+/obj/item/pen/blue{
 	pixel_x = -5;
 	pixel_y = -1
 	},
-/obj/item/weapon/pen/red{
+/obj/item/pen/red{
 	pixel_x = -1;
 	pixel_y = 3
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -11644,7 +11242,7 @@
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "yc" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -11730,7 +11328,7 @@
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "yl" = (
 /obj/structure/table/glass,
-/obj/item/weapon/tape_roll,
+/obj/item/tape_roll,
 /obj/machinery/firealarm{
 	dir = 2;
 	pixel_y = 24
@@ -11760,11 +11358,11 @@
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "yo" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = 1;
 	pixel_y = 9
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 9;
 	icon_state = "intact"
@@ -11780,9 +11378,9 @@
 	pixel_x = 30;
 	pixel_y = 0
 	},
-/obj/item/weapon/clipboard,
-/obj/item/weapon/folder/white,
-/obj/item/device/radio/intercom{
+/obj/item/clipboard,
+/obj/item/folder/white,
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 21
@@ -11791,8 +11389,8 @@
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "yq" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/item/weapon/extinguisher,
-/obj/item/weapon/extinguisher,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
 /turf/simulated/floor/tiled/dark,
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "yr" = (
@@ -11803,8 +11401,6 @@
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "yt" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11832,9 +11428,9 @@
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "yu" = (
 /obj/structure/table/standard,
-/obj/item/weapon/clipboard,
-/obj/item/weapon/folder,
-/obj/item/weapon/pen,
+/obj/item/clipboard,
+/obj/item/folder,
+/obj/item/pen,
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "yv" = (
@@ -12001,8 +11597,6 @@
 	dir = 1
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -12058,7 +11652,7 @@
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "yT" = (
 /obj/structure/reagent_dispensers/watertank/high,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/hydro,
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "yU" = (
@@ -12274,8 +11868,8 @@
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "zt" = (
 /obj/structure/table/glass,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/material/minihoe,
+/obj/item/material/knife/machete/hatchet,
 /obj/effect/floor_decal/corner/green{
 	dir = 10
 	},
@@ -12283,8 +11877,8 @@
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "zu" = (
 /obj/structure/table/glass,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen,
+/obj/item/folder/white,
+/obj/item/pen,
 /obj/effect/floor_decal/corner/green/full,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoresearch/xenoflora)
@@ -12459,7 +12053,7 @@
 	dir = 8
 	},
 /obj/machinery/meter,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor/tiled/hydro,
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "zO" = (
@@ -12637,7 +12231,7 @@
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "Ah" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/beakers{
+/obj/item/storage/box/beakers{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -12698,7 +12292,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "Ap" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "Aq" = (
@@ -12724,7 +12318,7 @@
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "At" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/item/weapon/extinguisher,
+/obj/item/extinguisher,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
@@ -12737,7 +12331,7 @@
 	icon_state = "tube1";
 	pixel_x = 0
 	},
-/obj/item/weapon/extinguisher,
+/obj/item/extinguisher,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "Au" = (
@@ -12785,7 +12379,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "AB" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
@@ -13234,7 +12828,7 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoresearch/xenoflora)
@@ -13258,7 +12852,7 @@
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/watertank/high,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "BH" = (
@@ -13279,7 +12873,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "BK" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -13396,7 +12990,7 @@
 /obj/structure/closet,
 /obj/item/toy/figure/scientist,
 /obj/item/clothing/accessory/armband/science,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/dark,
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "BY" = (
@@ -13606,12 +13200,12 @@
 	},
 /area/surface/outside/path/plains)
 "Cx" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
 /obj/structure/reagent_dispensers/watertank,
-/obj/item/weapon/extinguisher,
+/obj/item/extinguisher,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1"
@@ -13709,7 +13303,7 @@
 /area/surface/outpost/research/xenoresearch/xenobiology)
 "CF" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "CG" = (
@@ -13905,7 +13499,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/surface/outpost/research/xenoresearch/xenoflora)
 "Di" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	name = "Station Intercom (General)";
 	pixel_x = 21
@@ -14060,7 +13654,7 @@
 /turf/simulated/shuttle/floor/voidcraft/external,
 /area/surface/outpost/wall)
 "DN" = (
-/obj/item/weapon/banner/virgov,
+/obj/item/banner/virgov,
 /turf/simulated/shuttle/floor/voidcraft/external,
 /area/surface/outpost/wall)
 "DO" = (
@@ -14068,7 +13662,7 @@
 /turf/simulated/shuttle/floor/voidcraft/external,
 /area/surface/outpost/wall)
 "DP" = (
-/obj/item/weapon/banner/nt,
+/obj/item/banner/nt,
 /turf/simulated/shuttle/floor/voidcraft/external,
 /area/surface/outpost/wall)
 "DQ" = (
