@@ -1,6 +1,5 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
@@ -8,8 +7,8 @@ import {
   LabeledList,
   NumberInput,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   on: BooleanLike;
@@ -42,18 +41,19 @@ export const AtmosFilter = (props) => {
               <Box inline mr={1}>
                 <AnimatedNumber
                   value={last_flow_rate}
-                  format={(val) => val + ' L/s'}
+                  format={(val) => `${val} L/s`}
                 />
               </Box>
               <NumberInput
                 animated
+                tickWhileDragging
                 step={1}
                 value={rate}
                 width="63px"
                 unit="L/s"
                 minValue={0}
                 maxValue={200}
-                onDrag={(value: number) =>
+                onChange={(value: number) =>
                   act('rate', {
                     rate: value,
                   })

@@ -2,7 +2,9 @@
 
 SUBSYSTEM_DEF(plants)
 	name = "Plants"
-	init_order = INIT_ORDER_PLANTS
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 	priority = FIRE_PRIORITY_PLANTS
 	wait = PLANT_TICK_TIME
 
@@ -71,7 +73,7 @@ SUBSYSTEM_DEF(plants)
 
 	// Make sure any seed packets that were mapped in are updated
 	// correctly (since the seed datums did not exist a tick ago).
-	for(var/obj/item/seeds/S in all_seed_packs)
+	for(var/obj/item/seeds/S in GLOB.all_seed_packs)
 		S.update_seed()
 
 	//Might as well mask the gene types while we're at it.
@@ -139,7 +141,8 @@ SUBSYSTEM_DEF(plants)
 			return
 
 /datum/controller/subsystem/plants/proc/add_plant(var/obj/effect/plant/plant)
-	processing |= plant
+	if(!QDELETED(plant))
+		processing |= plant
 
 /datum/controller/subsystem/plants/proc/remove_plant(var/obj/effect/plant/plant)
 	processing -= plant
@@ -151,7 +154,7 @@ SUBSYSTEM_DEF(plants)
 	set name = "Show Plant Genes"
 	set desc = "Prints the round's plant gene masks."
 
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	if(!SSplants || !SSplants.gene_tag_masks)
 		to_chat(usr, "Gene masks not set.")

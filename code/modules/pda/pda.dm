@@ -1,8 +1,6 @@
 
 //The advanced pea-green monochrome lcd of tomorrow.
 
-var/global/list/obj/item/pda/PDAs = list()
-
 /obj/item/pda
 	name = "\improper PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
@@ -28,30 +26,6 @@ var/global/list/obj/item/pda/PDAs = list()
 	var/mimeamt = 0 //How many silence left when infected with mime.exe
 	var/detonate = 1 // Can the PDA be blown up?
 	var/ttone = "beep" //The ringtone!
-	var/list/ttone_sound = list("beep" = 'sound/machines/twobeep.ogg',
-								"boom" = 'sound/effects/explosionfar.ogg',
-								"slip" = 'sound/misc/slip.ogg',
-								"honk" = 'sound/items/bikehorn.ogg',
-								"SKREE" = 'sound/voice/shriek1.ogg',
-								"xeno" = 'sound/voice/hiss1.ogg',
-								"spark" = 'sound/effects/sparks4.ogg',
-								"rad" = 'sound/items/geiger/high1.ogg',
-								"servo" = 'sound/machines/rig/rigservo.ogg',
-								"buh-boop" = 'sound/misc/buh-boop.ogg',
-								"trombone" = 'sound/misc/sadtrombone.ogg',
-								"whistle" = 'sound/misc/boatswain.ogg',
-								"chirp" = 'sound/misc/nymphchirp.ogg',
-								"slurp" = 'sound/items/drink.ogg',
-								"pwing" = 'sound/items/nif_tone_good.ogg',
-								"clack" = 'sound/items/storage/toolbox.ogg',
-								"bzzt" = 'sound/misc/null.ogg',	//vibrate mode
-								"chimes" = 'sound/misc/notice3.ogg',
-								"prbt" = 'sound/voice/prbt.ogg',
-								"bark" = 'sound/voice/bark2.ogg',
-								"bork" = 'sound/voice/bork.ogg',
-								"roark" = 'sound/voice/roarbark.ogg',
-								"chitter" = 'sound/voice/moth/moth_chitter.ogg',
-								"squish" = 'sound/effects/slime_squish.ogg')
 	var/hidden = 0 // Is the PDA hidden from the PDA list?
 	var/touch_silent = 0 //If 1, no beeps on interacting.
 
@@ -84,58 +58,64 @@ var/global/list/obj/item/pda/PDAs = list()
 	if(Adjacent(user))
 		. += "The time [stationtime2text()] is displayed in the corner of the screen."
 
-/obj/item/pda/CtrlClick()
-	if(can_use(usr) && !issilicon(usr))
+/obj/item/pda/CtrlClick(mob/user)
+	if(can_use(user) && !issilicon(user))
 		remove_pen()
 		return
 	..()
 
-/obj/item/pda/AltClick()
-	if(issilicon(usr))
+/obj/item/pda/AltClick(mob/user)
+	if(issilicon(user))
 		return
 
-	if ( can_use(usr) )
+	if ( can_use(user) )
 		if(id)
 			remove_id()
 		else
-			to_chat(usr, span_notice("This PDA does not have an ID in it."))
+			to_chat(user, span_notice("This PDA does not have an ID in it."))
 
 /obj/item/pda/proc/play_ringtone()
 	var/S
 
-	if(ttone in ttone_sound)
-		S = ttone_sound[ttone]
+	if(ttone in GLOB.device_ringtones)
+		S = GLOB.device_ringtones[ttone]
 	else
 		S = 'sound/machines/twobeep.ogg'
 	playsound(loc, S, 50, 1)
 	for(var/mob/O in hearers(3, loc))
 		O.show_message(text("[icon2html(src, O.client)] *[ttone]*"))
 
-/obj/item/pda/proc/set_ringtone()
-	var/t = tgui_input_text(usr, "Please enter new ringtone", name, ttone)
-	if(in_range(src, usr) && loc == usr)
+/obj/item/pda/proc/set_ringtone(mob/user)
+	var/t = tgui_input_text(user, "Please enter new ringtone", name, ttone)
+	if(in_range(src, user) && loc == user)
 		if(t)
-			if(hidden_uplink && hidden_uplink.check_trigger(usr, lowertext(t), lowertext(lock_code)))
-				to_chat(usr, "The PDA softly beeps.")
-				close(usr)
+			if(hidden_uplink && hidden_uplink.check_trigger(user, lowertext(t), lowertext(lock_code)))
+				to_chat(user, "The PDA softly beeps.")
+				close(user)
 			else
 				t = sanitize(copytext(t, 1, 20))
 				ttone = t
 			return 1
 	else
-		close(usr)
+		close(user)
 	return 0
 
-/obj/item/pda/New(var/mob/living/carbon/human/H)
-	..()
+/obj/item/pda/Initialize(mapload)
+	. = ..()
 	PDAs += src
-	PDAs = sortAtom(PDAs)
+	PDAs = sort_names(PDAs)
 	update_programs()
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
 		cartridge.update_programs(src)
 	new /obj/item/pen(src)
-	pdachoice = isnull(H) ? 1 : (ishuman(H) ? H.pdachoice : 1)
+
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		pdachoice = H.pdachoice
+	else
+		pdachoice = 1
+
 	switch(pdachoice)
 		if(1)
 			icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
@@ -424,7 +404,7 @@ var/global/list/obj/item/pda/PDAs = list()
 	return 0
 
 // access to status display signals
-/obj/item/pda/attackby(obj/item/C as obj, mob/user as mob)
+/obj/item/pda/attackby(obj/item/C as obj, mob/user)
 	..()
 	if(istype(C, /obj/item/cartridge) && !cartridge)
 		cartridge = C
@@ -432,7 +412,7 @@ var/global/list/obj/item/pda/PDAs = list()
 		cartridge.loc = src
 		cartridge.update_programs(src)
 		update_shortcuts()
-		to_chat(usr, span_notice("You insert [cartridge] into [src]."))
+		to_chat(user, span_notice("You insert [cartridge] into [src]."))
 		if(cartridge.radio)
 			cartridge.radio.hostpda = src
 
@@ -491,10 +471,10 @@ var/global/list/obj/item/pda/PDAs = list()
 
 /obj/item/pda/Destroy()
 	PDAs -= src
-	if (src.id && prob(100) && !delete_id) //IDs are kept in 90% of the cases //VOREStation Edit - 100% of the cases, excpet when specified otherwise
-		src.id.forceMove(get_turf(src.loc))
+	if (id && !delete_id && id.loc == src)
+		id.forceMove(get_turf(loc))
 	else
-		QDEL_NULL(src.id)
+		QDEL_NULL(id)
 
 	current_app = null
 	scanmode = null
@@ -510,8 +490,8 @@ var/global/list/obj/item/pda/PDAs = list()
 	icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
 	icon_state = "pdabox"
 
-/obj/item/storage/box/PDAs/New()
-	..()
+/obj/item/storage/box/PDAs/Initialize(mapload)
+	. = ..()
 	new /obj/item/pda(src)
 	new /obj/item/pda(src)
 	new /obj/item/pda(src)

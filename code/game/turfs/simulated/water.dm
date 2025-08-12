@@ -21,10 +21,8 @@
 
 	var/reagent_type = REAGENT_ID_WATER
 
-/turf/simulated/floor/water/Initialize()
+/turf/simulated/floor/water/Initialize(mapload)
 	. = ..()
-	var/decl/flooring/F = get_flooring_data(/decl/flooring/water)
-	footstep_sounds = F?.footstep_sounds
 	update_icon()
 	handle_fish()
 
@@ -99,6 +97,8 @@
 /turf/simulated/floor/water/Entered(atom/movable/AM, atom/oldloc)
 	if(isliving(AM))
 		var/mob/living/L = AM
+		if(L.hovering || L.flying || L.is_incorporeal())
+			return
 		L.update_water()
 		if(L.check_submerged() <= 0)
 			return
@@ -110,6 +110,8 @@
 /turf/simulated/floor/water/Exited(atom/movable/AM, atom/newloc)
 	if(isliving(AM))
 		var/mob/living/L = AM
+		if(L.hovering || L.flying || L.is_incorporeal())
+			return
 		L.update_water()
 		if(L.check_submerged() <= 0)
 			return
@@ -157,7 +159,7 @@
 /mob/living/proc/check_submerged()
 	if(buckled)
 		return 0
-	if(hovering || flying)
+	if(hovering || flying || is_incorporeal())
 		if(flying)
 			adjust_nutrition(-0.5)
 		return 0

@@ -130,7 +130,7 @@
 	else if(href_list["import"])
 		var/t = ""
 		do
-			t = html_encode(tgui_input_text(usr, "Please paste the entire song, formatted:", text("[]", name), t, multiline = TRUE, prevent_enter = TRUE))
+			t = tgui_input_text(usr, "Please paste the entire song, formatted:", text("[]", name), t, multiline = TRUE, prevent_enter = TRUE)
 			if(!in_range(parent, usr))
 				return
 
@@ -163,7 +163,7 @@
 		INVOKE_ASYNC(src, PROC_REF(start_playing), usr)
 
 	else if(href_list["newline"])
-		var/newline = html_encode(tgui_input_text(usr, "Enter your line: ", parent.name))
+		var/newline = tgui_input_text(usr, "Enter your line: ", parent.name)
 		if(!newline || !in_range(parent, usr))
 			return
 		if(lines.len > MUSIC_MAXLINES)
@@ -180,7 +180,7 @@
 
 	else if(href_list["modifyline"])
 		var/num = round(text2num(href_list["modifyline"]),1)
-		var/content = stripped_input(usr, "Enter your line: ", parent.name, lines[num], MUSIC_MAXLINECHARS)
+		var/content = tgui_input_text(usr, "Enter your line: ", parent.name, lines[num], MUSIC_MAXLINECHARS, encode=TRUE)
 		if(!content || !in_range(parent, usr))
 			return
 		if(num > lines.len || num < 1)

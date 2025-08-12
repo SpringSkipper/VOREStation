@@ -6,6 +6,8 @@
 	reagent_state = LIQUID
 	color = "#d5e2e5"
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/adranol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -14,8 +16,7 @@
 		M.Confuse(-8*removed)
 	if(M.eye_blurry)
 		M.eye_blurry = max(M.eye_blurry - 25*removed, 0)
-	if(M.jitteriness)
-		M.make_jittery(min(-25*removed,0))
+	M.make_jittery(-25*removed)
 
 /datum/reagent/numbing_enzyme
 	name = REAGENT_NUMBENZYME
@@ -28,6 +29,9 @@
 	mrate_static = TRUE
 	overdose = 20 //High OD. This is to make numbing bites have somewhat of a downside if you get bit too much. Have to go to medical for dialysis.
 	scannable = 0 //Let's not have medical mechs able to make an extremely strong organic painkiller
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/numbing_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
@@ -70,6 +74,8 @@
 	color = "#750404"
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/vermicetol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/chem_effective = 1
@@ -89,6 +95,9 @@
 	overdose = 5
 	scannable = 0
 
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_DRUG
+
 /datum/reagent/sleevingcure/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.remove_a_modifier_of_type(/datum/modifier/resleeving_sickness)
 	M.remove_a_modifier_of_type(/datum/modifier/faux_resleeving_sickness)
@@ -105,6 +114,8 @@
 	metabolism = REM * 0.25//20 ticks to do things per unit injected. This means injecting 30u will give you 10 minutes to do what you need.
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_DRUG
 
 /datum/reagent/prussian_blue/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -120,6 +131,8 @@
 	reagent_state = LIQUID
 	color = "#47AD6D"
 	overdose = REAGENTS_OVERDOSE
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_DIET
 
 /datum/reagent/lipozilase/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(-20 * removed)
@@ -134,6 +147,8 @@
 	reagent_state = LIQUID
 	color = "#61731C"
 	overdose = REAGENTS_OVERDOSE
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_DIET
 
 /datum/reagent/lipostipo/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(-20 * removed)
@@ -200,6 +215,8 @@
 		"dragon" = /mob/living/simple_mob/vore/bigdragon/friendly,
 		"leopardmander" = /mob/living/simple_mob/vore/leopardmander
 		)
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED // bonus
+	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
 /datum/reagent/polymorph/affect_blood(var/mob/living/carbon/target, var/removed)
 	var/mob/living/M = target
@@ -221,21 +238,14 @@
 		ourmob.forceMove(get_dat_turf)
 		ourmob.vore_selected = M.vore_selected
 		M.vore_selected = null
-		for(var/obj/belly/B as anything in M.vore_organs)
-			log_debug("polymorph belly")
-			B.loc = ourmob
-			B.forceMove(ourmob)
-			B.owner = ourmob
-			M.vore_organs -= B
-			ourmob.vore_organs += B
+		ourmob.mob_belly_transfer(M)
+
+		M.soulgem.transfer_self(ourmob) // Soulcatcher
 
 		ourmob.Life(1)
 		if(ishuman(M))
-			log_debug("polymorph human")
 			for(var/obj/item/W in M)
-				log_debug("polymorph items")
 				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
-					log_debug("polymorph implants")
 					continue
 				M.drop_from_inventory(W)
 
@@ -250,54 +260,7 @@
 		var/mob/living/new_mob = spawn_mob(M)
 		new_mob.faction = M.faction
 
-		if(new_mob && isliving(new_mob))
-			log_debug("polymorph new_mob")
-			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				log_debug("polymorph new_mob belly")
-				new_mob.vore_organs -= B
-				qdel(B)
-			new_mob.vore_organs = list()
-			new_mob.name = M.name
-			new_mob.real_name = M.real_name
-			for(var/lang in M.languages)
-				new_mob.languages |= lang
-			M.copy_vore_prefs_to_mob(new_mob)
-			new_mob.vore_selected = M.vore_selected
-			if(ishuman(M))
-				log_debug("polymorph ishuman part2")
-				var/mob/living/carbon/human/H = M
-				if(ishuman(new_mob))
-					log_debug("polymorph ishuman(newmob)")
-					var/mob/living/carbon/human/N = new_mob
-					N.gender = H.gender
-					N.identifying_gender = H.identifying_gender
-				else
-					log_debug("polymorph gender else")
-					new_mob.gender = H.gender
-			else
-				log_debug("polymorph gender else 2")
-				new_mob.gender = M.gender
-				if(ishuman(new_mob))
-					var/mob/living/carbon/human/N = new_mob
-					N.identifying_gender = M.gender
-
-			for(var/obj/belly/B as anything in M.vore_organs)
-				B.loc = new_mob
-				B.forceMove(new_mob)
-				B.owner = new_mob
-				M.vore_organs -= B
-				new_mob.vore_organs += B
-
-			new_mob.ckey = M.ckey
-			if(M.ai_holder && new_mob.ai_holder)
-				var/datum/ai_holder/old_AI = M.ai_holder
-				old_AI.set_stance(STANCE_SLEEP)
-				var/datum/ai_holder/new_AI = new_mob.ai_holder
-				new_AI.hostile = old_AI.hostile
-				new_AI.retaliate = old_AI.retaliate
-			M.loc = new_mob
-			M.forceMove(new_mob)
-			new_mob.tf_mob_holder = M
+		new_mob.mob_tf(M)
 	target.bloodstr.clear_reagents() //Got to clear all reagents to make sure mobs don't keep spawning.
 	target.ingested.clear_reagents()
 	target.touching.clear_reagents()
@@ -322,6 +285,8 @@
 	reagent_state = LIQUID
 	color = "#ffffff"
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_COSMETIC
 
 /datum/reagent/glamour/affect_blood(var/mob/living/carbon/target, var/removed)
 	add_verb(target, /mob/living/carbon/human/proc/enter_cocoon)

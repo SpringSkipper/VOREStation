@@ -20,8 +20,8 @@
 	var/chargesa = 1
 	var/insistinga = 0
 
-/obj/machinery/wish_granter_dark/attack_hand(var/mob/living/carbon/human/user as mob)
-	usr.set_machine(src)
+/obj/machinery/wish_granter_dark/attack_hand(var/mob/living/carbon/human/user)
+	user.set_machine(src)
 
 	if(chargesa <= 0)
 		to_chat(user, "The Wish Granter lies silent.")
@@ -41,7 +41,7 @@
 	else
 		chargesa--
 		insistinga = 0
-		var/wish = tgui_input_list(usr, "You want...","Wish", list("Power","Wealth","Immortality","To Kill","Peace"))
+		var/wish = tgui_input_list(user, "You want...","Wish", list("Power","Wealth","Immortality","To Kill","Peace"))
 		switch(wish)
 			if("Power")
 				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
@@ -75,7 +75,7 @@
 			if("To Kill")
 				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
 				to_chat(user, span_warning("The Wish Granter punishes you for your wickedness, claiming your soul and warping your body to match the darkness in your heart."))
-				ticker.mode.traitors += user.mind
+				SSticker.mode.traitors += user.mind
 				user.mind.special_role = "traitor"
 				var/datum/objective/hijack/hijack = new
 				hijack.owner = user.mind
@@ -90,7 +90,7 @@
 			if("Peace")
 				to_chat(user, span_infoplain(span_bold("Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.")))
 				to_chat(user, span_infoplain("You feel as if you just narrowly avoided a terrible fate..."))
-				for(var/mob/living/simple_mob/faithless/F in living_mob_list)
+				for(var/mob/living/simple_mob/faithless/F in GLOB.living_mob_list)
 					F.health = -10
 					F.set_stat(DEAD)
 					F.icon_state = "faithless_dead"
@@ -109,7 +109,7 @@
 	var/triggerproc = "explode" //name of the proc thats called when the mine is triggered
 	var/triggered = 0
 
-/obj/effect/meatgrinder/Initialize()
+/obj/effect/meatgrinder/Initialize(mapload)
 	icon_state = "blob"
 	. = ..()
 
@@ -147,28 +147,27 @@
 	set category = "Immortality"
 	set name = "Resurrection"
 
-	var/mob/living/carbon/C = usr
-	if(!C.stat)
-		to_chat(C, span_notice("You're not dead yet!"))
-		return
-	to_chat(C, span_notice("Death is not your end!"))
+	if(!stat)
+		to_chat(src, span_notice("You're not dead yet!"))
+		return FALSE
+	to_chat(src, span_notice("Death is not your end!"))
 
 	spawn(rand(800,1200))
-		if(C.stat == DEAD)
-			dead_mob_list -= C
-			living_mob_list += C
-		C.set_stat(CONSCIOUS)
-		C.tod = null
-		C.setToxLoss(0)
-		C.setOxyLoss(0)
-		C.setCloneLoss(0)
-		C.SetParalysis(0)
-		C.SetStunned(0)
-		C.SetWeakened(0)
-		C.radiation = 0
-		C.heal_overall_damage(C.getBruteLoss(), C.getFireLoss())
-		C.reagents.clear_reagents()
-		to_chat(C, span_notice("You have regenerated."))
-		C.visible_message(span_warning("[usr] appears to wake from the dead, having healed all wounds."))
-		C.update_canmove()
-	return 1
+		if(stat == DEAD)
+			GLOB.dead_mob_list -= src
+			GLOB.living_mob_list += src
+		set_stat(CONSCIOUS)
+		tod = null
+		setToxLoss(0)
+		setOxyLoss(0)
+		setCloneLoss(0)
+		SetParalysis(0)
+		SetStunned(0)
+		SetWeakened(0)
+		radiation = 0
+		heal_overall_damage(getBruteLoss(), getFireLoss())
+		reagents.clear_reagents()
+		to_chat(src, span_notice("You have regenerated."))
+		visible_message(span_warning("[src] appears to wake from the dead, having healed all wounds."))
+		update_canmove()
+	return TRUE

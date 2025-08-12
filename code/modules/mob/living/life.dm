@@ -1,12 +1,14 @@
 /mob/living/Life()
-	set invisibility = 0
+	set invisibility = INVISIBILITY_NONE
 	set background = BACKGROUND_ENABLED
+
+	SEND_SIGNAL(src, COMSIG_LIVING_LIFE)
 
 	..()
 
 	if (transforming)
 		return
-	handle_modifiers() //VOREStation Edit - Needs to be done even if in nullspace.
+	handle_modifiers() //Needs to be done even if in nullspace.
 	if(!loc)
 		return
 
@@ -15,8 +17,6 @@
 		environment = loc.return_air_for_internal_lifeform(src)
 	else
 		environment = loc.return_air()
-
-	//handle_modifiers() // Do this early since it might affect other things later. //VOREStation Edit
 
 	handle_light()
 
@@ -66,7 +66,6 @@
 		handle_ambience()
 
 	//stuff in the stomach
-	//handle_stomach() //VOREStation Code
 
 	update_gravity(mob_get_gravity())
 
@@ -77,6 +76,7 @@
 
 	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
 		handle_disabilities() // eye, ear, brain damages
+		handle_addictions() // Dwugs
 		handle_statuses() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
 
 	update_canmove()
@@ -85,7 +85,9 @@
 
 	handle_vision()
 
-	handle_tf_holder()	//VOREStation Addition
+	handle_tf_holder()
+
+	handle_vr_derez()
 
 /mob/living/proc/handle_breathing()
 	return
@@ -202,6 +204,7 @@
 	return confused
 
 /mob/living/proc/handle_disabilities()
+	SEND_SIGNAL(src, COMSIG_HANDLE_DISABILITIES)
 	//Eyes
 	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
 		SetBlinded(1)
@@ -264,7 +267,7 @@
 			set_light(distance, distance * 4, l_color = "#660066")
 			return TRUE
 
-	else if(glow_toggle)
+	else if(glow_toggle && !is_ventcrawling) // Hide the light in vents
 		set_light(glow_range, glow_intensity, glow_color)
 
 	else

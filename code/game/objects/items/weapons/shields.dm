@@ -94,7 +94,7 @@
 					return 0
 			//Otherwise, if we're here, we're gonna stop the attack entirely.
 			user.visible_message(span_danger("\The [user] blocks [attack_text] with \the [src]!"))
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 			return 1
 	return 0
 
@@ -209,7 +209,7 @@
 		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(tgui_alert(user, "Are you sure you want to recolor your shield?", "Confirm Recolor", list("Yes", "No")) == "Yes")
-		var/energy_color_input = input(user,"","Choose Energy Color",lcolor) as color|null
+		var/energy_color_input = tgui_color_picker(user,"","Choose Energy Color",lcolor)
 		if(energy_color_input)
 			lcolor = sanitize_hexcolor(energy_color_input)
 		update_icon()

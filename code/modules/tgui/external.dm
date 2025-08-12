@@ -74,7 +74,7 @@
  * change static data.
  */
 /datum/proc/update_static_data_for_all_viewers()
-	for (var/datum/tgui/window as anything in open_uis)
+	for (var/datum/tgui/window as anything in open_tguis)
 		window.send_full_update()
 
 /**
@@ -102,7 +102,7 @@
  *
  * required payload list A list of the payload supposed to be set on the regular UI.
  */
-/datum/proc/tgui_fallback(list/payload)
+/datum/proc/tgui_fallback(list/payload, mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_UI_FALLBACK, usr)
 

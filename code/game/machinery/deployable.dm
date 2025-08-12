@@ -21,9 +21,8 @@ Deployable items
 	var/locked = 0.0
 //	req_access = list(access_maint_tunnels)
 
-/obj/machinery/deployable/barrier/New()
-	..()
-
+/obj/machinery/deployable/barrier/Initialize(mapload)
+	. = ..()
 	icon_state = "barrier[locked]"
 
 /obj/machinery/deployable/barrier/attackby(obj/item/W as obj, mob/user as mob)
@@ -107,7 +106,7 @@ Deployable items
 		icon_state = "barrier[locked]"
 
 /obj/machinery/deployable/barrier/CanPass(atom/movable/mover, turf/target)//So bullets will fly over and stuff.
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && mover.checkpass(PASSTABLE) && !isliving(mover)) // Check if living so teshari can't evade security barriers by pressing W
 		return TRUE
 	return FALSE
 

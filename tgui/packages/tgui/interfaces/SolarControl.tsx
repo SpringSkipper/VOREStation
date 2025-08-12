@@ -1,7 +1,5 @@
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -10,8 +8,9 @@ import {
   ProgressBar,
   Section,
   Table,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   generated: number;
@@ -67,7 +66,7 @@ export const SolarControl = (props) => {
                   </LabeledList.Item>
                 </LabeledList>
               </Table.Cell>
-              <Table.Cell size={1.5}>
+              <Table.Cell>
                 <LabeledList>
                   <LabeledList.Item label="Power output">
                     <ProgressBar
@@ -80,7 +79,7 @@ export const SolarControl = (props) => {
                       maxValue={1}
                       value={generated_ratio}
                     >
-                      {generated + ' W'}
+                      {`${generated} W`}
                     </ProgressBar>
                   </LabeledList.Item>
                   <LabeledList.Item label="Star orientation">
@@ -120,6 +119,7 @@ export const SolarControl = (props) => {
             <LabeledList.Item label="Azimuth">
               {(tracking_state === 0 || tracking_state === 1) && (
                 <NumberInput
+                  tickWhileDragging
                   width="52px"
                   unit="°"
                   step={1}
@@ -131,11 +131,12 @@ export const SolarControl = (props) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
                     return toFixed(Math.abs(rate)) + sign;
                   }}
-                  onDrag={(value) => act('azimuth', { value })}
+                  onChange={(value) => act('azimuth', { value })}
                 />
               )}
               {tracking_state === 1 && (
                 <NumberInput
+                  tickWhileDragging
                   width="80px"
                   unit="deg/h"
                   step={1}
@@ -146,12 +147,12 @@ export const SolarControl = (props) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
                     return toFixed(Math.abs(rate)) + sign;
                   }}
-                  onDrag={(value) => act('azimuth_rate', { value })}
+                  onChange={(value) => act('azimuth_rate', { value })}
                 />
               )}
               {tracking_state === 2 && (
                 <Box inline color="label" mt="3px">
-                  {array_angle + '°'} (auto)
+                  {`${array_angle}°`} (auto)
                 </Box>
               )}
             </LabeledList.Item>

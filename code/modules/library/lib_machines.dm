@@ -32,9 +32,9 @@
 	var/author
 	var/SQLquery
 
-/obj/machinery/librarypubliccomp/attack_hand(var/mob/user as mob)
-	usr.set_machine(src)
-	var/dat = "<HEAD><TITLE>Library Visitor</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
+/obj/machinery/librarypubliccomp/attack_hand(var/mob/user)
+	user.set_machine(src)
+	var/dat = "<html><HEAD><TITLE>Library Visitor</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
 		if(0)
 			dat += {"<h2>Search Settings</h2><br>
@@ -44,7 +44,7 @@
 			<A href='byond://?src=\ref[src];search=1'>\[Start Search\]</A><BR>"}
 		if(1)
 			establish_db_connection()
-			if(!dbcon_old.IsConnected())
+			if(!SSdbcore.IsConnected())
 				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.") + "<BR>"
 			else if(!SQLquery)
 				dat += span_red(span_bold("ERROR") + ": Malformed search request. Please contact your system administrator for assistance.") + "<BR>"
@@ -52,7 +52,7 @@
 				dat += {"<table>
 				<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"}
 
-				var/DBQuery/query = dbcon_old.NewQuery(SQLquery)
+				var/datum/db_query/query = SSdbcore.NewQuery(SQLquery)
 				query.Execute()
 
 				while(query.NextRow())
@@ -61,8 +61,9 @@
 					var/category = query.item[3]
 					var/id = query.item[4]
 					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>[id]</td></tr>"
+				qdel(query)
 				dat += "</table><BR>"
-			dat += "<A href='byond://?src=\ref[src];back=1'>\[Go Back\]</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];back=1'>\[Go Back\]</A><BR></html>"
 	user << browse(dat, "window=publiclibrary")
 	onclose(user, "publiclibrary")
 
@@ -73,26 +74,16 @@
 		return
 
 	if(href_list["settitle"])
-		var/newtitle = tgui_input_text(usr, "Enter a title to search for:")
-		if(newtitle)
-			title = sanitize(newtitle)
-		else
-			title = null
-		title = sanitizeSQL(title)
+		var/newtitle = tgui_input_text(usr, "Enter a title to search for:", max_length = MAX_MESSAGE_LEN)
+		title = sanitizeSQL(newtitle)
 	if(href_list["setcategory"])
 		var/newcategory = tgui_input_list(usr, "Choose a category to search for:", "Category", list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
-		if(newcategory)
-			category = sanitize(newcategory)
-		else
+		if(!newcategory)
 			category = "Any"
 		category = sanitizeSQL(category)
 	if(href_list["setauthor"])
-		var/newauthor = tgui_input_text(usr, "Enter an author to search for:")
-		if(newauthor)
-			author = sanitize(newauthor)
-		else
-			author = null
-		author = sanitizeSQL(author)
+		var/newauthor = tgui_input_text(usr, "Enter an author to search for:", max_length = MAX_MESSAGE_LEN)
+		author = sanitizeSQL(newauthor)
 	if(href_list["search"])
 		SQLquery = "SELECT author, title, category, id FROM library WHERE "
 		if(category == "Any")
@@ -105,7 +96,7 @@
 		screenstate = 0
 
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 
@@ -138,7 +129,7 @@
 
 	var/static/list/base_genre_books
 
-/obj/machinery/librarycomp/Initialize()
+/obj/machinery/librarycomp/Initialize(mapload)
 	. = ..()
 
 	if(!base_genre_books || !base_genre_books.len)
@@ -168,8 +159,8 @@
 			var/obj/item/book/M = new path(null)
 			all_books[M.title] = M
 
-/obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
-	usr.set_machine(src)
+/obj/machinery/librarycomp/attack_hand(var/mob/user)
+	user.set_machine(src)
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
 		if(0)
@@ -185,7 +176,7 @@
 				dat += "<A href='byond://?src=\ref[src];switchscreen=7'>7. Access the Forbidden Lore Vault</A><BR>"
 			if(src.arcanecheckout)
 				new /obj/item/book/tome(src.loc)
-				var/datum/gender/T = gender_datums[user.get_visible_gender()]
+				var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 				to_chat(user, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it."))
 				user.visible_message(span_infoplain(span_bold("\The [user]") + " stares at the blank screen for a few moments, [T.his] expression frozen in fear. When [T.he] finally awakens from it, [T.he] looks a lot older."), 2)
 				src.arcanecheckout = 0
@@ -277,13 +268,13 @@
 
 			//dat += "<h3>" + span_red("arning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.") + "</h3>" //VOREStation Removal
 
-			if(!dbcon_old.IsConnected())
+			if(!SSdbcore.IsConnected())
 				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
 			else
 				dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 				<table>
 				<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-				var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+				var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 				query.Execute()
 
 				var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
@@ -297,11 +288,12 @@
 					if(show_admin_options) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
 						dat += "<A href='byond://?src=\ref[src];delid=[id]'>\[Del\]</A>"
 					dat += "</td></tr>"
+				qdel(query)
 				dat += "</table>"
 			dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
 	//dat += "<A href='byond://?src=\ref[user];mach_close=library'>Close</A><br><br>"
-	user << browse(dat, "window=library")
+	user << browse("<html>[dat]</html>", "window=library")
 	onclose(user, "library")
 
 //VOREStation Addition Start
@@ -312,19 +304,19 @@
 		. = ..()
 
 	else
-		usr.set_machine(src)
+		user.set_machine(src)
 		var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 
 		dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
 		establish_db_connection()
 
-		if(!dbcon_old.IsConnected())
+		if(!SSdbcore.IsConnected())
 			dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
 		else
 			dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 			<table>
 			<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-			var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+			var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 			query.Execute()
 
 			while(query.NextRow())
@@ -335,9 +327,10 @@
 				dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='byond://?src=\ref[src];delid=[id]'>\[Del\]</A>"
 				dat += "</td></tr>"
 			dat += "</table>"
+			qdel(query)
 		dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
-		user << browse(dat, "window=library")
+		user << browse("<html>[dat]</html>", "window=library")
 		onclose(user, "library")
 //VOREStation Addition End
 
@@ -402,9 +395,9 @@
 		if(checkoutperiod < 1)
 			checkoutperiod = 1
 	if(href_list["editbook"])
-		buffer_book = sanitizeSafe(tgui_input_text(usr, "Enter the book's title:"))
+		buffer_book = sanitizeSafe(tgui_input_text(usr, "Enter the book's title:", encode = FALSE))
 	if(href_list["editmob"])
-		buffer_mob = sanitize(tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
+		buffer_mob = tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN)
 	if(href_list["checkout"])
 		var/datum/borrowbook/b = new /datum/borrowbook
 		b.bookname = sanitizeSafe(buffer_book)
@@ -419,7 +412,7 @@
 		var/obj/item/book/b = locate(href_list["delbook"])
 		inventory.Remove(b)
 	if(href_list["setauthor"])
-		var/newauthor = sanitize(tgui_input_text(usr, "Enter the author's name: "))
+		var/newauthor = tgui_input_text(usr, "Enter the author's name: ", "", "", MAX_MESSAGE_LEN)
 		if(newauthor)
 			scanner.cache.author = newauthor
 	if(href_list["setcategory"])
@@ -437,31 +430,32 @@
 						tgui_alert_async(usr, "This book has been rejected from the database. Aborting!")
 					else
 						establish_db_connection()
-						if(!dbcon_old.IsConnected())
+						if(!SSdbcore.IsConnected())
 							tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 						else
 							/*
-							var/sqltitle = dbcon.Quote(scanner.cache.name)
-							var/sqlauthor = dbcon.Quote(scanner.cache.author)
-							var/sqlcontent = dbcon.Quote(scanner.cache.dat)
-							var/sqlcategory = dbcon.Quote(upload_category)
+							var/sqltitle = SSdbcore.Quote(scanner.cache.name)
+							var/sqlauthor = SSdbcore.Quote(scanner.cache.author)
+							var/sqlcontent = SSdbcore.Quote(scanner.cache.dat)
+							var/sqlcategory = SSdbcore.Quote(upload_category)
 							*/
 							var/sqltitle = sanitizeSQL(scanner.cache.name)
 							var/sqlauthor = sanitizeSQL(scanner.cache.author)
 							var/sqlcontent = sanitizeSQL(scanner.cache.dat)
 							var/sqlcategory = sanitizeSQL(upload_category)
-							var/DBQuery/query = dbcon_old.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
+							var/datum/db_query/query = SSdbcore.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
 							if(!query.Execute())
 								to_chat(usr,query.ErrorMsg())
 							else
 								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
 								tgui_alert_async(usr, "Upload Complete.")
+							qdel(query)
 	//VOREStation Edit End
 
 	if(href_list["targetid"])
 		var/sqlid = sanitizeSQL(href_list["targetid"])
 		establish_db_connection()
-		if(!dbcon_old.IsConnected())
+		if(!SSdbcore.IsConnected())
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
 			for (var/mob/V in hearers(src))
@@ -470,7 +464,7 @@
 			bibledelay = 1
 			spawn(6)
 				bibledelay = 0
-			var/DBQuery/query = dbcon_old.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
+			var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
 			query.Execute()
 
 			while(query.NextRow())
@@ -486,18 +480,20 @@
 				B.item_state = B.icon_state
 				src.visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
 				break
+			qdel(query)
 
 	if(href_list["delid"])
 		if(!check_rights(R_ADMIN))
 			return
 		var/sqlid = sanitizeSQL(href_list["delid"])
 		establish_db_connection()
-		if(!dbcon_old.IsConnected())
+		if(!SSdbcore.IsConnected())
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		else
-			var/DBQuery/query = dbcon_old.NewQuery("DELETE FROM library WHERE id=[sqlid]")
+			var/datum/db_query/query = SSdbcore.NewQuery("DELETE FROM library WHERE id=[sqlid]")
 			query.Execute()
 			log_admin("[usr.key] has deleted the book [sqlid]")	//VOREStation Addition
+			qdel(query)
 
 	if(href_list["orderbyid"])
 		var/orderid = tgui_input_number(usr, "Enter your order:")
@@ -512,7 +508,7 @@
 		var/obj/item/book/NewBook = new newpath(get_turf(src))
 		NewBook.name = "Book: [NewBook.name]"
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 /*
@@ -527,13 +523,13 @@
 	density = TRUE
 	var/obj/item/book/cache		// Last scanned book
 
-/obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/libraryscanner/attackby(var/obj/O, var/mob/user)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 
-/obj/machinery/libraryscanner/attack_hand(var/mob/user as mob)
-	usr.set_machine(src)
+/obj/machinery/libraryscanner/attack_hand(var/mob/user)
+	user.set_machine(src)
 	var/dat = "<HEAD><TITLE>Scanner Control Interface</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	if(cache)
 		dat += span_darkgray("Data stored in memory.") + "<BR>"
@@ -544,7 +540,7 @@
 		dat += "       <A href='byond://?src=\ref[src];clear=1'>\[Clear Memory\]</A><BR><BR><A href='byond://?src=\ref[src];eject=1'>\[Remove Book\]</A>"
 	else
 		dat += "<BR>"
-	user << browse(dat, "window=scanner")
+	user << browse("<html>[dat]</html>", "window=scanner")
 	onclose(user, "scanner")
 
 /obj/machinery/libraryscanner/Topic(href, href_list)
@@ -563,7 +559,7 @@
 		for(var/obj/item/book/B in contents)
 			B.loc = src.loc
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 
@@ -577,6 +573,10 @@
 	icon_state = "binder"
 	anchored = TRUE
 	density = TRUE
+
+/obj/machinery/bookbinder/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/paper) || istype(O, /obj/item/paper_bundle))

@@ -1,6 +1,5 @@
-import { round, toFixed } from 'common/math';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -8,8 +7,8 @@ import {
   LabeledList,
   NumberInput,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { round, toFixed } from 'tgui-core/math';
 
 type Data = {
   scan_ticks: number;
@@ -50,6 +49,7 @@ export const BeaconLocator = (props) => {
             <LabeledList.Item label="Frequency">
               <NumberInput
                 animated
+                tickWhileDragging
                 unit="kHz"
                 step={0.2}
                 stepPixelSize={10}
@@ -57,7 +57,7 @@ export const BeaconLocator = (props) => {
                 maxValue={maxFrequency / 10}
                 value={rawfreq / 10}
                 format={(value) => toFixed(value, 1)}
-                onDrag={(value: number) =>
+                onChange={(value: number) =>
                   act('setFrequency', {
                     freq: round(value * 10, 0),
                   })

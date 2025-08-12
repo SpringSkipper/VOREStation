@@ -43,8 +43,8 @@
 	// type -> /datum/category_item/partslathe/
 	var/static/list/partslathe_recipies
 
-/obj/machinery/partslathe/New()
-	..()
+/obj/machinery/partslathe/Initialize(mapload)
+	. = ..()
 	default_apply_parts()
 	update_icon()
 	update_recipe_list()
@@ -86,7 +86,7 @@
 			flick("partslathe-lidopen", src)
 		icon_state = "partslathe-idle"
 
-/obj/machinery/partslathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/partslathe/attackby(var/obj/item/O, var/mob/user)
 	if(busy)
 		to_chat(user, span_notice("\The [src] is busy. Please wait for completion of previous operation."))
 		return 1
@@ -110,7 +110,7 @@
 		copy_board = O
 		O.forceMove(src)
 		user.visible_message("[user] inserts [O] into \the [src]'s circuit reader.", span_notice("You insert [O] into \the [src]'s circuit reader."))
-		updateUsrDialog()
+		updateUsrDialog(user)
 		return
 	if(try_load_materials(user, O))
 		return
@@ -123,7 +123,7 @@
 	if(!istype(S))
 		return 0
 	if(!(S.material.name in materials))
-		to_chat(user, span_warning("The [src] doesn't accept [S.material]!"))
+		to_chat(user, span_warning("The [src] doesn't accept [material_display_name(S.material)]!"))
 		return 1
 	if(S.get_amount() < 1)
 		return 1 // Does this even happen? Sanity check I guess.
@@ -136,7 +136,7 @@
 			count++
 		user.visible_message("[user] inserts [S.name] into \the [src].", span_notice("You insert [count] [S.name] into \the [src]."))
 		flick("partslathe-load-[S.material.name]", src)
-		updateUsrDialog()
+		updateUsrDialog(user)
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
 	return 1
@@ -236,7 +236,7 @@
 
 /obj/machinery/partslathe/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
+		get_asset_datum(/datum/asset/spritesheet_batched/sheetmaterials)
 	)
 
 /obj/machinery/partslathe/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
@@ -258,6 +258,7 @@
 			"removable" = materials[M] >= SHEET_MATERIAL_AMOUNT,
 		)))
 	data["materials"] = materials_ui
+	data["SHEET_MATERIAL_AMOUNT"] = SHEET_MATERIAL_AMOUNT
 
 	data["copyBoard"] = null
 	data["copyBoardReqComponents"] = null

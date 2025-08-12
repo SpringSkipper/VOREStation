@@ -1,10 +1,15 @@
-import { round, toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NumberInput, Section } from '../components';
-import { RADIO_CHANNELS } from '../constants';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { RADIO_CHANNELS } from 'tgui/constants';
+import { Window } from 'tgui/layouts';
+import {
+  Box,
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+} from 'tgui-core/components';
+import { round, toFixed } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   rawfreq: number;
@@ -68,6 +73,7 @@ export const Radio = (props) => {
             <LabeledList.Item label="Frequency">
               <NumberInput
                 animated
+                tickWhileDragging
                 unit="kHz"
                 step={0.2}
                 stepPixelSize={10}
@@ -75,7 +81,7 @@ export const Radio = (props) => {
                 maxValue={maxFrequency / 10}
                 value={rawfreq / 10}
                 format={(value: number) => toFixed(value, 1)}
-                onDrag={(value: number) =>
+                onChange={(value: number) =>
                   act('setFrequency', {
                     freq: round(value * 10, 0),
                   })

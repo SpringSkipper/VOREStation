@@ -1,8 +1,12 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, LabeledList, NumberInput, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+} from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   on: BooleanLike;
@@ -73,9 +77,10 @@ export const AtmosMixer = (props) => {
             <LabeledList.Item color="label">
               <u>Concentrations</u>
             </LabeledList.Item>
-            <LabeledList.Item label={'Node 1 (' + node1_dir + ')'}>
+            <LabeledList.Item label={`Node 1 (${node1_dir})`}>
               <NumberInput
                 animated
+                tickWhileDragging
                 value={node1_concentration}
                 unit="%"
                 width="60px"
@@ -83,16 +88,17 @@ export const AtmosMixer = (props) => {
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(value: number) =>
+                onChange={(value: number) =>
                   act('node1', {
                     concentration: value,
                   })
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label={'Node 2 (' + node2_dir + ')'}>
+            <LabeledList.Item label={`Node 2 (${node2_dir})`}>
               <NumberInput
                 animated
+                tickWhileDragging
                 value={node2_concentration}
                 unit="%"
                 width="60px"
@@ -100,7 +106,7 @@ export const AtmosMixer = (props) => {
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(value: number) =>
+                onChange={(value: number) =>
                   act('node2', {
                     concentration: value,
                   })

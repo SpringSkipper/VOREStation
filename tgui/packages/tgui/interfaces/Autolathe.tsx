@@ -1,5 +1,5 @@
-import { toTitleCase } from 'common/string';
 import { useCallback, useMemo } from 'react';
+import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
   Box,
@@ -11,11 +11,11 @@ import {
   Tabs,
   VirtualList,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-
-import { useBackend, useSharedState } from '../backend';
-import { formatSiUnit } from '../format';
-import { Materials } from './ExosuitFabricator/Material';
+import { formatSiUnit } from 'tgui-core/format';
+import type { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
+import { MaterialAccessBar } from './common/MaterialAccessBar';
+import type { Material } from './Fabrication/Types';
 
 type MaterialData = {
   name: string;
@@ -37,23 +37,36 @@ type RecipeData = {
 
 type Data = {
   busy: string;
-  materials: MaterialData[];
+  materials: Material[];
   mat_efficiency: number;
   recipes: RecipeData[];
+  SHEET_MATERIAL_AMOUNT: number;
 };
 
 export const Autolathe = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { SHEET_MATERIAL_AMOUNT } = data;
+
   return (
     <Window width={670} height={600}>
       <Window.Content>
         <Stack vertical fill>
-          <Stack.Item>
-            <Section title="Materials">
-              <Materials />
-            </Section>
-          </Stack.Item>
           <Stack.Item grow>
             <Designs />
+          </Stack.Item>
+          <Stack.Item>
+            <Section>
+              <MaterialAccessBar
+                availableMaterials={data.materials}
+                SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+                onEjectRequested={(mat: Material, qty: number) =>
+                  act('remove_mat', {
+                    id: mat.name,
+                    amount: qty,
+                  })
+                }
+              />
+            </Section>
           </Stack.Item>
         </Stack>
       </Window.Content>
@@ -71,7 +84,7 @@ const Designs = (props) => {
   const [searchText, setSearchText] = useSharedState('search_text', '');
 
   const materials = useMemo(() => {
-    let materials = {};
+    const materials = {};
     for (const material of data.materials) {
       materials[material.name] = material.amount;
     }
@@ -130,8 +143,9 @@ const Designs = (props) => {
               <Input
                 fluid
                 placeholder="Search all designs..."
+                expensive
                 value={searchText}
-                onChange={(e, val) => setSearchText(val)}
+                onChange={(val) => setSearchText(val)}
               />
             </Stack.Item>
           </Stack>
@@ -158,7 +172,7 @@ const canBeMade = (
   available: Record<string, number>,
   multiplier: number = 1,
 ): boolean => {
-  for (let [id, amt] of Object.entries(required)) {
+  for (const [id, amt] of Object.entries(required)) {
     if ((available[id] || 0) < amt * multiplier) {
       return false;
     }

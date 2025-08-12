@@ -38,7 +38,7 @@ Buildable meters
  * @param loc Location
  * @pipe_type
  */
-/obj/item/pipe/Initialize(var/mapload, var/_pipe_type, var/_dir, var/obj/machinery/atmospherics/make_from)
+/obj/item/pipe/Initialize(mapload, var/_pipe_type, var/_dir, var/obj/machinery/atmospherics/make_from)
 	if(make_from)
 		make_from_existing(make_from)
 	else
@@ -163,7 +163,7 @@ Buildable meters
 		set_dir(EAST)
 
 /obj/item/pipe/trinary/flippable/fixdir()
-	if(dir in cornerdirs)
+	if(dir in GLOB.cornerdirs)
 		set_dir(turn(dir, 45))
 
 /obj/item/pipe/attack_self(mob/user)

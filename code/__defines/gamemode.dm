@@ -1,10 +1,3 @@
-// Ticker game states, turns out these are  equivilent to runlevels1
-#define GAME_STATE_INIT			0	// RUNLEVEL_INIT
-#define GAME_STATE_PREGAME		1	// RUNLEVEL_LOBBY
-#define GAME_STATE_SETTING_UP	2	// RUNLEVEL_SETUP
-#define GAME_STATE_PLAYING		3	// RUNLEVEL_GAME
-#define GAME_STATE_FINISHED		4	// RUNLEVEL_POSTGAME
-
 //End game state, to manage round end.
 #define END_GAME_NOT_OVER		1	// Still playing normally
 #define END_GAME_MODE_FINISHED	2	// Mode has finished but game has not, wait for game to end too.
@@ -55,7 +48,7 @@ var/list/be_special_flags = list(
 	"Wizard"           = BE_WIZARD,
 	"Malf AI"          = BE_MALF,
 	"Revolutionary"    = BE_REV,
-	"Xenomorph"        = BE_ALIEN,
+	"Genaprawn"        = BE_ALIEN,
 	"Positronic Brain" = BE_AI,
 	"Cultist"          = BE_CULTIST,
 	"Renegade"         = BE_RENEGADE,

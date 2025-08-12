@@ -8,9 +8,9 @@
 	flags = RESTRICTED | HIVEMIND
 
 /datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
-
-	if(speaker.mind && speaker.mind.changeling)
-		..(speaker,message,speaker.mind.changeling.changelingID)
+	var/datum/component/antag/changeling/comp = speaker.GetComponent(/datum/component/antag/changeling)
+	if(speaker.mind && comp)
+		..(speaker,message,comp.changelingID)
 	else
 		..(speaker,message)
 
@@ -77,7 +77,7 @@
 /datum/language/xenocommon
 	name = "Xenomorph"
 	colour = "alien"
-	desc = "The common tongue of the xenomorphs."
+	desc = "The common tongue of both the xenomorphs and the Genaprawns."
 	speech_verb = "hisses"
 	ask_verb = "hisses"
 	exclaim_verb = "hisses"
@@ -86,7 +86,7 @@
 	syllables = list("sss","sSs","SSS")
 
 /datum/language/xenos
-	name = "Hivemind"
+	name = LANGUAGE_HIVEMIND
 	desc = "Xenomorphs have the strange ability to commune over a psychic hivemind."
 	speech_verb = "hisses"
 	ask_verb = "hisses"

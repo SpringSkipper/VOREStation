@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
-import { useBackend } from '../backend';
-import { Box, Section, Stack, Tabs } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Section, Stack, Tabs } from 'tgui-core/components';
 
 type data = {
   namae: string;
@@ -76,6 +76,7 @@ export const TraitDescription = (props) => {
       <br />
       <br />
       <div
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: Internal trait data
         dangerouslySetInnerHTML={{
           __html: tutorials[name] as unknown as string,
         }}

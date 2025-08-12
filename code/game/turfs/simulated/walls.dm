@@ -238,7 +238,7 @@
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return FALSE
 
-	// Wall-rot can't go onto walls that are surrounded in all four cardinal directions.
+	// Wall-rot can't go onto walls that are surrounded in all four GLOB.cardinal directions.
 	// Because of spores, or something. It's actually to avoid the pain that is removing wallrot surrounded by
 	// four r-walls.
 	var/at_least_one_open_turf = FALSE
@@ -333,6 +333,11 @@
 		ChangeTurf(/turf/simulated/floor/airless, preserve_outdoors = TRUE)
 		return TRUE
 	return FALSE
+
+/turf/simulated/wall/occult_act(mob/living/user)
+	to_chat(user, span_cult("You consecrate the wall."))
+	ChangeTurf(/turf/simulated/wall/cult, preserve_outdoors = TRUE)
+	return TRUE
 
 /turf/simulated/wall/AltClick(mob/user)
 	if(isliving(user))

@@ -34,11 +34,11 @@
 
 /mob/living/silicon/robot/platform/attack_ghost(mob/observer/dead/user)
 
-	if(client || key || stat == DEAD || !ticker || !ticker.mode)
+	if(client || key || stat == DEAD || !SSticker || !SSticker.mode)
 		return ..()
 
-	var/confirm = tgui_alert(usr, "Do you wish to take control of \the [src]?", "Platform Control", list("No", "Yes"))
-	if(confirm != "Yes" || QDELETED(src) || client || key || stat == DEAD || !ticker || !ticker.mode)
+	var/confirm = tgui_alert(user, "Do you wish to take control of \the [src]?", "Platform Control", list("No", "Yes"))
+	if(confirm != "Yes" || QDELETED(src) || client || key || stat == DEAD || !SSticker || !SSticker.mode)
 		return ..()
 
 	if(jobban_isbanned(user, "Robot"))
@@ -55,8 +55,8 @@
 		pluralcheck = " [deathtimeminutes] minute\s and"
 	var/deathtimeseconds = round((deathtime - deathtimeminutes * 1 MINUTE) / 10,1)
 	if (deathtime < platform_respawn_time)
-		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
-		to_chat(usr, "You must wait [platform_respawn_time/600] minute\s to take control of \the [src]!")
+		to_chat(user, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
+		to_chat(user, "You must wait [platform_respawn_time/600] minute\s to take control of \the [src]!")
 		return
 	// End boilerplate.
 

@@ -26,11 +26,18 @@ SUBSYSTEM_DEF(tgui)
 
 /datum/controller/subsystem/tgui/PreInit()
 	basehtml = file2text('tgui/public/tgui.html')
-	// Inject inline polyfills
-	var/polyfill = file2text('tgui/public/tgui-polyfill.min.js')
-	polyfill = "<script>\n[polyfill]\n</script>"
-	basehtml = replacetextEx(basehtml, "<!-- tgui:inline-polyfill -->", polyfill)
-	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) 2284-[CURRENT_STATION_YEAR]")
+
+	// Inject inline helper functions
+	var/helpers = file2text('tgui/public/helpers.min.js')
+	helpers = "<script type='text/javascript'>\n[helpers]\n</script>"
+	basehtml = replacetextEx(basehtml, "<!-- tgui:helpers -->", helpers)
+
+	// Inject inline ntos-error styles
+	var/ntos_error = file2text('tgui/public/ntos-error.min.css')
+	ntos_error = "<style type='text/css'>\n[ntos_error]\n</style>"
+	basehtml = replacetextEx(basehtml, "<!-- tgui:ntos-error -->", ntos_error)
+
+	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) 2284-[text2num(time2text(world.realtime,"YYYY")) + STATION_YEAR_OFFSET]")
 
 /datum/controller/subsystem/tgui/Shutdown()
 	close_all_uis()
@@ -171,9 +178,9 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/get_open_ui(mob/user, datum/src_object)
 	// No UIs opened for this src_object
-	if(!LAZYLEN(src_object?.open_uis))
+	if(!LAZYLEN(src_object?.open_tguis))
 		return null
-	for(var/datum/tgui/ui in src_object.open_uis)
+	for(var/datum/tgui/ui in src_object.open_tguis)
 		// Make sure we have the right user
 		if(ui.user == user)
 			return ui
@@ -190,10 +197,10 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/update_uis(datum/src_object)
 	// No UIs opened for this src_object
-	if(!LAZYLEN(src_object?.open_uis))
+	if(!LAZYLEN(src_object?.open_tguis))
 		return 0
 	var/count = 0
-	for(var/datum/tgui/ui in src_object.open_uis)
+	for(var/datum/tgui/ui in src_object.open_tguis)
 		// Check if UI is valid.
 		if(ui?.src_object && ui.user && ui.src_object.tgui_host(ui.user))
 			INVOKE_ASYNC(ui, TYPE_PROC_REF(/datum/tgui, process), wait * 0.1, TRUE)
@@ -211,10 +218,10 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/close_uis(datum/src_object)
 	// No UIs opened for this src_object
-	if(!LAZYLEN(src_object?.open_uis))
+	if(!LAZYLEN(src_object?.open_tguis))
 		return 0
 	var/count = 0
-	for(var/datum/tgui/ui in src_object.open_uis)
+	for(var/datum/tgui/ui in src_object.open_tguis)
 		// Check if UI is valid.
 		if(ui?.src_object && ui.user && ui.src_object.tgui_host(ui.user))
 			ui.close()
@@ -272,7 +279,7 @@ SUBSYSTEM_DEF(tgui)
 	if(length(user?.tgui_open_uis) == 0)
 		return count
 	for(var/datum/tgui/ui in user.tgui_open_uis)
-		if(isnull(src_object) || ui.src_object == src_object)
+		if((isnull(src_object) || ui.src_object == src_object) && ui.closeable)
 			ui.close(logout = logout)
 			count++
 	return count
@@ -286,7 +293,7 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/on_open(datum/tgui/ui)
 	ui.user?.tgui_open_uis |= ui
-	LAZYOR(ui.src_object.open_uis, ui)
+	LAZYOR(ui.src_object.open_tguis, ui)
 	all_uis |= ui
 
 /**
@@ -306,7 +313,7 @@ SUBSYSTEM_DEF(tgui)
 	if(ui.user)
 		ui.user.tgui_open_uis -= ui
 	if(ui.src_object)
-		LAZYREMOVE(ui.src_object.open_uis, ui)
+		LAZYREMOVE(ui.src_object.open_tguis, ui)
 	return TRUE
 
 /**

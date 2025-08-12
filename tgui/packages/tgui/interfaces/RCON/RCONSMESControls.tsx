@@ -1,11 +1,11 @@
-import { BooleanLike } from 'common/react';
-import { capitalize } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Button, Slider, Stack } from 'tgui-core/components';
+import { formatPower } from 'tgui-core/format';
+import type { BooleanLike } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
-import { useBackend } from '../../backend';
-import { Button, Slider, Stack } from '../../components';
-import { formatPower } from '../../format';
 import { POWER_MUL } from './constants';
-import { rconSmes } from './types';
+import type { rconSmes } from './types';
 
 export const SMESControls = (props: { way: string; smes: rconSmes }) => {
   const { act } = useBackend();
@@ -70,7 +70,7 @@ export const SMESControls = (props: { way: string; smes: rconSmes }) => {
   return (
     <Stack fill>
       <Stack.Item basis="20%">{capitalize(way)}</Stack.Item>
-      <Stack.Item grow={1}>
+      <Stack.Item grow>
         <Stack>
           <Stack.Item>
             <Button
@@ -106,8 +106,9 @@ export const SMESControls = (props: { way: string; smes: rconSmes }) => {
               }
             />
           </Stack.Item>
-          <Stack.Item grow={1}>
+          <Stack.Item grow>
             <Slider
+              tickWhileDragging
               value={level / POWER_MUL}
               fillValue={available / POWER_MUL}
               minValue={0}
@@ -119,7 +120,7 @@ export const SMESControls = (props: { way: string; smes: rconSmes }) => {
                 '/' +
                 formatPower(value * POWER_MUL, 1)
               }
-              onDrag={(e, value: number) =>
+              onChange={(e, value: number) =>
                 act(changeAmountAct, {
                   target: value * POWER_MUL,
                   smes: RCON_tag,

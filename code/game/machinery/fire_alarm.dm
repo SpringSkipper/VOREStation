@@ -43,13 +43,13 @@ FIRE ALARM
 	. = ..()
 	. += "Current security level: [seclevel]"
 
-/obj/machinery/firealarm/Initialize()
+/obj/machinery/firealarm/Initialize(mapload)
 	. = ..()
 	if(!pixel_x && !pixel_y)
 		offset_alarm()
 
 	if(z in using_map.contact_levels)
-		set_security_level(security_level ? get_security_level() : "green")
+		set_security_level(GLOB.security_level ? get_security_level() : "green")
 
 /obj/machinery/firealarm/proc/offset_alarm()
 	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 26 : -26)
@@ -296,7 +296,7 @@ Just a object used in constructing fire alarms
 			var/tp = text2num(href_list["tp"])
 			time += tp
 			time = min(max(round(time), 0), 120)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 
 		add_fingerprint(usr)
 	else

@@ -251,7 +251,7 @@ I think I covered everything.
 	//add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/set_desc) //Implemented upstream
 	faction = FACTION_NEUTRAL
 
-/mob/living/simple_mob/vore/bigdragon/Initialize()
+/mob/living/simple_mob/vore/bigdragon/Initialize(mapload)
 	. = ..()
 	src.adjust_nutrition(src.max_nutrition)
 	build_icons(1)
@@ -426,7 +426,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick underbelly color:","Underbelly Color", overlay_colors["Underbelly"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick underbelly color:","Underbelly Color", overlay_colors["Underbelly"])
 			if(!new_color)
 				return 0
 			under = choice
@@ -439,7 +439,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick body color:","Body Color", overlay_colors["Body"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick body color:","Body Color", overlay_colors["Body"])
 			if(!new_color)
 				return 0
 			body = choice
@@ -452,7 +452,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick ear color:","Ear Color", overlay_colors["Ears"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick ear color:","Ear Color", overlay_colors["Ears"])
 			if(!new_color)
 				return 0
 			ears = choice
@@ -465,7 +465,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick mane color:","Mane Color", overlay_colors["Mane"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick mane color:","Mane Color", overlay_colors["Mane"])
 			if(!new_color)
 				return 0
 			mane = choice
@@ -478,7 +478,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick horn color:","Horn Color", overlay_colors["Horns"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick horn color:","Horn Color", overlay_colors["Horns"])
 			if(!new_color)
 				return 0
 			horns = choice
@@ -491,7 +491,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick eye color:","Eye Color", overlay_colors["Eyes"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick eye color:","Eye Color", overlay_colors["Eyes"])
 			if(!new_color)
 				return 0
 			eyes = choice
@@ -504,9 +504,7 @@ I think I covered everything.
 ///
 ///	My thanks to Raeschen for these descriptions
 
-/mob/living/simple_mob/vore/bigdragon/init_vore()
-	if(!voremob_loaded || LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/bigdragon/load_default_bellies()
 	var/obj/belly/B = new /obj/belly/dragon/maw(src)
 	B.affects_vore_sprites = FALSE
 	B.emote_lists[DM_HOLD] = list(
@@ -560,16 +558,15 @@ I think I covered everything.
 		"A soft swaying, like the waves of an ocean, squish you to one side, and then to the other. The dragon's gentle movements seem to sway you side to side, as if in a tight possessive hammock on it's underside.",
 		"Nearby, a louder cacophany of gushing glrrrbles, deep dull squelches, and even deeper glrrns call out. This safe pocket of flesh seems to be up close and intimate with the dragon's normal, larger stomach, thus you rest safely spectating the sounds it makes.",
 		"The rushing breathing of the beast continues at a slow pace, indicating the calm it has. Holding you like this seems quite enjoyable to them, the chamber's folds just as calm and lazy in their motions of squelching the slimy contents all over your form.")
-	.=..()
 
 //Making unique belly subtypes for cleanliness and my sanity
 /obj/belly/dragon
 	autotransferchance = 50
 	autotransferwait = 150
-	escapable = 1
+	escapable = TRUE
 	escapechance = 100
 	escapetime = 15
-	fancy_vore = 1
+	fancy_vore = TRUE
 	contamination_color = "grey"
 	contamination_flavor = "Wet"
 	vore_verb = "slurp"
@@ -937,7 +934,7 @@ I think I covered everything.
 				return
 			if(P.suiciding)
 				return
-			if(P.health <= (P.maxHealth * 0.95))	//Nom em'
+			if(P.health <= (P.getMaxHealth() * 0.95))	//Nom em'
 				if(vocal)
 					if(last_speak + 30 SECONDS < world.time)
 						var/message_options = list(

@@ -18,8 +18,8 @@
 		)
 
 //Forces different sprite sheet on equip
-/obj/item/clothing/accessory/choker/New()
-	..()
+/obj/item/clothing/accessory/choker/Initialize(mapload)
+	. = ..()
 	icon_previous_override = icon_override
 
 /obj/item/clothing/accessory/choker/equipped() //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
@@ -57,8 +57,8 @@
 	)
 
 //Forces different sprite sheet on equip
-/obj/item/clothing/accessory/collar/New()
-	..()
+/obj/item/clothing/accessory/collar/Initialize(mapload)
+	. = ..()
 	icon_previous_override = icon_override
 
 /obj/item/clothing/accessory/collar/equipped() //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
@@ -134,19 +134,19 @@
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
 
-/obj/item/clothing/accessory/collar/shock/Initialize()
+/obj/item/clothing/accessory/collar/shock/Initialize(mapload)
 	. = ..()
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
 
 /obj/item/clothing/accessory/collar/shock/Destroy() //Clean up your toys when you're done.
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	radio_connection = null //Don't delete this, this is a shared object.
 	return ..()
 
 /obj/item/clothing/accessory/collar/shock/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
 	if(!ishuman(user))
@@ -254,7 +254,6 @@
 	icon_state = "collarplanet_earth"
 	item_state = "collarplanet_earth"
 	overlay_state = "collarplanet_earth"
-
 
 /obj/item/clothing/accessory/collar/holo
 	name = "Holo-collar"
@@ -385,6 +384,8 @@
 			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		if(!H)
+			return
 		if(!H.resizable)
 			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
@@ -483,6 +484,8 @@
 			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		if(!H)
+			return
 		if(!H.resizable)
 			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
@@ -555,6 +558,8 @@
 			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		if(!H)
+			return
 		if(!H.resizable)
 			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return

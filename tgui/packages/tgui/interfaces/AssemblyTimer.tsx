@@ -1,9 +1,13 @@
-import { round } from 'common/math';
-
-import { useBackend } from '../backend';
-import { Button, LabeledList, NumberInput, Section } from '../components';
-import { formatTime } from '../format';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+} from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
+import { round } from 'tgui-core/math';
 
 type Data = { timing: number; time: number };
 
@@ -29,13 +33,14 @@ export const AssemblyTimer = (props) => {
             >
               <NumberInput
                 animated
+                tickWhileDragging
                 fluid
                 step={1}
                 value={time}
                 minValue={0}
                 maxValue={600}
                 format={(val: number) => formatTime(round(val * 10, 0))}
-                onDrag={(val: number) => act('set_time', { time: val })}
+                onChange={(val: number) => act('set_time', { time: val })}
               />
             </LabeledList.Item>
           </LabeledList>

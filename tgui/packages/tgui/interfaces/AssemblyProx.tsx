@@ -1,10 +1,14 @@
-import { round } from 'common/math';
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, LabeledList, NumberInput, Section } from '../components';
-import { formatTime } from '../format';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+} from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
+import { round } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   timing: number;
@@ -35,6 +39,7 @@ export const AssemblyProx = (props) => {
               }
             >
               <NumberInput
+                tickWhileDragging
                 animated
                 fluid
                 step={1}
@@ -42,7 +47,7 @@ export const AssemblyProx = (props) => {
                 minValue={0}
                 maxValue={600}
                 format={(val: number) => formatTime(round(val * 10, 0))}
-                onDrag={(val: number) => act('set_time', { time: val })}
+                onChange={(val: number) => act('set_time', { time: val })}
               />
             </LabeledList.Item>
           </LabeledList>
@@ -51,11 +56,12 @@ export const AssemblyProx = (props) => {
           <LabeledList>
             <LabeledList.Item label="Range">
               <NumberInput
+                tickWhileDragging
                 step={1}
                 minValue={1}
                 value={range}
                 maxValue={maxRange}
-                onDrag={(val: number) => act('range', { range: val })}
+                onChange={(val: number) => act('range', { range: val })}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Armed">

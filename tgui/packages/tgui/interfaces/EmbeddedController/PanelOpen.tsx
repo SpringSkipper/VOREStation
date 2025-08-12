@@ -1,4 +1,3 @@
-import { round, toFixed } from 'common/math';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -7,8 +6,9 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import { round, toFixed } from 'tgui-core/math';
 
-import { PanelOpenData } from './types';
+import type { PanelOpenData } from './types';
 
 export const PanelOpen = (props) => {
   const { act, data } = useBackend<PanelOpenData>();
@@ -25,6 +25,7 @@ export const PanelOpen = (props) => {
         <LabeledList.Item label="Frequency">
           <NumberInput
             animated
+            tickWhileDragging
             fluid
             unit="kHz"
             step={0.2}
@@ -33,7 +34,7 @@ export const PanelOpen = (props) => {
             minValue={min_freq / 10}
             maxValue={max_freq / 10}
             format={(val) => toFixed(val, 1)}
-            onDrag={(freq) =>
+            onChange={(freq) =>
               act('set_frequency', { freq: round(freq * 10, 0) })
             }
           />

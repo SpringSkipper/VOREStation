@@ -12,7 +12,7 @@
 /obj/item/hand_labeler/attack()
 	return
 
-/obj/item/hand_labeler/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/hand_labeler/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(!mode)	//if it's off, give up.
@@ -32,7 +32,7 @@
 	if(istype(A, /mob/living/silicon/robot/platform))
 		var/mob/living/silicon/robot/platform/P = A
 		if(!P.allowed(user))
-			to_chat(usr, span_warning("Access denied."))
+			to_chat(user, span_warning("Access denied."))
 		else if(P.client || P.key)
 			to_chat(user, span_notice("You rename \the [P] to [label]."))
 			to_chat(P, span_notice("\The [user] renames you to [label]."))
@@ -73,7 +73,7 @@
 	if(mode)
 		to_chat(user, span_notice("You turn on \the [src]."))
 		//Now let them chose the text.
-		var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","",MAX_NAME_LEN), MAX_NAME_LEN)
+		var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","",MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!str || !length(str))
 			to_chat(user, span_warning("Invalid text."))
 			return

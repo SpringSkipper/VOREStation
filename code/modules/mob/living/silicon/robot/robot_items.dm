@@ -1,128 +1,3 @@
-//A portable analyzer, for research borgs.  This is better then giving them a gripper which can hold anything and letting them use the normal analyzer.
-/obj/item/portable_destructive_analyzer
-	name = "Portable Destructive Analyzer"
-	icon = 'icons/obj/items.dmi'
-	icon_state = "portable_analyzer"
-	desc = "Similar to the stationary version, this rather unwieldy device allows you to break down objects in the name of science."
-
-	var/min_reliability = 90 //Can't upgrade, call it laziness or a drawback
-
-	var/datum/research/techonly/files 	//The device uses the same datum structure as the R&D computer/server.
-										//This analyzer can only store tech levels, however.
-
-	var/obj/item/loaded_item	//What is currently inside the analyzer.
-
-/obj/item/portable_destructive_analyzer/New()
-	..()
-	files = new /datum/research/techonly(src) //Setup the research data holder.
-
-/obj/item/portable_destructive_analyzer/attack_self(user as mob)
-	var/response = tgui_alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
-							Syncing to the research server will send the data that is stored inside to research.\n\
-							Ejecting will place the loaded item onto the floor.",
-							"What would you like to do?", list("Analyze", "Sync", "Eject"))
-	if(response == "Analyze")
-		if(loaded_item)
-			var/confirm = tgui_alert(user, "This will destroy the item inside forever. Are you sure?","Confirm Analyze",list("Yes","No"))
-			if(confirm == "Yes" && !QDELETED(loaded_item)) //This is pretty copypasta-y
-				to_chat(user, span_filter_notice("You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down."))
-				flick("portable_analyzer_scan", src)
-				playsound(src, 'sound/items/Welder2.ogg', 50, 1)
-				var/research_levels = list()
-				for(var/T in loaded_item.origin_tech)
-					files.UpdateTech(T, loaded_item.origin_tech[T])
-					research_levels += "\The [loaded_item] had level [loaded_item.origin_tech[T]] in [CallTechName(T)]."
-				if (length(research_levels))
-					to_chat(user, span_filter_notice("[jointext(research_levels,"<br>")]"))
-				loaded_item = null
-				for(var/obj/I in contents)
-					for(var/mob/M in I.contents)
-						M.death()
-					if(istype(I,/obj/item/stack/material))//Only deconstructs one sheet at a time instead of the entire stack
-						var/obj/item/stack/material/S = I
-						if(S.get_amount() > 1)
-							S.use(1)
-							loaded_item = S
-						else
-							qdel(S)
-							desc = initial(desc)
-							icon_state = initial(icon_state)
-					else
-						qdel(I)
-						desc = initial(desc)
-						icon_state = initial(icon_state)
-			else
-				return
-		else
-			to_chat(user, span_filter_notice("The [src] is empty.  Put something inside it first."))
-	if(response == "Sync")
-		var/success = 0
-		for(var/obj/machinery/r_n_d/server/S in machines)
-			for(var/datum/tech/T in files.known_tech) //Uploading
-				S.files.AddTech2Known(T)
-			for(var/datum/tech/T in S.files.known_tech) //Downloading
-				files.AddTech2Known(T)
-			success = 1
-			files.RefreshResearch()
-		if(success)
-			to_chat(user, span_filter_notice("You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch."))
-			playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-		else
-			to_chat(user, span_filter_notice("Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator."))
-			playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
-	if(response == "Eject")
-		if(loaded_item)
-			loaded_item.loc = get_turf(src)
-			desc = initial(desc)
-			icon_state = initial(icon_state)
-			loaded_item = null
-		else
-			to_chat(user, span_filter_notice("The [src] is already empty."))
-
-
-/obj/item/portable_destructive_analyzer/afterattack(var/atom/target, var/mob/living/user, proximity)
-	if(!target)
-		return
-	if(!proximity)
-		return
-	if(!isturf(target.loc)) // Don't load up stuff if it's inside a container or mob!
-		return
-	if(istype(target,/obj/item))
-		if(loaded_item)
-			to_chat(user, span_filter_notice("Your [src] already has something inside.  Analyze or eject it first."))
-			return
-		var/obj/item/I = target
-		I.loc = src
-		loaded_item = I
-		for(var/mob/M in viewers())
-			M.show_message(span_notice("[user] adds the [I] to the [src]."), 1)
-		desc = initial(desc) + "<br>It is holding \the [loaded_item]."
-		flick("portable_analyzer_load", src)
-		icon_state = "portable_analyzer_full"
-
-/obj/item/portable_scanner
-	name = "Portable Resonant Analyzer"
-	icon = 'icons/obj/items.dmi'
-	icon_state = "portable_scanner"
-	desc = "An advanced scanning device used for analyzing objects without completely annihilating them for science. Unfortunately, it has no connection to any database like its angrier cousin."
-
-/obj/item/portable_scanner/afterattack(var/atom/target, var/mob/living/user, proximity)
-	if(!target)
-		return
-	if(!proximity)
-		return
-	if(istype(target,/obj/item))
-		var/obj/item/I = target
-		if(do_after(src, 5 SECONDS * I.w_class))
-			for(var/mob/M in viewers())
-				M.show_message(span_notice("[user] sweeps \the [src] over \the [I]."), 1)
-			flick("[initial(icon_state)]-scan", src)
-			if(I.origin_tech && I.origin_tech.len)
-				for(var/T in I.origin_tech)
-					to_chat(user, span_notice("\The [I] had level [I.origin_tech[T]] in [CallTechName(T)]."))
-			else
-				to_chat(user, span_notice("\The [I] cannot be scanned by \the [src]."))
-
 //This is used to unlock other borg covers.
 /obj/item/card/robot //This is not a child of id cards, as to avoid dumb typechecks on computers.
 	name = "access code transmission device"
@@ -133,14 +8,14 @@
 	var/dummy_card = null
 	var/dummy_card_type = /obj/item/card/id/science/roboticist/dummy_cyborg
 
-/obj/item/card/robot/Initialize()
+/obj/item/card/robot/Initialize(mapload)
 	. = ..()
 	dummy_card = new dummy_card_type(src)
 
 /obj/item/card/robot/Destroy()
 	qdel(dummy_card)
 	dummy_card = null
-	..()
+	. = ..()
 
 /obj/item/card/robot/GetID()
 	return dummy_card
@@ -151,7 +26,7 @@
 /obj/item/card/id/science/roboticist/dummy_cyborg
 	access = list(access_robotics)
 
-/obj/item/card/id/syndicate/dummy_cyborg/Initialize()
+/obj/item/card/id/syndicate/dummy_cyborg/Initialize(mapload)
 	. = ..()
 	access |= access_robotics
 
@@ -274,9 +149,9 @@
 	name = "Printing Pen"
 	var/mode = 1
 
-/obj/item/pen/robopen/attack_self(mob/user as mob)
+/obj/item/pen/robopen/attack_self(mob/user)
 
-	var/choice = tgui_alert(usr, "Would you like to change colour or mode?", "Change What?", list("Colour","Mode","Cancel"))
+	var/choice = tgui_alert(user, "Would you like to change colour or mode?", "Change What?", list("Colour","Mode","Cancel"))
 	if(!choice || choice == "Cancel")
 		return
 
@@ -285,7 +160,7 @@
 	switch(choice)
 
 		if("Colour")
-			var/newcolour = tgui_input_list(usr, "Which colour would you like to use?", "Color Choice", list("black","blue","red","green","yellow"))
+			var/newcolour = tgui_input_list(user, "Which colour would you like to use?", "Color Choice", list("black","blue","red","green","yellow"))
 			if(newcolour) colour = newcolour
 
 		if("Mode")
@@ -303,7 +178,7 @@
 /obj/item/pen/robopen/proc/RenamePaper(mob/user, obj/item/paper/paper)
 	if ( !user || !paper )
 		return
-	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the paper?", "Paper Labelling", null, 32), 32)
+	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the paper?", "Paper Labelling", null, 32, encode = FALSE), 32)
 	if ( !user || !paper )
 		return
 
@@ -329,19 +204,19 @@
 /obj/item/form_printer/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	return
 
-/obj/item/form_printer/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/form_printer/afterattack(atom/target, mob/living/user, flag, params)
 
 	if(!target || !flag)
 		return
 
 	if(istype(target,/obj/structure/table))
-		deploy_paper(get_turf(target))
+		deploy_paper(user)
 
-/obj/item/form_printer/attack_self(mob/user as mob)
-	deploy_paper()
+/obj/item/form_printer/attack_self(mob/user)
+	deploy_paper(user)
 
-/obj/item/form_printer/proc/deploy_paper()
-	var/choice = tgui_alert(usr, "Would you like dispense and empty page or print a form?", "Dispense", list("Paper","Form"))
+/obj/item/form_printer/proc/deploy_paper(mob/user)
+	var/choice = tgui_alert(user, "Would you like dispense and empty page or print a form?", "Dispense", list("Paper","Form"))
 	if(!choice || choice == "Cancel")
 		return
 	switch(choice)
@@ -352,9 +227,9 @@
 				T.visible_message(span_notice("\The [src.loc] dispenses a sheet of crisp white paper."))
 				new /obj/item/paper(T)
 		if ("Form")
-			var/list/content = print_form()
+			var/list/content = print_form(user)
 			if(!content)
-				to_chat(usr, span_warning("No form for this category found in central network. Central is advising employees to upload new forms whenever possible."))
+				to_chat(user, span_warning("No form for this category found in central network. Central is advising employees to upload new forms whenever possible."))
 				return
 			flick("doc_printer_mod_printing", src)
 			spawn(22)
@@ -362,7 +237,7 @@
 				T.visible_message(span_notice("\The [src.loc] dispenses an official form to fill."))
 				new /obj/item/paper(T, content[1], content[2])
 
-/obj/item/form_printer/proc/print_form()
+/obj/item/form_printer/proc/print_form(mob/user)
 	var/list/paper_forms = list("Empty", "Command", "Security", "Supply", "Science", "Medical", "Engineering", "Service", "Exploration", "Event", "Other", "Mercenary")
 	var/list/command_paper_forms = list("COM-0002: Dismissal Order", "COM-0003: Job Change Request", "COM-0004: ID Replacement Request", "COM-0005: Access Change Order", "COM-0006: Formal Complaint", "COM-0009: Visitor Permit", "COM-0012: Personnel Request Form", "COM-0013: Employee of the Month Nomination Form")
 	var/list/security_paper_forms = list("SEC-1001: Shift-Start Checklist", "SEC-1002: Patrol Assignment Sheet", "SEC-1003: Incident Report", "SEC-1004: Arrest Report", "SEC-1005: Arrest Warrant", "SEC-1006: Search Warrant", "SEC-1007: Forensics Investigation Report", "SEC-1008: Interrogation Report", "SEC-1009: Witness Statement", "SEC-1010: Armory Inventory", "SEC-1011: Armory Equipment Request", "SEC-1012: Armory Equipment Deployment", "SEC-1013: Weapon Permit", "SEC-1014: Injunction", "SEC-1015: Deputization Waiver")
@@ -377,64 +252,64 @@
 	var/list/mercenary_paper_forms = list("MERC-?071: Mercenary Request")
 
 	var/list/split = list()
-	var/papertype = tgui_input_list(usr, "What kind of form do you want to print?", "Department", paper_forms)
+	var/papertype = tgui_input_list(user, "What kind of form do you want to print?", "Department", paper_forms)
 	if(!papertype || papertype == "Cancel")
 		return
 	switch(papertype)
 		if ("Empty")
 			split = list("", "Empty form")
 		if("Command")
-			var/command_paper = tgui_input_list(usr, "What kind of command form do you want to print?", "Form", command_paper_forms)
+			var/command_paper = tgui_input_list(user, "What kind of command form do you want to print?", "Form", command_paper_forms)
 			if(!command_paper || command_paper == "Cancel")
 				return
 			split = splittext(command_paper, ": ")
 		if("Security")
-			var/security_paper = tgui_input_list(usr, "What kind of security form do you want to print?", "Form", security_paper_forms)
+			var/security_paper = tgui_input_list(user, "What kind of security form do you want to print?", "Form", security_paper_forms)
 			if(!security_paper || security_paper == "Cancel")
 				return
 			split = splittext(security_paper, ": ")
 		if("Supply")
-			var/supply_paper = tgui_input_list(usr, "What kind of supply form do you want to print?", "Form", supply_paper_forms)
+			var/supply_paper = tgui_input_list(user, "What kind of supply form do you want to print?", "Form", supply_paper_forms)
 			if(!supply_paper || supply_paper == "Cancel")
 				return
 			split = splittext(supply_paper, ": ")
 		if("Science")
-			var/science_paper = tgui_input_list(usr, "What kind of science form do you want to print?", "Form", science_paper_forms)
+			var/science_paper = tgui_input_list(user, "What kind of science form do you want to print?", "Form", science_paper_forms)
 			if(!science_paper || science_paper == "Cancel")
 				return
 			split = splittext(science_paper, ": ")
 		if("Medical")
-			var/medical_paper = tgui_input_list(usr, "What kind of medical form do you want to print?", "Form", medical_paper_forms)
+			var/medical_paper = tgui_input_list(user, "What kind of medical form do you want to print?", "Form", medical_paper_forms)
 			if(!medical_paper || medical_paper == "Cancel")
 				return
 			split = splittext(medical_paper, ": ")
 		if("Engineering")
-			var/engineering_paper = tgui_input_list(usr, "What kind of engineering form do you want to print?", "Form", engineering_paper_forms)
+			var/engineering_paper = tgui_input_list(user, "What kind of engineering form do you want to print?", "Form", engineering_paper_forms)
 			if(!engineering_paper || engineering_paper == "Cancel")
 				return
 			split = splittext(engineering_paper, ": ")
 		if("Service")
-			var/service_paper = tgui_input_list(usr, "What kind of service form do you want to print?", "Form", service_paper_forms)
+			var/service_paper = tgui_input_list(user, "What kind of service form do you want to print?", "Form", service_paper_forms)
 			if(!service_paper || service_paper == "Cancel")
 				return
 			split = splittext(service_paper, ": ")
 		if("Exploration")
-			var/exploration_paper = tgui_input_list(usr, "What kind of exploration form do you want to print?", "Form", exploration_paper_forms)
+			var/exploration_paper = tgui_input_list(user, "What kind of exploration form do you want to print?", "Form", exploration_paper_forms)
 			if(!exploration_paper || exploration_paper == "Cancel")
 				return
 			split = splittext(exploration_paper, ": ")
 		if("Event")
-			var/event_paper = tgui_input_list(usr, "What kind of event form do you want to print?", "Form", event_paper_forms)
+			var/event_paper = tgui_input_list(user, "What kind of event form do you want to print?", "Form", event_paper_forms)
 			if(!event_paper || event_paper == "Cancel")
 				return
 			split = splittext(event_paper, ": ")
 		if("Other")
-			var/other_paper = tgui_input_list(usr, "What kind of other form do you want to print?", "Form", other_paper_forms)
+			var/other_paper = tgui_input_list(user, "What kind of other form do you want to print?", "Form", other_paper_forms)
 			if(!other_paper || other_paper == "Cancel")
 				return
 			split = splittext(other_paper, ": ")
 		if("Mercenary")
-			var/mercenary_paper = tgui_input_list(usr, "What kind of mercenary form do you want to print?", "Form", mercenary_paper_forms)
+			var/mercenary_paper = tgui_input_list(user, "What kind of mercenary form do you want to print?", "Form", mercenary_paper_forms)
 			if(!mercenary_paper || mercenary_paper == "Cancel")
 				return
 			split = splittext(mercenary_paper, ": ")
@@ -606,13 +481,13 @@
 	var/overload_time = 0			//Stores the time of overload
 	var/last_flash = 0				//Stores the time of last flash
 
-/obj/item/borg/combat/shield/New()
+/obj/item/borg/combat/shield/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
-	..()
 
 /obj/item/borg/combat/shield/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/borg/combat/shield/attack_self(var/mob/living/user)
 	set_shield_level()
@@ -686,9 +561,9 @@
 	. += "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored."
 	. += "It is set to deploy [mode ? "doors" : "walls"]"
 
-/obj/item/inflatable_dispenser/attack_self()
+/obj/item/inflatable_dispenser/attack_self(mob/user)
 	mode = !mode
-	to_chat(usr, span_filter_notice("You set \the [src] to deploy [mode ? "doors" : "walls"]."))
+	to_chat(user, span_filter_notice("You set \the [src] to deploy [mode ? "doors" : "walls"]."))
 
 /obj/item/inflatable_dispenser/afterattack(var/atom/A, var/mob/user)
 	..(A, user)
@@ -750,7 +625,7 @@
 			qdel(A)
 		else
 			if(stored_doors >= max_doors)
-				to_chat(usr, span_filter_notice("\The [src] is full!"))
+				to_chat(user, span_filter_notice("\The [src] is full!"))
 				return
 			stored_doors++
 			qdel(A)

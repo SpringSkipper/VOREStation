@@ -41,7 +41,8 @@
 	desc = "A white folder with RD markings."
 	icon_state = "folder_rd"
 
-/obj/item/folder/white_rd/New()
+/obj/item/folder/white_rd/Initialize(mapload)
+	. = ..()
 	//add some memos
 	var/obj/item/paper/P = new()
 	P.name = "Memo RE: proper analysis procedure"
@@ -70,7 +71,7 @@
 		to_chat(user, span_notice("You put the [W] into \the [src]."))
 		update_icon()
 	else if(istype(W, /obj/item/pen))
-		var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the folder?", "Folder Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the folder?", "Folder Labelling", null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(in_range(user, src) && user.stat == 0)
 			name = "folder[(n_name ? text("- '[n_name]'") : null)]"
 	return
@@ -90,7 +91,7 @@
 		dat += "<A href='byond://?src=\ref[src];remove=\ref[Ph]'>Remove</A> <A href='byond://?src=\ref[src];rename=\ref[Ph]'>Rename</A> - <A href='byond://?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
 	for(var/obj/item/paper_bundle/Pb in src)
 		dat += "<A href='byond://?src=\ref[src];remove=\ref[Pb]'>Remove</A> <A href='byond://?src=\ref[src];rename=\ref[Pb]'>Rename</A> - <A href='byond://?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
-	user << browse(dat, "window=folder")
+	user << browse("<html>[dat]</html>", "window=folder")
 	onclose(user, "folder")
 	add_fingerprint(user)
 	return

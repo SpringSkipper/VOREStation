@@ -1,6 +1,5 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -8,8 +7,8 @@ import {
   NumberInput,
   ProgressBar,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   inserted_battery: BooleanLike;
@@ -75,13 +74,14 @@ export const XenoarchHandheldPowerUtilizer = (props) => {
               <LabeledList.Item label="Activation Duration">
                 <NumberInput
                   unit="s"
+                  tickWhileDragging
                   fluid
                   step={1}
                   minValue={0}
                   value={duration!}
                   stepPixelSize={4}
                   maxValue={30}
-                  onDrag={(val: number) =>
+                  onChange={(val: number) =>
                     act('changeduration', { duration: val * 10 })
                   }
                 />
@@ -89,13 +89,14 @@ export const XenoarchHandheldPowerUtilizer = (props) => {
               <LabeledList.Item label="Activation Interval">
                 <NumberInput
                   unit="s"
+                  tickWhileDragging
                   fluid
                   step={1}
                   minValue={0}
                   value={interval!}
                   stepPixelSize={10}
                   maxValue={10}
-                  onDrag={(val: number) =>
+                  onChange={(val: number) =>
                     act('changeinterval', { interval: val * 10 })
                   }
                 />
