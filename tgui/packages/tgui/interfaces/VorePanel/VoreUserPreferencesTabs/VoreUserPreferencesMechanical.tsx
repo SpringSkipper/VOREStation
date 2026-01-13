@@ -1,10 +1,10 @@
 import { Section, Stack } from 'tgui-core/components';
 
-import type { localPrefs } from '../types';
+import type { LocalPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesMechanical = (props: {
-  preferences: localPrefs;
+  preferences: LocalPrefs;
 }) => {
   const { preferences } = props;
 
@@ -89,10 +89,16 @@ export const VoreUserPreferencesMechanical = (props: {
             tooltipPosition="right"
           />
         </Stack.Item>
-        <Stack.Item basis="32%">
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem
             spec={preferences.toggle_consume_liquid_belly}
             tooltipPosition="top"
+          />
+        </Stack.Item>
+        <Stack.Item basis="32%">
+          <VoreUserPreferenceItem
+            spec={preferences.afk_pred}
+            tooltipPosition="left"
           />
         </Stack.Item>
       </Stack>

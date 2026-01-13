@@ -6,7 +6,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	desc = "A piece of juicy meat found in a person's head."
 	organ_tag = O_BRAIN
 	parent_organ = BP_HEAD
-	vital = 1
+	vital = TRUE
 	icon_state = "brain2"
 	force = 1.0
 	w_class = ITEMSIZE_SMALL
@@ -177,7 +177,6 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	parent_organ = BP_HEAD
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
-	vital = 1
 	can_assist = FALSE
 
 /obj/item/organ/internal/brain/xeno
@@ -279,6 +278,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	H.adjustBruteLoss(40)
 	H.adjustFireLoss(40)
 	H.Paralyse(4)
+	H.Sleeping(4)
 	H.updatehealth()
 	for(var/obj/item/organ/external/E in H.organs) //They've still gotta congeal, but it's faster than the clone sickness they'd normally get.
 		if(E && E.organ_tag == BP_L_ARM || E.organ_tag == BP_R_ARM || E.organ_tag == BP_L_LEG || E.organ_tag == BP_R_LEG)

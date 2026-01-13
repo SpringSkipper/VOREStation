@@ -92,8 +92,8 @@
 /obj/machinery/camera/proc/internal_process()
 	return
 
-/obj/machinery/camera/emp_act(severity, recursive)
-	if(!isEmpProof() && prob(100/severity))
+/obj/machinery/camera/emp_act(severity, recursive, forced)
+	if(!isEmpProof() && (forced || prob(100/severity)))
 		if(!affected_by_emp_until || (world.time > affected_by_emp_until))
 			affected_by_emp_until = max(affected_by_emp_until, world.time + (90 SECONDS / severity))
 			stat |= EMPED
@@ -121,7 +121,7 @@
 		return
 	destroy()
 
-/obj/machinery/camera/hitby(atom/movable/source)
+/obj/machinery/camera/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
 	if (!isobj(source))
 		return
